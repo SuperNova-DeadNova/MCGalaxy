@@ -23,7 +23,7 @@ using MCGalaxy.Modules.Relay.Discord;
 using MCGalaxy.Modules.Relay.IRC;
 using MCGalaxy.Modules.Security;
 using MCGalaxy.Scripting;
-
+using NotAwesomeSurvival;
 namespace MCGalaxy 
 {
     /// <summary> This class provides for more advanced modification to MCGalaxy </summary>
@@ -111,6 +111,7 @@ namespace MCGalaxy
             LoadCorePlugin(new DiscordPlugin());
             LoadCorePlugin(new IRCPlugin());
             LoadCorePlugin(new IPThrottler());
+            LoadCorePlugin(new Nas());
             IScripting.AutoloadPlugins();
         }
         
@@ -124,7 +125,53 @@ namespace MCGalaxy
     // This class is just kept around for backwards compatibility    
     //   Plugin used to be completely abstract, with Plugin_Simple having virtual methods
     //   However this is now obsolete as the virtual methods were moved into Plugin
-    [Obsolete("Derive from Plugin instead", true)]
-    public abstract class Plugin_Simple : Plugin { }
+    [Obsolete("Derive from Plugin instead")]
+    public abstract class Plugin_Simple : Plugin 
+    {
+        public override void Load(bool auto)
+        {
+            load(auto);
+        }
+    /// <summary> Hooks into events and initalises states/resources etc </summary>
+        /// <param name="auto"> True if plugin is being automatically loaded (e.g. on server startup), false if manually. </param>
+        public abstract void load(bool auto);
+        
+        /// <summary> Unhooks from events and disposes of state/resources etc </summary>
+        /// <param name="auto"> True if plugin is being auto unloaded (e.g. on server shutdown), false if manually. </param>
+        public abstract void unload(bool auto);
+        public override void Unload(bool auto)
+        {
+            unload(auto);
+        }
+        
+        /// <summary> Called when a player does /Help on the plugin. Typically tells the player what this plugin is about. </summary>
+        /// <param name="p"> Player who is doing /Help. </param>
+        public override void Help(Player p)
+        {
+            help(p);
+        }
+        public virtual void help(Player p) {
+            p.Message("No help is available for this plugin.");
+        }
+        
+        /// <summary> Name of the plugin. </summary>
+        public override string name { get { return Name; } }
+        public abstract string Name { get; }
+        /// <summary> Oldest version of MCGalaxy this plugin is compatible with. </summary>
+        public override string MCGalaxy_Version { get { return Version; } }
+        public abstract string Version { get; }
+        /// <summary> Version of this plugin. </summary>
+        public override int build { get { return Build; } }
+        public virtual int Build { get { return 0; } }
+        /// <summary> Message to display once this plugin is loaded. </summary>
+        public override string welcome { get { return Welcome; } }
+        public virtual string Welcome { get { return ""; } }
+        /// <summary> The creator/author of this plugin. (Your name) </summary>
+        public override string creator { get { return Creator; } }
+        public virtual string Creator { get { return ""; } }
+        /// <summary> Whether or not to auto load this plugin on server startup. </summary>
+        public override bool LoadAtStartup { get { return loadAtStartup; } }
+        public virtual bool loadAtStartup { get { return true; } }
+    }
 }
 
