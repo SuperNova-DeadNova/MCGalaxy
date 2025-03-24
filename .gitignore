@@ -182,3 +182,6 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+/MCGalaxy/nas/nas
+/MCGalaxy/nas/Redstone
+/MCGalaxy/nas/SimpleSurvival
