@@ -96,7 +96,7 @@ namespace NotAwesomeSurvival
         {
             lock (breakIDLocker)
             {
-                if (value <= Byte.MaxValue - BreakEffectIDcount) { value = 255; }
+                if (value <= byte.MaxValue - BreakEffectIDcount) { value = 255; }
                 BreakEffectID = value;
             }
         }
@@ -273,7 +273,7 @@ namespace NotAwesomeSurvival
         }
         static void MeterTask(SchedulerTask task)
         {
-            MeterInfo info = (MeterInfo)(task.State);
+            MeterInfo info = (MeterInfo)task.State;
             Player p = info.p;
             int millisecs = info.milliseconds;
             millisecs -= BreakMeterSpawnDelay;
@@ -336,7 +336,7 @@ namespace NotAwesomeSurvival
                 np.ResetBreaking();
                 np.lastAirClickDate = null;
                 np.lastLeftClickReleaseDate = DateTime.UtcNow;
-                NassEffect.UndefineEffect(p, NasBlockChange.BreakMeterID);
+                NassEffect.UndefineEffect(p, BreakMeterID);
             }
             if (action == MouseAction.Pressed)
             {
@@ -346,18 +346,18 @@ namespace NotAwesomeSurvival
                 {
                     //p.Message("reset breaking since you clicked out of bounds");
                     np.ResetBreaking();
-                    NassEffect.UndefineEffect(p, NasBlockChange.BreakMeterID);
+                    NassEffect.UndefineEffect(p, BreakMeterID);
                     return;
                 }
 
                 BlockID serverBlockID = p.level.GetBlock(x, y, z);
                 BlockID clientBlockID = p.ConvertBlock(serverBlockID);
                 NasBlock nasBlock = NasBlock.Get(clientBlockID);
-                if (nasBlock.durability == Int32.MaxValue)
+                if (nasBlock.durability == int.MaxValue)
                 {
                     //p.Message("This block can't be broken");
                     np.ResetBreaking();
-                    NassEffect.UndefineEffect(p, NasBlockChange.BreakMeterID);
+                    NassEffect.UndefineEffect(p, BreakMeterID);
                     return;
                 }
 
@@ -369,7 +369,7 @@ namespace NotAwesomeSurvival
                    )
                 {
                     np.ResetBreaking();
-                    NassEffect.UndefineEffect(p, NasBlockChange.BreakMeterID);
+                    NassEffect.UndefineEffect(p, BreakMeterID);
                     return;
                 }
 
@@ -387,13 +387,13 @@ namespace NotAwesomeSurvival
                         }
                     }
                 }
-                bool canBreakBlock = (heldItem.prop.tier >= nasBlock.tierOfToolNeededToBreak && toolEffective);
+                bool canBreakBlock = heldItem.prop.tier >= nasBlock.tierOfToolNeededToBreak && toolEffective;
                 if (nasBlock.tierOfToolNeededToBreak <= 0) { canBreakBlock = true; }
                 if (!canBreakBlock)
                 {
                     //p.Message("This block is too strong for your current tool.");
                     np.ResetBreaking();
-                    NassEffect.UndefineEffect(p, NasBlockChange.BreakMeterID);
+                    NassEffect.UndefineEffect(p, BreakMeterID);
                     return;
                 }
 
@@ -407,7 +407,7 @@ namespace NotAwesomeSurvival
                     }
 
                     np.ResetBreaking();
-                    NassEffect.UndefineEffect(p, NasBlockChange.BreakMeterID);
+                    NassEffect.UndefineEffect(p, BreakMeterID);
                     return;
                 }
                 if (np.breakX == x && np.breakY == y && np.breakZ == z)
@@ -416,7 +416,7 @@ namespace NotAwesomeSurvival
                     return;
                 }
 
-                NassEffect.UndefineEffect(p, NasBlockChange.BreakMeterID);
+                NassEffect.UndefineEffect(p, BreakMeterID);
 
 
                 np.breakX = x;
@@ -450,7 +450,7 @@ namespace NotAwesomeSurvival
                             multiplier *= 0.1875f;
                             break;
                     }
-                    millisecs = (int)((float)millisecs * multiplier);
+                    millisecs = (int)(millisecs * multiplier);
                 }
                 if (millisecs < 0) { millisecs = 0; }
                 //millisecs = 0;

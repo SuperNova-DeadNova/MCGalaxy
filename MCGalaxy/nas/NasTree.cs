@@ -56,7 +56,7 @@ namespace NotAwesomeSurvival {
         }
         
         private static void PlaceBlocks(Level lvl, Tree tree, int x, int y, int z, bool broadcastChange) {
-            tree.Generate((ushort)x, (ushort)(y), (ushort)z, (X, Y, Z, block) =>
+            tree.Generate((ushort)x, (ushort)y, (ushort)z, (X, Y, Z, block) =>
             {
         	    NasLevel nl = NasLevel.Get(lvl.name);
                 BlockID here = lvl.GetBlock(X, Y, Z);

@@ -164,7 +164,7 @@ namespace MCGalaxy {
                 "<s:Body>" + soap + "</s:Body>" +
                 "</s:Envelope>";
             
-            WebRequest r = HttpWebRequest.Create(url);
+            WebRequest r = WebRequest.Create(url);
             r.Method = "POST";            
             r.Headers.Add("SOAPACTION", "\"urn:schemas-upnp-org:service:WANIPConnection:1#" + function + "\"");
             r.ContentType = "text/xml; charset=\"utf-8\"";

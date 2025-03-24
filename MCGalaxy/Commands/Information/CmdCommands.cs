@@ -64,7 +64,7 @@ namespace MCGalaxy.Commands.Info {
         
         static void PrintShortcuts(Player p, string modifier) {
             List<Command> shortcuts = new List<Command>();
-            foreach (Command cmd in Command.allCmds) {
+            foreach (Command cmd in allCmds) {
                 if (cmd.shortcut.Length == 0) continue;
                 if (!p.CanUse(cmd)) continue;
                 shortcuts.Add(cmd);
@@ -77,8 +77,8 @@ namespace MCGalaxy.Commands.Info {
         
         static void PrintRankCommands(Player p, string sort, string modifier, Group group, bool own) {
             List<Command> cmds = new List<Command>();
-            foreach (Command c in Command.allCmds) {
-                string disabled = Command.GetDisabledReason(c.Enabled);
+            foreach (Command c in allCmds) {
+                string disabled = GetDisabledReason(c.Enabled);
                 if (disabled == null && group.Commands.Contains(c)) cmds.Add(c);
             }   
             
@@ -100,7 +100,7 @@ namespace MCGalaxy.Commands.Info {
         }
         
         static void PrintAllCommands(Player p, string sort, string modifier) {
-            List<Command> cmds = Command.CopyAll();
+            List<Command> cmds = CopyAll();
             SortCommands(cmds, sort);
             p.Message("All commands:");
             
@@ -129,8 +129,8 @@ namespace MCGalaxy.Commands.Info {
             string category = GetCategory(type);
             bool foundAny = false;
 
-            foreach (Command c in Command.allCmds) {
-                string disabled = Command.GetDisabledReason(c.Enabled);
+            foreach (Command c in allCmds) {
+                string disabled = GetDisabledReason(c.Enabled);
                 if (!c.type.CaselessEq(category)) continue;
                 
                 if (disabled == null && p.CanUse(c)) cmds.Add(c);

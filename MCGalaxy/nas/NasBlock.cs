@@ -27,9 +27,9 @@ namespace NotAwesomeSurvival {
         public static int[] DefaultDurabilities = new int[(int)Material.Count];
 
         public static NasBlock Get(BlockID clientBlockID) {
-            return (NasBlock.blocks[clientBlockID] == null) ?
-                NasBlock.Default :
-                NasBlock.blocks[clientBlockID];
+            return (blocks[clientBlockID] == null) ?
+                Default :
+                blocks[clientBlockID];
         }
         /// <summary>
         /// Leave id arg blank to use parent's name

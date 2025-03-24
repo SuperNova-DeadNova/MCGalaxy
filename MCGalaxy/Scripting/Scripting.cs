@@ -158,7 +158,7 @@ namespace MCGalaxy.Scripting
         public static bool LoadPlugin(string path, bool auto) {
             try {
                 Assembly lib = LoadAssembly(path);
-                List<Plugin> plugins = IScripting.LoadTypes<Plugin>(lib);
+                List<Plugin> plugins = LoadTypes<Plugin>(lib);
                 
                 foreach (Plugin plugin in plugins) {
                     if (!Plugin.Load(plugin, auto)) return false;

@@ -102,7 +102,7 @@ namespace MCGalaxy.Commands.World {
         static void UseCommand(Player p, string cmd, string args) {
             CommandData data = default(CommandData);
             data.Rank = LevelPermission.Nobody;
-            Command.Find(cmd).Use(p, args, data);
+            Find(cmd).Use(p, args, data);
         }
         
         static string GetLevelName(Player p, int i) {

@@ -132,7 +132,7 @@ namespace NotAwesomeSurvival {
                     return;
                 }
                 task.Delay = info.delay;
-                short alpha = (short)((info.A / info.totalRounds) * info.curRound);
+                short alpha = (short)(info.A / info.totalRounds * info.curRound);
                 info.np.p.Send(Packet.MakeSelection(info.ID, "Crafting Zone", info.start, info.end, info.R, info.G, info.B, alpha, true));
                 info.curRound--;
             }

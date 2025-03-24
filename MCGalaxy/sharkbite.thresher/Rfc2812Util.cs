@@ -103,7 +103,7 @@ namespace Sharkbite.Irc
 				return false;
 			}
 
-			if( Rfc2812Util.ContainsSpace(channel) ) 
+			if(ContainsSpace(channel) ) 
 			{
 				return false;
 			}
@@ -128,7 +128,7 @@ namespace Sharkbite.Irc
 			{
 				return false;
 			}
-			if( Rfc2812Util.ContainsSpace( nick ) ) 
+			if(ContainsSpace( nick ) ) 
 			{
 				return false;
 			}

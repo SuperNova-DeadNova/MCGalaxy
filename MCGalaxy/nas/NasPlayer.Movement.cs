@@ -49,7 +49,7 @@ namespace NotAwesomeSurvival {
             	CommandData data = p.DefaultCmdData;
                 data.Context = CommandContext.SendCmd;
                 Orientation rot = new Orientation(Server.mainLevel.rotx, Server.mainLevel.roty);
-                NasEntity.SetLocation(this, spawnMap, spawnCoords, rot);
+                SetLocation(this, spawnMap, spawnCoords, rot);
                	Logger.Log(LogType.Debug, "Teleporting " + p.name + " to their bed!");
             		if (!headingToBed) {
             		p.SendCpeMessage(CpeMessageType.Announcement, "%cY O U  D I E D");
@@ -380,7 +380,7 @@ namespace NotAwesomeSurvival {
             int z = next.BlockZ;
             x = Utils.Clamp(x, 0, (ushort)(p.level.Width - 1));
             z = Utils.Clamp(z, 0, (ushort)(p.level.Length - 1));
-            ushort height = nl.heightmap[x, z];
+            ushort height = (ushort)Utils.Clamp(z, 0, (ushort)(p.level.Height - 1));
 
             if (next.BlockCoords == p.Pos.BlockCoords) { return; }
 

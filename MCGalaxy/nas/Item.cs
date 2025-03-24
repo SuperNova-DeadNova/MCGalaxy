@@ -49,7 +49,7 @@ namespace NotAwesomeSurvival {
         [JsonIgnore]
         public ColorDesc[] healthColors {
             get {
-                if (HP == Int32.MaxValue) { return DynamicColor.defaultColors; }
+                if (HP == int.MaxValue) { return DynamicColor.defaultColors; }
                 if (HP <= 1) { return DynamicColor.direHealthColors; }
 
                 float healthPercent = HP / prop.baseHP;
@@ -64,7 +64,7 @@ namespace NotAwesomeSurvival {
         /// <param name="amount">the amount of damage to take. Breaking a block normally gives 1 damage</param>
         /// <returns>true if the item should break</returns>
         public bool TakeDamage(float amount = 1) {
-            if (HP == Int32.MaxValue) { return false; }
+            if (HP == int.MaxValue) { return false; }
             HP -= amount;
             if (HP <= 0) {
                 return true;

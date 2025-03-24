@@ -20,18 +20,18 @@ namespace NotAwesomeSurvival
         {
             switch (source)
             {
-                case NasEntity.DamageSource.Falling:
+                case DamageSource.Falling:
                     return "@p %cfell to their death.";
-                case NasEntity.DamageSource.Suffocating:
+                case DamageSource.Suffocating:
                     return "@p %esuffocated.";
-                case NasEntity.DamageSource.Drowning:
+                case DamageSource.Drowning:
                     return "@p %rdrowned.";
-                case NasEntity.DamageSource.None:
+                case DamageSource.None:
                     return "@p %adied from unknown causes.";
-                case NasEntity.DamageSource.Murdered:
+                case DamageSource.Murdered:
                     return "@p %8was murdered by %S@s";
             }
-            return DamageSource.GetName(typeof(DamageSource), source).ToLower();
+            return Enum.GetName(typeof(DamageSource), source).ToLower();
         }
         public const int SuffocationMilliseconds = 500;
 

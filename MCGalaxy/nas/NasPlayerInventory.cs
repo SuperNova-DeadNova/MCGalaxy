@@ -141,7 +141,7 @@ namespace NotAwesomeSurvival {
             public bool showToNormalChat;
         }
         static void DisplayHeldBlockTask(SchedulerTask task) {
-            DisplayInfo info = (DisplayInfo)(task.State);
+            DisplayInfo info = (DisplayInfo)task.State;
             info.inv.DisplayHeldBlock(info.nasBlock, info.amountChanged, info.showToNormalChat);
         }
 

@@ -211,7 +211,7 @@ namespace NotAwesomeSurvival {
         public static void ClickOnPlayer(Player p, byte entity, MouseButton button, MouseAction action) {
 			NasPlayer np = GetNasPlayer(p);
 			if (entity == Entities.SelfID) { return; }
-			if (((button == MouseButton.Right && np.inventory.HeldItem.prop.knockback >= 0) || (button == MouseButton.Left && np.inventory.HeldItem.prop.knockback < 0)) || button == MouseButton.Middle ||action == MouseAction.Pressed) {return;}
+			if ((button == MouseButton.Right && np.inventory.HeldItem.prop.knockback >= 0) || (button == MouseButton.Left && np.inventory.HeldItem.prop.knockback < 0) || button == MouseButton.Middle ||action == MouseAction.Pressed) {return;}
 			if (!np.pvpEnabled) {return;}
 			if (!cooldowns.ContainsKey(p.name)) {cooldowns.Add(p.name, DateTime.UtcNow);}
 			
@@ -244,7 +244,7 @@ namespace NotAwesomeSurvival {
 				if (np.inventory.HeldItem.enchant("Sharpness") != 0) added += 1;
 				added += np.inventory.HeldItem.enchant("Sharpness")*0.5f;
 				
-				w.TakeDamage((np.inventory.HeldItem.prop.damage+added), DamageSource.Entity, "@p %fwas slain by "+p.ColoredName+" %fusing "+np.inventory.HeldItem.displayName);
+				w.TakeDamage(np.inventory.HeldItem.prop.damage+added, DamageSource.Entity, "@p %fwas slain by "+p.ColoredName+" %fusing "+np.inventory.HeldItem.displayName);
 				NasBlockChange.FishingInfo info = new NasBlockChange.FishingInfo();
 				info.p = p; info.who = who;
 				SchedulerTask kbtask = NasBlockChange.fishingScheduler.QueueOnce(np.Knockback, info, kbdelay);
@@ -258,10 +258,10 @@ namespace NotAwesomeSurvival {
 			Player p = ((NasBlockChange.FishingInfo)task.State).p;
 		    int srcHeight = ModelInfo.CalcEyeHeight(p);
             int dstHeight = ModelInfo.CalcEyeHeight(who);
-            int dx = p.Pos.X - who.Pos.X, dy = (p.Pos.Y + srcHeight) - (who.Pos.Y + dstHeight), dz = p.Pos.Z - who.Pos.Z;
+            int dx = p.Pos.X - who.Pos.X, dy = p.Pos.Y + srcHeight - (who.Pos.Y + dstHeight), dz = p.Pos.Z - who.Pos.Z;
             Vec3F32 dir = new Vec3F32(dx, dy, dz);
             dir = Vec3F32.Normalise(dir);
-            float mult = inventory.HeldItem.prop.knockback + 0.25f*(inventory.HeldItem.enchant("Knockback"));
+            float mult = inventory.HeldItem.prop.knockback + 0.25f*inventory.HeldItem.enchant("Knockback");
             float yChange = 0f;
 			float plScale = ModelInfo.GetRawScale(who.Model);
 			if (mult < 0){
@@ -327,7 +327,7 @@ namespace NotAwesomeSurvival {
 				if (done) saved.enchants = inventory.items[index].enchants;
 				if (armor > 0f && takeDamage) {
 						
-				double toolDamageChance = (60+(40.0/(inventory.items[index].enchant("Unbreaking"))+1));
+				double toolDamageChance = 60+(40.0/inventory.items[index].enchant("Unbreaking")+1);
                 Random r = new Random();	
 					if (r.NextDouble() < toolDamageChance && inventory.items[index].TakeDamage(1)) {
                     inventory.BreakItem(ref inventory.items[index]);
@@ -367,7 +367,7 @@ namespace NotAwesomeSurvival {
             	damage = damage * (1 - ((1 - (damage / 50)) * (DamageSaved(true) * 0.04f)));
             	damage *= 1 - (EnchantLevels("Protection") * 0.04f);
             	if (damage > 1f) {
-            	damage = ((float)Math.Round(damage * 2f) / 2f);
+            	damage = (float)Math.Round(damage * 2f) / 2f;
             	}
             }
             if (source == DamageSource.Falling && EnchantLevels("Feather Falling") > 0) {
@@ -381,26 +381,12 @@ namespace NotAwesomeSurvival {
             int x = Utils.Clamp(next.BlockX, 0, (ushort)(p.level.Width - 1));
             int z = Utils.Clamp(next.BlockZ, 0, (ushort)(p.level.Length - 1));
             ushort y = (ushort)Utils.Clamp(next.BlockY, 0, (ushort)(p.level.Height - 1));
-            ushort height = nl.heightmap[x, z];
-            //Don't let players fly on this map,
-            //it will error out the plugin.
-            if (nl.heightmap[x, z] > y) 
-            { 
-                height = 1; 
-            }
-            if (height > y)
-            {
-                height = 1;
-            }
-            if (height <= 0)
-            {
-                height = 1;
-            }
+            //ushort height = nl.heightmap[x, z];
 
-            if (height < NasGen.oceanHeight) { height = NasGen.oceanHeight; }
+            if (y < NasGen.oceanHeight) { y = NasGen.oceanHeight; }
 
             float fogMultiplier = 1f + (damage*damage*0.08f);
-            int distanceBelow = nl.biome < 0 ? 0 : height - next.BlockY;
+            int distanceBelow = nl.biome < 0 ? 0 : y - next.BlockY;
             if (distanceBelow >= NasGen.diamondDepth ) {
                 curRenderDistance = 128 * fogMultiplier;
             } else if (distanceBelow >= NasGen.goldDepth) {
@@ -418,7 +404,7 @@ namespace NotAwesomeSurvival {
             DisplayHealth("f", "&7[", "&7]");
             if (HP <= 0) {
                 if (customDeathReason.Length == 0) {
-                    customDeathReason = NasEntity.DeathReason(source);
+                    customDeathReason = DeathReason(source);
                 }
             	if (source == DamageSource.Entity) {
             	GetNasPlayer(lastAttackedPlayer).kills++;
@@ -534,7 +520,7 @@ namespace NotAwesomeSurvival {
         private string ArmorDisplay() {
             StringBuilder builder = new StringBuilder(5);
             builder.Append("%fΦ ");
-            string armor = (DamageSaved()).ToString();
+            string armor = DamageSaved().ToString();
             builder.Append(armor);
             string final = builder.ToString();
         	return final;
@@ -543,7 +529,7 @@ namespace NotAwesomeSurvival {
         private string ExpDisplay() {
             StringBuilder builder = new StringBuilder(5);
             builder.Append("&a☼ ");
-            string xp = (levels).ToString();
+            string xp = levels.ToString();
             builder.Append(xp);
             string final = builder.ToString();
         	return final;
@@ -622,8 +608,56 @@ namespace NotAwesomeSurvival {
 		
 		
 	}
-   
-       public class CmdBarrelMode : Command {
+        public class CmdNASSpawn : Command
+        {
+            public override string name { get { return "NASSpawn"; } }
+            public override string type { get { return "NAS"; } }
+
+            public override void Use(Player p, string message)
+            {
+                NasPlayer np = GetNasPlayer(p);
+                if (message == "true")
+                {
+                    if (!np.hasBeenSpawned)
+                    {
+                        p.Message("hasBeenSpawned set to true.");
+                        np.hasBeenSpawned = true;
+                        return;
+                    }
+                    else
+                    { 
+                        p.Message("hasBeenSpawned is already true."); 
+                        return; 
+                    }
+                }
+                if (message == "false")
+                {
+                    if (!np.hasBeenSpawned)
+                    {
+                        p.Message("hasBeenSpawn is already false.");
+                        return;
+                    }
+                    else
+                        p.Message("hasBeenSpawned set to false.");
+                    np.hasBeenSpawned = false;
+                    return;
+                }
+                else
+                {
+                    Help(p);
+                    return;
+                }
+            }
+
+            public override void Help(Player p)
+            {
+                p.Message("&T/NASSpawn [true/false]");
+                p.Message("&HToggles hasBeenSpawned, but once you turn it on, you can't turn it off for 10 seconds.");
+            }
+
+
+        }
+        public class CmdBarrelMode : Command {
 		public override string name { get { return "barrelmode"; } }
 		public override string type { get { return "NAS"; } }
 		

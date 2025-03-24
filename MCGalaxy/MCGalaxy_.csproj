@@ -762,32 +762,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\Maintenance" />
-    <Folder Include="Config\Permissions" />
-    <Folder Include="Database\Stats" />
-    <Folder Include="Games\Weapons" />
-    <Folder Include="Games\RoundsGame" />
-    <Folder Include="Generator\LibNoise" />
-    <Folder Include="Generator\Classic" />
-    <Folder Include="Generator\Realistic" />
-    <Folder Include="Modules\Awards" />
-    <Folder Include="Modules\Moderation" />
-    <Folder Include="Modules\Moderation\Notes" />
-    <Folder Include="Modules\Security" />
-    <Folder Include="Modules\Relay\Discord" />
-    <Folder Include="Modules\Relay" />
-    <Folder Include="Network\Heartbeat" />
-    <Folder Include="Modules\Relay\IRC" />
-    <Folder Include="Network\Utils" />
-    <Folder Include="Network\Packets" />
-    <Folder Include="Entity" />
-    <Folder Include="Modules" />
-    <Folder Include="Server\Maintenance" />
-    <Folder Include="util\Formatting" />
-    <Folder Include="util\Threading" />
-    <Folder Include="nas" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

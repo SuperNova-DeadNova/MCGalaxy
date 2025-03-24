@@ -37,7 +37,7 @@ namespace NotAwesomeSurvival
                 for (int dz = -size; dz <= size; ++dz)
                     for (int dx = -size; dx <= size; ++dx)
                     {
-                        int dist = (int)(Math.Sqrt(dx * dx + dy * dy + dz * dz));
+                        int dist = (int)Math.Sqrt(dx * dx + dy * dy + dz * dz);
                         if ((dist < size + 1) && rnd.Next(dist) < 2)
                         {
                             ushort xx = (ushort)(x + dx), yy = (ushort)(y + dy + height), zz = (ushort)(z + dz);
@@ -53,7 +53,7 @@ namespace NotAwesomeSurvival
 	{
 		public override long EstimateBlocksAffected()
 		{
-			return (long)(this.height + 145);
+			return this.height + 145;
 		}
 
 		public override int DefaultSize(Random rnd)
@@ -71,15 +71,15 @@ namespace NotAwesomeSurvival
 		public override void Generate(ushort x, ushort y, ushort z, TreeOutput output)
 		{
 			for (int i = 0; i <= this.height; i++) {
-				output(x, (ushort)((int)y + i), z, 17);
+				output(x, (ushort)(y + i), z, 17);
 			}
 			for (int j = this.height - 2; j <= this.height + 1; j++) {
 				int num = (j > this.height - 1) ? 2 : 3;
 				for (int k = -num; k <= num; k++) {
 					for (int l = -num; l <= num; l++) {
-						ushort num2 = (ushort)((int)x + l);
-						ushort y2 = (ushort)((int)y + j);
-						ushort num3 = (ushort)((int)z + k);
+						ushort num2 = (ushort)(x + l);
+						ushort y2 = (ushort)(y + j);
+						ushort num3 = (ushort)(z + k);
 						if (num2 != x || num3 != z || j > this.height) {
 							if (Math.Abs(l) == num && Math.Abs(k) == num) {
 								if (j <= this.height && this.rnd.Next(2) == 0) {
@@ -123,7 +123,7 @@ namespace MCGalaxy.Generator.Foliage
 
 		public override long EstimateBlocksAffected()
 		{
-			return (long)this.height * (long)this.height * (long)this.height;
+			return height * (long)this.height * height;
 		}
 
 		public override int DefaultSize(Random rnd)
@@ -142,11 +142,11 @@ namespace MCGalaxy.Generator.Foliage
 
 		public override void Generate(ushort x, ushort y, ushort z, TreeOutput output)
 		{
-			Vec3S32 p = new Vec3S32((int)x, (int)y, (int)z);
-			Vec3S32 p2 = new Vec3S32((int)x, (int)y + this.height, (int)z);
+			Vec3S32 p = new Vec3S32(x, y, z);
+			Vec3S32 p2 = new Vec3S32(x, y + this.height, z);
 			this.Line(p, p2, output);
 			for (int i = 0; i < this.branchAmount; i++) {
-				this.DoBranch((int)x, (int)y, (int)z, output);
+				this.DoBranch(x, y, z, output);
 			}
 		}
 
@@ -169,7 +169,7 @@ namespace MCGalaxy.Generator.Foliage
 			Brush brush = new SolidBrush(19);
 			drawOp.SetMarks(marks);
 			drawOp.Perform(marks, brush, delegate(DrawOpBlock b) {
-				output(b.X, b.Y, b.Z, (ushort)((byte)b.Block));
+				output(b.X, b.Y, b.Z, (byte)b.Block);
 			});
 		}
 
@@ -209,10 +209,10 @@ namespace MCGalaxy.Drawing.Ops
 		
 		public override void Perform(Vec3S32[] marks, Brush brush, DrawOpOutput output)
 		{
-			Vec3U16 vec3U = base.Clamp(marks[0]);
-			Vec3U16 vec3U2 = base.Clamp(marks[1]);
+			Vec3U16 vec3U = Clamp(marks[0]);
+			Vec3U16 vec3U2 = Clamp(marks[1]);
 			List<Vec3S32> list = new List<Vec3S32>();
-			ThingDrawOp.DrawLine((int)vec3U.X, (int)vec3U.Y, (int)vec3U.Z, this.MaxLength, (int)vec3U2.X, (int)vec3U2.Y, (int)vec3U2.Z, list);
+            DrawLine(vec3U.X, vec3U.Y, vec3U.Z, this.MaxLength, vec3U2.X, vec3U2.Y, vec3U2.Z, list);
 			if (this.WallsMode) {
 				ushort y = vec3U.Y;
 				ushort y2 = vec3U2.Y;
@@ -223,11 +223,11 @@ namespace MCGalaxy.Drawing.Ops
 				Vec3U16 vec3U3 = (Vec3U16)list[i];
 				if (this.WallsMode) {
 					for (ushort num = vec3U.Y; num <= vec3U2.Y; num += 1) {
-						output(base.Place(vec3U3.X, num, vec3U3.Z, brush));
+						output(Place(vec3U3.X, num, vec3U3.Z, brush));
 					}
 				}
 				else {
-					output(base.Place(vec3U3.X, vec3U3.Y, vec3U3.Z, brush));
+					output(Place(vec3U3.X, vec3U3.Y, vec3U3.Z, brush));
 				}
 			}
 		}
@@ -236,15 +236,15 @@ namespace MCGalaxy.Drawing.Ops
 		{
 			Vec3S32 vec3S = marks[0];
 			Vec3S32 vec3S2 = marks[1];
-			double num = (double)Math.Abs(vec3S2.X - vec3S.X) + 0.25;
-			double num2 = (double)Math.Abs(vec3S2.Y - vec3S.Y) + 0.25;
-			double num3 = (double)Math.Abs(vec3S2.Z - vec3S.Z) + 0.25;
+			double num = Math.Abs(vec3S2.X - vec3S.X) + 0.25;
+			double num2 = Math.Abs(vec3S2.Y - vec3S.Y) + 0.25;
+			double num3 = Math.Abs(vec3S2.Z - vec3S.Z) + 0.25;
 			if (this.WallsMode) {
 				int val = (int)Math.Ceiling(Math.Sqrt(num * num + num3 * num3));
-				return (long)(Math.Min(val, this.MaxLength) * (Math.Abs(vec3S2.Y - vec3S.Y) + 1));
+				return Math.Min(val, this.MaxLength) * (Math.Abs(vec3S2.Y - vec3S.Y) + 1);
 			}
 			int val2 = (int)Math.Ceiling(Math.Sqrt(num * num + num2 * num2 + num3 * num3));
-			return (long)Math.Min(val2, this.MaxLength);
+			return Math.Min(val2, this.MaxLength);
 		}
 
 		internal static void DrawLine(int x1, int y1, int z1, int maxLen, int x2, int y2, int z2, List<Vec3S32> buffer)
@@ -273,14 +273,14 @@ namespace MCGalaxy.Drawing.Ops
 			line2.axis = 1;
 			line3.axis = 2;
 			if (num >= num2 && num >= num3) {
-				ThingDrawOp.DoLine(line2, line3, line, num, array, maxLen, buffer);
+                DoLine(line2, line3, line, num, array, maxLen, buffer);
 			}
 			else {
 				if (num2 >= num && num2 >= num3) {
-					ThingDrawOp.DoLine(line, line3, line2, num2, array, maxLen, buffer);
+                    DoLine(line, line3, line2, num2, array, maxLen, buffer);
 				}
 				else {
-					ThingDrawOp.DoLine(line2, line, line3, num3, array, maxLen, buffer);
+                    DoLine(line2, line, line3, num3, array, maxLen, buffer);
 				}
 			}
 			Vec3S32 item;

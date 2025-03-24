@@ -39,6 +39,7 @@ namespace NotAwesomeSurvival {
         [JsonIgnore] public static Dictionary<string, NasLevel> all = new Dictionary<string, NasLevel>();
         [JsonIgnore] public Level lvl;
         public ushort[,] heightmap;
+        public ushort height;
         public List<BlockLocation> blocksThatMustBeDisturbed = new List<BlockLocation>();
         public Dictionary<string, NasBlock.Entity> blockEntities = new Dictionary<string, NasBlock.Entity>();
         [JsonIgnore] public SimplePriorityQueue<QueuedBlockUpdate, DateTime> tickQueue = new SimplePriorityQueue<QueuedBlockUpdate, DateTime>();
@@ -247,7 +248,7 @@ namespace NotAwesomeSurvival {
             return new DateTime(ticks * span.Ticks);
         }
         public static DateTime Floor(this DateTime date, TimeSpan span) {
-            long ticks = (date.Ticks / span.Ticks);
+            long ticks = date.Ticks / span.Ticks;
             return new DateTime(ticks * span.Ticks);
         }
         public static DateTime Ceil(this DateTime date, TimeSpan span) {

@@ -111,14 +111,16 @@ namespace MCGalaxy
             LoadCorePlugin(new DiscordPlugin());
             LoadCorePlugin(new IRCPlugin());
             LoadCorePlugin(new IPThrottler());
+#if TEN_BIT_BLOCKS
             LoadCorePlugin(new Nas());
+#endif
             IScripting.AutoloadPlugins();
         }
         
         static void LoadCorePlugin(Plugin plugin) {
             plugin.Load(true);
-            Plugin.all.Add(plugin);
-            Plugin.core.Add(plugin);
+            all.Add(plugin);
+            core.Add(plugin);
         }
     }
 

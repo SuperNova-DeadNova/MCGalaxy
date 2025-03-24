@@ -98,7 +98,7 @@ namespace Priority_Queue
             }
             #endif
 
-            return (_nodes[node.QueueIndex] == node);
+            return _nodes[node.QueueIndex] == node;
         }
 
         /// <summary>
@@ -330,8 +330,8 @@ namespace Priority_Queue
         #endif
         private bool HasHigherPriority(T higher, T lower)
         {
-            return (higher.Priority < lower.Priority ||
-                (higher.Priority == lower.Priority && higher.InsertionIndex < lower.InsertionIndex));
+            return higher.Priority < lower.Priority ||
+                (higher.Priority == lower.Priority && higher.InsertionIndex < lower.InsertionIndex);
         }
 
         /// <summary>

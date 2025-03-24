@@ -57,16 +57,16 @@ namespace NotAwesomeSurvival {
                 public static readonly object locker = new object();
                 public enum Type { Chest, Barrel, Crate, Gravestone, AutoCraft, Dispenser }
                 public Type type;
-                public string name { get { return Type.GetName(typeof(Type), type); } }
+                public string name { get { return Enum.GetName(typeof(Type), type); } }
                 public string description { get {
                         string desc = "%s";
                         switch (type) {
-                            case NasBlock.Container.Type.Chest:
+                            case Type.Chest:
                                 desc += name+"s%S can store %btools%S, with a limit of "+ToolLimit+".";
                                 break;
-                            case NasBlock.Container.Type.Barrel:
-                            case NasBlock.Container.Type.Crate:
-                            case NasBlock.Container.Type.Dispenser:
+                            case Type.Barrel:
+                            case Type.Crate:
+                            case Type.Dispenser:
                                 desc += name+"s%S can store %bblock%S stacks, with a limit of "+BlockStackLimit+".";
                                 break;
                             default:
@@ -281,7 +281,7 @@ namespace NotAwesomeSurvival {
                     if (button == MouseButton.Right) { np.p.Message(bEntity.blockText);}
                     if ((button == MouseButton.Middle) && (myText != "" ) ) {
                     	if (!bEntity.CanAccess(np.p)) {return;}
-                    	File.WriteAllText(GetTextPath(np.p), String.Empty);
+                    	File.WriteAllText(GetTextPath(np.p), string.Empty);
                     	bEntity.blockText = np.p.name + " says: " + myText; 
                     	np.p.Message("Overwritten!");
                         
@@ -310,7 +310,7 @@ namespace NotAwesomeSurvival {
                             if ((isLava[4] || isLava[5]) && IsPartOfSet(lavaSet, np.nl.GetBlock(x, y, z+1)) != -1) {np.nl.SetBlock(x, y, z+1, Block.Air);}
                             //lava barrel
                             np.inventory.SetAmount(696, 1, true, true);
-                            np.inventory.DisplayHeldBlock(NasBlock.blocks[697], -1, false);
+                            np.inventory.DisplayHeldBlock(blocks[697], -1, false);
                             return;
                         }
     			
@@ -365,8 +365,8 @@ namespace NotAwesomeSurvival {
     				double minDist = 100000;
     				bool worked = false;
     				if (grab != null) {
-    				for (int offX = (nether ? -32 : -8); offX <= (nether ? 32 : 8); offX++)
-    					for (int offZ = (nether ? -32 : -8); offZ <= (nether ? 32 : 8); offZ++)
+    				for (int offX = nether ? -32 : -8; offX <= (nether ? 32 : 8); offX++)
+    					for (int offZ = nether ? -32 : -8; offZ <= (nether ? 32 : 8); offZ++)
     						for (int offY = 2 - withY; offY+withY <= 245; offY++) {
     							if (grab.GetBlock((ushort)(offX+withX), (ushort)(offY+withY), (ushort)(offZ+withZ)) == Block.FromRaw(457)) {
     							double tempDist = Math.Sqrt(offX*offX+offZ*offZ);
@@ -406,16 +406,16 @@ namespace NotAwesomeSurvival {
                     //this is voodoo -- the question is, is it too much voodoo for the next 10 centuries for god's official temple?
                     if (exists && nasBlock.container.type == Container.Type.Barrel) {
                         if (
-                            NasBlock.IsPartOfSet(NasBlock.waterSet, np.nl.GetBlock(x, y+1, z)) != -1 ||
-                            NasBlock.IsPartOfSet(NasBlock.waterSet, np.nl.GetBlock(x+1, y, z)) != -1 ||
-                            NasBlock.IsPartOfSet(NasBlock.waterSet, np.nl.GetBlock(x-1, y, z)) != -1 ||
-                            NasBlock.IsPartOfSet(NasBlock.waterSet, np.nl.GetBlock(x, y, z+1)) != -1 ||
-                            NasBlock.IsPartOfSet(NasBlock.waterSet, np.nl.GetBlock(x, y, z-1)) != -1
+                            IsPartOfSet(waterSet, np.nl.GetBlock(x, y+1, z)) != -1 ||
+                            IsPartOfSet(waterSet, np.nl.GetBlock(x+1, y, z)) != -1 ||
+                            IsPartOfSet(waterSet, np.nl.GetBlock(x-1, y, z)) != -1 ||
+                            IsPartOfSet(waterSet, np.nl.GetBlock(x, y, z+1)) != -1 ||
+                            IsPartOfSet(waterSet, np.nl.GetBlock(x, y, z-1)) != -1
                            ) {
                             np.nl.SetBlock(x, y, z, Block.Air);
                             //water barrel
                             np.inventory.SetAmount(643, 1, true, true);
-                            np.inventory.DisplayHeldBlock(NasBlock.blocks[143], -1, false);
+                            np.inventory.DisplayHeldBlock(blocks[143], -1, false);
                             return;
                         }
                     	
@@ -544,7 +544,7 @@ namespace NotAwesomeSurvival {
                                 } else if (nasBlock.container.type == Container.Type.Barrel || nasBlock.container.type == Container.Type.Dispenser) {
                                     RemoveBlocks(np, bEntity);
                                 } else if (nasBlock.container.type == Container.Type.Gravestone) {
-                            		RemoveAll(np, bEntity, (bEntity.lockedBy.Length == 0));
+                            		RemoveAll(np, bEntity, bEntity.lockedBy.Length == 0);
                                     bEntity.lockedBy = "";
                                 }
                             	np.nl.SimulateSetBlock(x, y, z);
@@ -604,7 +604,7 @@ namespace NotAwesomeSurvival {
                 Player p = np.p;
                 //p.ClientHeldBlock is server block ID
                 BlockID clientBlockID = p.ConvertBlock(p.ClientHeldBlock);
-                NasBlock nasBlock = NasBlock.Get(clientBlockID);
+                NasBlock nasBlock = Get(clientBlockID);
                 Entity bEntity = np.nl.blockEntities[x+" "+y+" "+z];
                 if (nasBlock.parentID == 0) {
                     p.Message("Select a block to store it.");
@@ -661,7 +661,7 @@ namespace NotAwesomeSurvival {
                     
                     BlockStack bs = null;
                     BlockID clientBlockID = p.ConvertBlock(p.ClientHeldBlock);
-                    NasBlock nasBlock = NasBlock.Get(clientBlockID);
+                    NasBlock nasBlock = Get(clientBlockID);
                     foreach (BlockStack stack in bEntity.drop.blockStacks) {
                         //if there's a stack in the container that matches what we're holding
                         if (stack.ID == nasBlock.parentID) {
@@ -716,7 +716,7 @@ namespace NotAwesomeSurvival {
                     }
                     if (blockEntity.drop.blockStacks != null) {
                         foreach (BlockStack bs in blockEntity.drop.blockStacks) {
-                            np.p.Message("There's %f{0} {1}%S inside.", bs.amount, NasBlock.blocks[bs.ID].GetName(np.p));
+                            np.p.Message("There's %f{0} {1}%S inside.", bs.amount, blocks[bs.ID].GetName(np.p));
                         }
                     }
                 }

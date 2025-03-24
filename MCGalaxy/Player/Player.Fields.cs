@@ -81,7 +81,7 @@ namespace MCGalaxy {
         /// <summary> Whether this player is a 'Super' player (Console, IRC, etc) </summary>
         public bool IsSuper;
         /// <summary> Whether this player is the console player instance. </summary>
-        public bool IsConsole { get { return this == Player.Console; } }
+        public bool IsConsole { get { return this == Console; } }
         
         public virtual string FullName { get { return color + prefix + DisplayName; } }  
         public string ColoredName { get { return color + DisplayName; } }

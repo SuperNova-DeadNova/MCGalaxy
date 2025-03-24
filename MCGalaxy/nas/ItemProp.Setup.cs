@@ -50,11 +50,11 @@ namespace NotAwesomeSurvival {
 
 			
             ItemProp fist = new ItemProp("Fist|f|¬", nothing, NasBlock.Material.None, 0, 0);
-            fist.baseHP = Int32.MaxValue;
+            fist.baseHP = int.MaxValue;
             Item.Fist = new Item("Fist");
             
             ItemProp key = new ItemProp("Key|f|σ", nothing, NasBlock.Material.None, 0, 0);
-            key.baseHP = Int32.MaxValue;
+            key.baseHP = int.MaxValue;
             
             ItemProp fishing = new ItemProp("Fishing Rod|f|δ", nothing, NasBlock.Material.None, 0, 0);
 			fishing.baseHP = baseHPconst * 7;
@@ -131,19 +131,19 @@ namespace NotAwesomeSurvival {
             emeraldSword.baseHP = emeraldBaseHP;
             
             ItemProp bedrockPick = new ItemProp("Bedrock Pickaxe|m|╟", nothing, NasBlock.Material.None, -1f, 5);
-            bedrockPick.baseHP = Int32.MaxValue;
+            bedrockPick.baseHP = int.MaxValue;
             
             ItemProp etheriumPick = new ItemProp("Etherium Pickaxe|h|ß", toolEnchants, NasBlock.Material.Stone, 1f, 6);
             etheriumPick.materialsEffectiveAgainst.Add(NasBlock.Material.Leaves);
             etheriumPick.materialsEffectiveAgainst.Add(NasBlock.Material.Glass);
             etheriumPick.materialsEffectiveAgainst.Add(NasBlock.Material.Wood);
-            etheriumPick.baseHP = Int32.MaxValue;
+            etheriumPick.baseHP = int.MaxValue;
             
             ItemProp bedrockSword = new ItemProp("Bedrock Sword|0|α", swordEnchants, NasBlock.Material.Leaves, 1f, 6);
             bedrockSword.damage = 50f;
             bedrockSword.knockback = 2f;
             bedrockSword.recharge = 3000;
-            bedrockSword.baseHP = Int32.MaxValue;
+            bedrockSword.baseHP = int.MaxValue;
             
             ItemProp ironHelmet = new ItemProp("Iron Helmet|f|τ", helmetEnchants, NasBlock.Material.None, 0, 0);
             ItemProp ironChest = new ItemProp("Iron Chestplate|f|Φ",armorEnchants, NasBlock.Material.None, 0, 0);

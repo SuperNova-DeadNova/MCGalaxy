@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ProjectGuid>{E211DECB-8364-48EE-960A-3E587A5B732C}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>Library</OutputType>
     <RootNamespace>nas</RootNamespace>
     <AssemblyName>nas</AssemblyName>
@@ -21,13 +21,13 @@
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <BaseAddress>4194304</BaseAddress>
     <RegisterForComInterop>False</RegisterForComInterop>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
     <FileAlignment>4096</FileAlignment>
-    <Prefer32Bit>True</Prefer32Bit>
+    <Prefer32Bit>False</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -39,7 +39,7 @@
     <StartAction>Project</StartAction>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\bin\Release\plugins\</OutputPath>
     <DebugSymbols>False</DebugSymbols>
     <DebugType>Full</DebugType>
     <Optimize>True</Optimize>
@@ -48,16 +48,20 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <BaseAddress>4194304</BaseAddress>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <RegisterForComInterop>False</RegisterForComInterop>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <OutputPath>.\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Collision.cs" />
@@ -105,20 +109,35 @@
     <Compile Include="NasLevel.IO.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MCGalaxy_.csproj">
+    <ProjectReference Include="..\..\..\MCGalaxy\MCGalaxy_.csproj">
       <Project>{12597db0-7c34-4de1-88ea-9250ff3372eb}</Project>
       <Name>MCGalaxy_</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="MCGalaxy_infid">
+      <HintPath>..\..\..\MCGalaxy-master\bin\Debug\MCGalaxy_infid.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\Framework\v4.0.30319\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\Framework\v4.0.30319\System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\Framework\v4.0.30319\System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.XML">
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\Framework\v4.0.30319\System.XML.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\Framework\v4.0.30319\System.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Content Include="nas.sln" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

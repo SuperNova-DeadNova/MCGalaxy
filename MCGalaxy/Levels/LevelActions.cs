@@ -420,8 +420,8 @@ namespace MCGalaxy {
             res.backedup = true;
             Level.LoadMetadata(res);
             BotsFile.Load(res);
-            
-            LevelActions.Replace(lvl, res);
+
+            Replace(lvl, res);
             lvl = res;
         }
     }

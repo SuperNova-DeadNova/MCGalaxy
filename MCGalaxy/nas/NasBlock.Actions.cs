@@ -130,12 +130,12 @@ namespace NotAwesomeSurvival {
     				
         		BlockID[] aboveHere = {nl.GetBlock(x, y+1, z), nl.GetBlock(x+1, y, z), nl.GetBlock(x-1, y, z), nl.GetBlock(x, y, z+1), nl.GetBlock(x, y, z-1) };
         		
-        		if ((IsPartOfSet(lavaSet, hereBlock)) != -1) {
-        		if (((IsPartOfSet(waterSet, aboveHere[0])) != -1)||
-					((IsPartOfSet(waterSet, aboveHere[1])) != -1)||		   
-					((IsPartOfSet(waterSet, aboveHere[2])) != -1)||	
-					((IsPartOfSet(waterSet, aboveHere[3])) != -1)||	
-					((IsPartOfSet(waterSet, aboveHere[4])) != -1))
+        		if (IsPartOfSet(lavaSet, hereBlock) != -1) {
+        		if ((IsPartOfSet(waterSet, aboveHere[0]) != -1)||
+					(IsPartOfSet(waterSet, aboveHere[1]) != -1)||		   
+					(IsPartOfSet(waterSet, aboveHere[2]) != -1)||	
+					(IsPartOfSet(waterSet, aboveHere[3]) != -1)||	
+					(IsPartOfSet(waterSet, aboveHere[4]) != -1))
 					{
 
     				if (hereBlock == 10 || hereBlock == 11) {
@@ -636,11 +636,11 @@ namespace NotAwesomeSurvival {
         			if (nl.blockEntities.ContainsKey(x+" "+(y-1)+" "+z)) 
         			{b[0] = nl.blockEntities[x+" "+(y-1)+" "+z];}
         			
-        			if (nl.blockEntities.ContainsKey((x+1)+" "+y+" "+z))
-        			{b[1] = nl.blockEntities[(x+1)+" "+y+" "+z];}
+        			if (nl.blockEntities.ContainsKey(x+1+" "+y+" "+z))
+        			{b[1] = nl.blockEntities[x+1+" "+y+" "+z];}
         			
-        			if (nl.blockEntities.ContainsKey((x-1)+" "+y+" "+z))
-        			{b[2] = nl.blockEntities[(x-1)+" "+y+" "+z];}
+        			if (nl.blockEntities.ContainsKey(x-1+" "+y+" "+z))
+        			{b[2] = nl.blockEntities[x-1+" "+y+" "+z];}
         			
         			if (nl.blockEntities.ContainsKey(x+" "+y+" "+(z+1)))
         			{b[3] = nl.blockEntities[x+" "+y+" "+(z+1)];}
@@ -651,14 +651,14 @@ namespace NotAwesomeSurvival {
         			if (nl.blockEntities.ContainsKey(x+" "+(y+1)+" "+z)) 
         			{b[5] = nl.blockEntities[x+" "+(y+1)+" "+z];}
         			
-        		bool powered = (
-        				((b[5] != null) && (b[5].strength > 0 && (b[5].type == 1 || b[5].type == 4 || b[5].type == 5 || b[5].type == 12))) ||
-        				((b[0] != null) && (b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 6 || b[0].type == 12))) ||
-        				((b[1] != null) && (b[1].strength > 0 && (b[1].type == 0 || b[1].type == 4 || b[1].type == 10|| b[1].type == 11))) ||
-        				((b[2] != null) && (b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 8 || b[2].type == 11))) ||
-        				((b[3] != null) && (b[3].strength > 0 && (b[3].type == 2 || b[3].type == 4 || b[3].type == 7 || b[3].type == 13))) ||
-        				((b[4] != null) && (b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 9 || b[4].type == 13)))
-        			);
+        		bool powered = 
+        				((b[5] != null) && b[5].strength > 0 && (b[5].type == 1 || b[5].type == 4 || b[5].type == 5 || b[5].type == 12)) ||
+        				((b[0] != null) && b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 6 || b[0].type == 12)) ||
+        				((b[1] != null) && b[1].strength > 0 && (b[1].type == 0 || b[1].type == 4 || b[1].type == 10|| b[1].type == 11)) ||
+        				((b[2] != null) && b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 8 || b[2].type == 11)) ||
+        				((b[3] != null) && b[3].strength > 0 && (b[3].type == 2 || b[3].type == 4 || b[3].type == 7 || b[3].type == 13)) ||
+        				((b[4] != null) && b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 9 || b[4].type == 13))
+        			;
         			if (powered) {
         				if (off == me)
         				{nl.SetBlock(x, y, z, on);}
@@ -676,11 +676,11 @@ namespace NotAwesomeSurvival {
         			if (nl.blockEntities.ContainsKey(x+" "+(y-1)+" "+z)) 
         			{b[0] = nl.blockEntities[x+" "+(y-1)+" "+z];}
         			
-        			if (nl.blockEntities.ContainsKey((x+1)+" "+y+" "+z))
-        			{b[1] = nl.blockEntities[(x+1)+" "+y+" "+z];}
+        			if (nl.blockEntities.ContainsKey(x+1+" "+y+" "+z))
+        			{b[1] = nl.blockEntities[x+1+" "+y+" "+z];}
         			
-        			if (nl.blockEntities.ContainsKey((x-1)+" "+y+" "+z))
-        			{b[2] = nl.blockEntities[(x-1)+" "+y+" "+z];}
+        			if (nl.blockEntities.ContainsKey(x-1+" "+y+" "+z))
+        			{b[2] = nl.blockEntities[x-1+" "+y+" "+z];}
         			
         			if (nl.blockEntities.ContainsKey(x+" "+y+" "+(z+1)))
         			{b[3] = nl.blockEntities[x+" "+y+" "+(z+1)];}
@@ -691,14 +691,14 @@ namespace NotAwesomeSurvival {
         			if (nl.blockEntities.ContainsKey(x+" "+(y+1)+" "+z)) 
         			{b[5] = nl.blockEntities[x+" "+(y+1)+" "+z];}
         			
-        		bool powered = (
-        				((b[5] != null) && (b[5].strength > 0 && ( b[5].type == 5))) ||
-        				((b[0] != null) && (b[0].strength > 0 && ( b[0].type == 6))) ||
-        				((b[1] != null) && (b[1].strength > 0 && ( b[1].type == 10))) ||
-        				((b[2] != null) && (b[2].strength > 0 && ( b[2].type == 8))) ||
-        				((b[3] != null) && (b[3].strength > 0 && ( b[3].type == 7))) ||
-        				((b[4] != null) && (b[4].strength > 0 && ( b[4].type == 9)))
-        			);
+        		bool powered = 
+        				((b[5] != null) && b[5].strength > 0 && ( b[5].type == 5)) ||
+        				((b[0] != null) && b[0].strength > 0 && ( b[0].type == 6)) ||
+        				((b[1] != null) && b[1].strength > 0 && ( b[1].type == 10)) ||
+        				((b[2] != null) && b[2].strength > 0 && ( b[2].type == 8)) ||
+        				((b[3] != null) && b[3].strength > 0 && ( b[3].type == 7)) ||
+        				((b[4] != null) && b[4].strength > 0 && ( b[4].type == 9))
+        			;
         			if (powered) {
         				if (off == me)
         				{nl.SetBlock(x, y, z, on);
@@ -746,11 +746,11 @@ namespace NotAwesomeSurvival {
         		    if (nl.blockEntities.ContainsKey(x+" "+(y-1)+" "+z))
         			{b[1] = nl.blockEntities[x+" "+(y-1)+" "+z];}
         		
-        		    if (nl.blockEntities.ContainsKey((x+1)+" "+y+" "+z) && (changeX != 1))
-        			{b[2] = nl.blockEntities[(x+1)+" "+y+" "+z];}
+        		    if (nl.blockEntities.ContainsKey(x+1+" "+y+" "+z) && (changeX != 1))
+        			{b[2] = nl.blockEntities[x+1+" "+y+" "+z];}
         			
-        			if (nl.blockEntities.ContainsKey((x-1)+" "+y+" "+z) && (changeX != -1))
-        			{b[3] = nl.blockEntities[(x-1)+" "+y+" "+z];}
+        			if (nl.blockEntities.ContainsKey(x-1+" "+y+" "+z) && (changeX != -1))
+        			{b[3] = nl.blockEntities[x-1+" "+y+" "+z];}
         			
         			if (nl.blockEntities.ContainsKey(x+" "+y+" "+(z+1)) && (changeZ != 1))
         			{b[4] = nl.blockEntities[x+" "+y+" "+(z+1)];}
@@ -759,74 +759,74 @@ namespace NotAwesomeSurvival {
         			{b[5] = nl.blockEntities[x+" "+y+" "+(z-1)];}
         			
         		if (
-        				((b[0] != null) && (b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 5 || b[0].type == 12))) ||
-        				((b[1] != null) && (b[1].strength > 0 && (b[1].type == 1 || b[1].type == 4 || b[1].type == 6 || b[1].type == 12))) ||
-        				((b[2] != null) && (b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 10|| b[2].type == 11))) ||
-        				((b[3] != null) && (b[3].strength > 0 && (b[3].type == 0 || b[3].type == 4 || b[3].type == 8 || b[3].type == 11))) ||
-        				((b[4] != null) && (b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 7 || b[4].type == 13))) ||
-        				((b[5] != null) && (b[5].strength > 0 && (b[5].type == 2 || b[5].type == 4 || b[5].type == 9 || b[5].type == 13)))
+        				((b[0] != null) && b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 5 || b[0].type == 12)) ||
+        				((b[1] != null) && b[1].strength > 0 && (b[1].type == 1 || b[1].type == 4 || b[1].type == 6 || b[1].type == 12)) ||
+        				((b[2] != null) && b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 10|| b[2].type == 11)) ||
+        				((b[3] != null) && b[3].strength > 0 && (b[3].type == 0 || b[3].type == 4 || b[3].type == 8 || b[3].type == 11)) ||
+        				((b[4] != null) && b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 7 || b[4].type == 13)) ||
+        				((b[5] != null) && b[5].strength > 0 && (b[5].type == 2 || b[5].type == 4 || b[5].type == 9 || b[5].type == 13))
         			)
         			{
         			BlockID[] above = { 
-        					TurnValid(nl.GetBlock((x+changeX), (y+changeY), (z+changeZ))), 0, 0, 0, 0, 0, 0};
+        					TurnValid(nl.GetBlock(x+changeX, y+changeY, z+changeZ)), 0, 0, 0, 0, 0, 0};
         				int push = 0;
         				if (above[0] == Block.Air || above[0] == 8) {push = 0;}
         				else {
         				if (IsPartOfSet(unpushable, above[0]) != -1 || IsPartOfSet(dontpush, above[0]) != -1) {return;}
-        					above[1] = TurnValid(nl.GetBlock((x+2*changeX), (y+2*changeY), (z+2*changeZ)));
+        					above[1] = TurnValid(nl.GetBlock(x+2*changeX, y+2*changeY, z+2*changeZ));
         				if (above[1] == Block.Air || above[1] == 8) {push = 1;}
         				else {
         				if (IsPartOfSet(unpushable, above[1]) != -1 || IsPartOfSet(dontpush, above[1]) != -1) {return;}
-        					above[2] = TurnValid(nl.GetBlock((x+3*changeX), (y+3*changeY), (z+3*changeZ)));
+        					above[2] = TurnValid(nl.GetBlock(x+3*changeX, y+3*changeY, z+3*changeZ));
         				if (above[2] == Block.Air || above[2] == 8) {push = 2;}
         				else {
         				if (IsPartOfSet(unpushable, above[2]) != -1 || IsPartOfSet(dontpush, above[2]) != -1) {return;}
-        					above[3] = TurnValid(nl.GetBlock((x+4*changeX), (y+4*changeY), (z+4*changeZ)));
+        					above[3] = TurnValid(nl.GetBlock(x+4*changeX, y+4*changeY, z+4*changeZ));
         				if (above[3] == Block.Air || above[3] == 8) {push = 3;}
         				else {
         				if (IsPartOfSet(unpushable, above[3]) != -1 || IsPartOfSet(dontpush, above[3]) != -1) {return;}
-        					above[4] = TurnValid(nl.GetBlock((x+5*changeX), (y+5*changeY), (z+5*changeZ)));
+        					above[4] = TurnValid(nl.GetBlock(x+5*changeX, y+5*changeY, z+5*changeZ));
         				if (above[4] == Block.Air || above[4] == 8) {push = 4;}
         				else {
         				if (IsPartOfSet(unpushable, above[4]) != -1 || IsPartOfSet(dontpush, above[4]) != -1) {return;}
-        					above[5] = TurnValid(nl.GetBlock((x+6*changeX), (y+6*changeY), (z+6*changeZ)));
+        					above[5] = TurnValid(nl.GetBlock(x+6*changeX, y+6*changeY, z+6*changeZ));
         				if (above[5] == Block.Air || above[5] == 8) {push = 5;}
         				else {
         				if (IsPartOfSet(unpushable, above[5]) != -1 || IsPartOfSet(dontpush, above[5]) != -1) {return;}
-        					above[6] = TurnValid(nl.GetBlock((x+7*changeX), (y+7*changeY), (z+7*changeZ)));
+        					above[6] = TurnValid(nl.GetBlock(x+7*changeX, y+7*changeY, z+7*changeZ));
         				if (above[6] == Block.Air || above[6] == 8) {push = 6;}
         				else {return;}
         				}}}}}}
         			
         			if (push >= 6) {
         				nl.SetBlock(x+(7*changeX), y+(7*changeY), z+(7*changeZ), above[5]);
-        				if (nl.blockEntities.ContainsKey((x+(6*changeX))+" "+(y+(6*changeY))+" "+(z+(6*changeZ))))
-        			{nl.blockEntities.Remove((x+(6*changeX))+" "+(y+(6*changeY))+" "+(z+(6*changeZ)));}
+        				if (nl.blockEntities.ContainsKey(x+(6*changeX)+" "+(y+(6*changeY))+" "+(z+(6*changeZ))))
+        			{nl.blockEntities.Remove(x+(6*changeX)+" "+(y+(6*changeY))+" "+(z+(6*changeZ)));}
         			}
         			if (push >= 5) {
         				nl.SetBlock(x+(6*changeX), y+(6*changeY), z+(6*changeZ), above[4]);
-        				if (nl.blockEntities.ContainsKey((x+(5*changeX))+" "+(y+(5*changeY))+" "+(z+(5*changeZ))))
-        			{nl.blockEntities.Remove((x+(5*changeX))+" "+(y+(5*changeY))+" "+(z+(5*changeZ)));}
+        				if (nl.blockEntities.ContainsKey(x+(5*changeX)+" "+(y+(5*changeY))+" "+(z+(5*changeZ))))
+        			{nl.blockEntities.Remove(x+(5*changeX)+" "+(y+(5*changeY))+" "+(z+(5*changeZ)));}
         			}
         			if (push >= 4) {
         				nl.SetBlock(x+(5*changeX), y+(5*changeY), z+(5*changeZ), above[3]);
-        				if (nl.blockEntities.ContainsKey((x+(4*changeX))+" "+(y+(4*changeY))+" "+(z+(4*changeZ))))
-        			{nl.blockEntities.Remove((x+(4*changeX))+" "+(y+(4*changeY))+" "+(z+(4*changeZ)));}
+        				if (nl.blockEntities.ContainsKey(x+(4*changeX)+" "+(y+(4*changeY))+" "+(z+(4*changeZ))))
+        			{nl.blockEntities.Remove(x+(4*changeX)+" "+(y+(4*changeY))+" "+(z+(4*changeZ)));}
         			}
         			if (push >= 3) {
         				nl.SetBlock(x+(4*changeX), y+(4*changeY), z+(4*changeZ), above[2]);
-        				if (nl.blockEntities.ContainsKey((x+(3*changeX))+" "+(y+(3*changeY))+" "+(z+(3*changeZ))))
-        			{nl.blockEntities.Remove((x+(3*changeX))+" "+(y+(3*changeY))+" "+(z+(3*changeZ)));}
+        				if (nl.blockEntities.ContainsKey(x+(3*changeX)+" "+(y+(3*changeY))+" "+(z+(3*changeZ))))
+        			{nl.blockEntities.Remove(x+(3*changeX)+" "+(y+(3*changeY))+" "+(z+(3*changeZ)));}
         			}
         			if (push >= 2) {
         				nl.SetBlock(x+(3*changeX), y+(3*changeY), z+(3*changeZ), above[1]);
-        				if (nl.blockEntities.ContainsKey((x+(2*changeX))+" "+(y+(2*changeY))+" "+(z+(2*changeZ))))
-        			{nl.blockEntities.Remove((x+(2*changeX))+" "+(y+(2*changeY))+" "+(z+(2*changeZ)));}
+        				if (nl.blockEntities.ContainsKey(x+(2*changeX)+" "+(y+(2*changeY))+" "+(z+(2*changeZ))))
+        			{nl.blockEntities.Remove(x+(2*changeX)+" "+(y+(2*changeY))+" "+(z+(2*changeZ)));}
         			}
         			if (push >= 1) {
         				nl.SetBlock(x+(2*changeX), y+(2*changeY), z+(2*changeZ), above[0]);
-        				if (nl.blockEntities.ContainsKey((x+(changeX))+" "+(y+(changeY))+" "+(z+(changeZ))))
-        				{nl.blockEntities.Remove((x+(changeX))+" "+(y+(changeY))+" "+(z+(changeZ)));}
+        				if (nl.blockEntities.ContainsKey(x+changeX+" "+(y+changeY)+" "+(z+changeZ)))
+        				{nl.blockEntities.Remove(x+changeX+" "+(y+changeY)+" "+(z+changeZ));}
         			}
         			nl.SetBlock(x+changeX, y+changeY, z+changeZ, pistonSet[2]);
         			nl.SetBlock(x, y, z, pistonSet[1]);
@@ -835,7 +835,7 @@ namespace NotAwesomeSurvival {
         			for (int i = 0; i < players.Length; i++) {
 					Player who = players[i];
 					Vec3F32 posH = who.Pos.BlockCoords;
-					if (who.Pos.FeetBlockCoords == new Vec3S32((x+(push+1)*changeX), (y+(push+1)*changeY), (z+(push+1)*changeZ)) || who.Pos.BlockCoords == new Vec3S32((x+(push+1)*changeX), (y+(push+1)*changeY), (z+(push+1)*changeZ)))
+					if (who.Pos.FeetBlockCoords == new Vec3S32(x+(push+1)*changeX, y+(push+1)*changeY, z+(push+1)*changeZ) || who.Pos.BlockCoords == new Vec3S32(x+(push+1)*changeX, y+(push+1)*changeY, z+(push+1)*changeZ))
 					{
 						if (Get(Collision.ConvertToClientBlockID(nl.GetBlock((int)posH.X+changeX, (int)posH.Y+changeY, (int)posH.Z+changeZ))).collideAction != DefaultSolidCollideAction()){
 						Position posit = who.Pos;
@@ -859,11 +859,11 @@ namespace NotAwesomeSurvival {
         		    if (nl.blockEntities.ContainsKey(x+" "+(y-1)+" "+z))
         			{b[1] = nl.blockEntities[x+" "+(y-1)+" "+z];}
         		
-        		    if (nl.blockEntities.ContainsKey((x+1)+" "+y+" "+z) && (changeX != 1))
-        			{b[2] = nl.blockEntities[(x+1)+" "+y+" "+z];}
+        		    if (nl.blockEntities.ContainsKey(x+1+" "+y+" "+z) && (changeX != 1))
+        			{b[2] = nl.blockEntities[x+1+" "+y+" "+z];}
         			
-        			if (nl.blockEntities.ContainsKey((x-1)+" "+y+" "+z) && (changeX != -1))
-        			{b[3] = nl.blockEntities[(x-1)+" "+y+" "+z];}
+        			if (nl.blockEntities.ContainsKey(x-1+" "+y+" "+z) && (changeX != -1))
+        			{b[3] = nl.blockEntities[x-1+" "+y+" "+z];}
         			
         			if (nl.blockEntities.ContainsKey(x+" "+y+" "+(z+1)) && (changeZ != 1))
         			{b[4] = nl.blockEntities[x+" "+y+" "+(z+1)];}
@@ -873,12 +873,12 @@ namespace NotAwesomeSurvival {
         			
         			
         		if (!(
-        				((b[0] != null) && (b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 5 || b[0].type == 12))) ||
-        				((b[1] != null) && (b[1].strength > 0 && (b[1].type == 1 || b[1].type == 4 || b[1].type == 6 || b[1].type == 12))) ||
-        				((b[2] != null) && (b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 10|| b[2].type == 11))) ||
-        				((b[3] != null) && (b[3].strength > 0 && (b[3].type == 0 || b[3].type == 4 || b[3].type == 8 || b[3].type == 11))) ||
-        				((b[4] != null) && (b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 7 || b[4].type == 13))) ||
-        				((b[5] != null) && (b[5].strength > 0 && (b[5].type == 2 || b[5].type == 4 || b[5].type == 9 || b[5].type == 13)))
+        				((b[0] != null) && b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 5 || b[0].type == 12)) ||
+        				((b[1] != null) && b[1].strength > 0 && (b[1].type == 1 || b[1].type == 4 || b[1].type == 6 || b[1].type == 12)) ||
+        				((b[2] != null) && b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 10|| b[2].type == 11)) ||
+        				((b[3] != null) && b[3].strength > 0 && (b[3].type == 0 || b[3].type == 4 || b[3].type == 8 || b[3].type == 11)) ||
+        				((b[4] != null) && b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 7 || b[4].type == 13)) ||
+        				((b[5] != null) && b[5].strength > 0 && (b[5].type == 2 || b[5].type == 4 || b[5].type == 9 || b[5].type == 13))
         			))
         			{
         				if (!sticky) {
@@ -892,8 +892,8 @@ namespace NotAwesomeSurvival {
         				if (IsPartOfSet(unpushable, pullback) == -1 && IsPartOfSet(dontpush, pullback) == -1 && pullback != 8) {
         					nl.SetBlock(x+(1*changeX), y+(1*changeY), z+(1*changeZ), pullback);
         					nl.SetBlock(x+(2*changeX), y+(2*changeY), z+(2*changeZ), Block.Air);
-        					if (nl.blockEntities.ContainsKey((x+(2*changeX))+" "+(y+(2*changeY))+" "+(z+(2*changeZ))))
-        					{nl.blockEntities.Remove((x+(2*changeX))+" "+(y+(2*changeY))+" "+(z+(2*changeZ)));}
+        					if (nl.blockEntities.ContainsKey(x+(2*changeX)+" "+(y+(2*changeY))+" "+(z+(2*changeZ))))
+        					{nl.blockEntities.Remove(x+(2*changeX)+" "+(y+(2*changeY))+" "+(z+(2*changeZ)));}
         					return;
         				}
         				return;
@@ -929,11 +929,11 @@ namespace NotAwesomeSurvival {
         		if (nl.blockEntities.ContainsKey(x+" "+(y-changeY)+" "+z))
         			{b[0] = nl.blockEntities[x+" "+(y-changeY)+" "+z];}
         			
-        			if (nl.blockEntities.ContainsKey((x+1)+" "+y+" "+z))
-        			{b[1] = nl.blockEntities[(x+1)+" "+y+" "+z];}
+        			if (nl.blockEntities.ContainsKey(x+1+" "+y+" "+z))
+        			{b[1] = nl.blockEntities[x+1+" "+y+" "+z];}
         			
-        			if (nl.blockEntities.ContainsKey((x-1)+" "+y+" "+z))
-        			{b[2] = nl.blockEntities[(x-1)+" "+y+" "+z];}
+        			if (nl.blockEntities.ContainsKey(x-1+" "+y+" "+z))
+        			{b[2] = nl.blockEntities[x-1+" "+y+" "+z];}
         			
         			if (nl.blockEntities.ContainsKey(x+" "+y+" "+(z+1)))
         			{b[3] = nl.blockEntities[x+" "+y+" "+(z+1)];}
@@ -943,40 +943,40 @@ namespace NotAwesomeSurvival {
         			
         			
         		if (
-        				((b[0] != null) && (b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 12 || ((changeY == 1 && b[0].type == 6) || (changeY == -1 && b[0].type == 5))))) ||
-        				((b[1] != null) && (b[1].strength > 0 && (b[1].type == 0 || b[1].type == 4 || b[1].type == 10|| b[1].type == 11))) ||
-        				((b[2] != null) && (b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 8 || b[2].type == 11))) ||
-        				((b[3] != null) && (b[3].strength > 0 && (b[3].type == 2 || b[3].type == 4 || b[3].type == 7 || b[3].type == 13))) ||
-        				((b[4] != null) && (b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 9 || b[4].type == 13)))
+        				((b[0] != null) && b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 12 || (changeY == 1 && b[0].type == 6) || (changeY == -1 && b[0].type == 5))) ||
+        				((b[1] != null) && b[1].strength > 0 && (b[1].type == 0 || b[1].type == 4 || b[1].type == 10|| b[1].type == 11)) ||
+        				((b[2] != null) && b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 8 || b[2].type == 11)) ||
+        				((b[3] != null) && b[3].strength > 0 && (b[3].type == 2 || b[3].type == 4 || b[3].type == 7 || b[3].type == 13)) ||
+        				((b[4] != null) && b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 9 || b[4].type == 13))
         			)
         			{
         			BlockID[] above = { 
-        					TurnValid(nl.GetBlock((x+changeX), (y+changeY), (z+changeZ))), 0, 0, 0, 0, 0, 0};
+        					TurnValid(nl.GetBlock(x+changeX, y+changeY, z+changeZ)), 0, 0, 0, 0, 0, 0};
         				int push = 0;
         				if (above[0] == Block.Air || above[0] == 8) {push = 0;}
         				else {
         				if (IsPartOfSet(unpushable, above[0]) != -1  || IsPartOfSet(dontpush, above[0]) != -1) {return;}
-        				above[1] = TurnValid(nl.GetBlock((x+2*changeX), (y+2*changeY), (z+2*changeZ)));
+        				above[1] = TurnValid(nl.GetBlock(x+2*changeX, y+2*changeY, z+2*changeZ));
         				if (above[1] == Block.Air || above[1] == 8) {push = 1;}
         				else {
         				if (IsPartOfSet(unpushable, above[1]) != -1  || IsPartOfSet(dontpush, above[1]) != -1) {return;}
-        					above[2] = TurnValid(nl.GetBlock((x+3*changeX), (y+3*changeY), (z+3*changeZ)));
+        					above[2] = TurnValid(nl.GetBlock(x+3*changeX, y+3*changeY, z+3*changeZ));
         				if (above[2] == Block.Air || above[2] == 8) {push = 2;}
         				else {
         				if (IsPartOfSet(unpushable, above[2]) != -1  || IsPartOfSet(dontpush, above[2]) != -1) {return;}
-        					above[3] = TurnValid(nl.GetBlock((x+4*changeX), (y+4*changeY), (z+4*changeZ)));
+        					above[3] = TurnValid(nl.GetBlock(x+4*changeX, y+4*changeY, z+4*changeZ));
         				if (above[3] == Block.Air || above[3] == 8) {push = 3;}
         				else {
         				if (IsPartOfSet(unpushable, above[3]) != -1  || IsPartOfSet(dontpush, above[3]) != -1) {return;}
-        					above[4] = TurnValid(nl.GetBlock((x+5*changeX), (y+5*changeY), (z+5*changeZ)));
+        					above[4] = TurnValid(nl.GetBlock(x+5*changeX, y+5*changeY, z+5*changeZ));
         				if (above[4] == Block.Air || above[4] == 8) {push = 4;}
         				else {
         				if (IsPartOfSet(unpushable, above[4]) != -1  || IsPartOfSet(dontpush, above[4]) != -1) {return;}
-        					above[5] = TurnValid(nl.GetBlock((x+6*changeX), (y+6*changeY), (z+6*changeZ)));
+        					above[5] = TurnValid(nl.GetBlock(x+6*changeX, y+6*changeY, z+6*changeZ));
         				if (above[5] == Block.Air || above[5] == 8) {push = 5;}
         				else {
         				if (IsPartOfSet(unpushable, above[5]) != -1  || IsPartOfSet(dontpush, above[5]) != -1) {return;}
-        					above[6] = TurnValid(nl.GetBlock((x+7*changeX), (y+7*changeY), (z+7*changeZ)));
+        					above[6] = TurnValid(nl.GetBlock(x+7*changeX, y+7*changeY, z+7*changeZ));
         				if (above[6] == Block.Air || above[6] == 8) {push = 6;}
         				else {return;}
         				}}}}}}
@@ -1017,7 +1017,7 @@ namespace NotAwesomeSurvival {
         			for (int i = 0; i < players.Length; i++) {
 					Player who = players[i];
 					Vec3F32 posH = who.Pos.BlockCoords;
-					if (who.Pos.FeetBlockCoords == new Vec3S32((x+(push+1)*changeX), (y+(push+1)*changeY), (z+(push+1)*changeZ)) || who.Pos.BlockCoords == new Vec3S32((x+(push+1)*changeX), (y+(push+1)*changeY), (z+(push+1)*changeZ)))
+					if (who.Pos.FeetBlockCoords == new Vec3S32(x+(push+1)*changeX, y+(push+1)*changeY, z+(push+1)*changeZ) || who.Pos.BlockCoords == new Vec3S32(x+(push+1)*changeX, y+(push+1)*changeY, z+(push+1)*changeZ))
 					{
 						if (Get(Collision.ConvertToClientBlockID(nl.GetBlock((int)posH.X+changeX, (int)posH.Y+changeY, (int)posH.Z+changeZ))).collideAction != DefaultSolidCollideAction()){
 						Position posit = who.Pos;
@@ -1034,11 +1034,11 @@ namespace NotAwesomeSurvival {
         		if (nl.blockEntities.ContainsKey(x+" "+(y-changeY)+" "+z))
         			{b[0] = nl.blockEntities[x+" "+(y-changeY)+" "+z];}
         			
-        			if (nl.blockEntities.ContainsKey((x+1)+" "+y+" "+z))
-        			{b[1] = nl.blockEntities[(x+1)+" "+y+" "+z];}
+        			if (nl.blockEntities.ContainsKey(x+1+" "+y+" "+z))
+        			{b[1] = nl.blockEntities[x+1+" "+y+" "+z];}
         			
-        			if (nl.blockEntities.ContainsKey((x-1)+" "+y+" "+z))
-        			{b[2] = nl.blockEntities[(x-1)+" "+y+" "+z];}
+        			if (nl.blockEntities.ContainsKey(x-1+" "+y+" "+z))
+        			{b[2] = nl.blockEntities[x-1+" "+y+" "+z];}
         			
         			if (nl.blockEntities.ContainsKey(x+" "+y+" "+(z+1)))
         			{b[3] = nl.blockEntities[x+" "+y+" "+(z+1)];}
@@ -1048,11 +1048,11 @@ namespace NotAwesomeSurvival {
         			
         			
         		if (!(
-        				((b[0] != null) && (b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 12 || ((changeY == 1 && b[0].type == 6) || (changeY == -1 && b[0].type == 5))))) ||
-        				((b[1] != null) && (b[1].strength > 0 && (b[1].type == 0 || b[1].type == 4 || b[1].type == 10 || b[1].type == 11))) ||
-        				((b[2] != null) && (b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 8 || b[2].type == 11))) ||
-        				((b[3] != null) && (b[3].strength > 0 && (b[3].type == 2 || b[3].type == 4 || b[3].type == 7 || b[3].type == 13))) ||
-        				((b[4] != null) && (b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 9 || b[4].type == 13)))
+        				((b[0] != null) && b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 12 || (changeY == 1 && b[0].type == 6) || (changeY == -1 && b[0].type == 5))) ||
+        				((b[1] != null) && b[1].strength > 0 && (b[1].type == 0 || b[1].type == 4 || b[1].type == 10 || b[1].type == 11)) ||
+        				((b[2] != null) && b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 8 || b[2].type == 11)) ||
+        				((b[3] != null) && b[3].strength > 0 && (b[3].type == 2 || b[3].type == 4 || b[3].type == 7 || b[3].type == 13)) ||
+        				((b[4] != null) && b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 9 || b[4].type == 13))
         			))
         			{
         				nl.SetBlock(x, y, z, pistonSet[0]);
@@ -1163,11 +1163,11 @@ namespace NotAwesomeSurvival {
         		if (nl.blockEntities.ContainsKey(x+" "+(y-changeY)+" "+z))
         			{b[0] = nl.blockEntities[x+" "+(y-changeY)+" "+z];}
         			
-        			if (nl.blockEntities.ContainsKey((x+1)+" "+y+" "+z))
-        			{b[1] = nl.blockEntities[(x+1)+" "+y+" "+z];}
+        			if (nl.blockEntities.ContainsKey(x+1+" "+y+" "+z))
+        			{b[1] = nl.blockEntities[x+1+" "+y+" "+z];}
         			
-        			if (nl.blockEntities.ContainsKey((x-1)+" "+y+" "+z))
-        			{b[2] = nl.blockEntities[(x-1)+" "+y+" "+z];}
+        			if (nl.blockEntities.ContainsKey(x-1+" "+y+" "+z))
+        			{b[2] = nl.blockEntities[x-1+" "+y+" "+z];}
         			
         			if (nl.blockEntities.ContainsKey(x+" "+y+" "+(z+1)))
         			{b[3] = nl.blockEntities[x+" "+y+" "+(z+1)];}
@@ -1179,40 +1179,40 @@ namespace NotAwesomeSurvival {
         			
         			
         		if (
-        				((b[0] != null) && (b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 12 || ((changeY == 1 && b[0].type == 6) || (changeY == -1 && b[0].type == 5))))) ||
-        				((b[1] != null) && (b[1].strength > 0 && (b[1].type == 0 || b[1].type == 4 || b[1].type == 10|| b[1].type == 11))) ||
-        				((b[2] != null) && (b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 8 || b[2].type == 11))) ||
-        				((b[3] != null) && (b[3].strength > 0 && (b[3].type == 2 || b[3].type == 4 || b[3].type == 7 || b[3].type == 13))) ||
-        				((b[4] != null) && (b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 9 || b[4].type == 13)))
+        				((b[0] != null) && b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 12 || (changeY == 1 && b[0].type == 6) || (changeY == -1 && b[0].type == 5))) ||
+        				((b[1] != null) && b[1].strength > 0 && (b[1].type == 0 || b[1].type == 4 || b[1].type == 10|| b[1].type == 11)) ||
+        				((b[2] != null) && b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 8 || b[2].type == 11)) ||
+        				((b[3] != null) && b[3].strength > 0 && (b[3].type == 2 || b[3].type == 4 || b[3].type == 7 || b[3].type == 13)) ||
+        				((b[4] != null) && b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 9 || b[4].type == 13))
         			)
         			{
         			BlockID[] above = { 
-        					TurnValid(nl.GetBlock((x+changeX), (y+changeY), (z+changeZ))), 0, 0, 0, 0, 0, 0};
+        					TurnValid(nl.GetBlock(x+changeX, y+changeY, z+changeZ)), 0, 0, 0, 0, 0, 0};
         				int push = 0;
         				if (above[0] == Block.Air || above[0] == 8) {push = 0;}
         				else {
         				if (IsPartOfSet(unpushable, above[0]) != -1  || IsPartOfSet(dontpush, above[0]) != -1) {return;}
-        				above[1] = TurnValid(nl.GetBlock((x+2*changeX), (y+2*changeY), (z+2*changeZ)));
+        				above[1] = TurnValid(nl.GetBlock(x+2*changeX, y+2*changeY, z+2*changeZ));
         				if (above[1] == Block.Air || above[1] == 8) {push = 1;}
         				else {
         				if (IsPartOfSet(unpushable, above[1]) != -1  || IsPartOfSet(dontpush, above[1]) != -1) {return;}
-        				above[2] = TurnValid(nl.GetBlock((x+3*changeX), (y+3*changeY), (z+3*changeZ)));
+        				above[2] = TurnValid(nl.GetBlock(x+3*changeX, y+3*changeY, z+3*changeZ));
         				if (above[2] == Block.Air || above[2] == 8) {push = 2;}
         				else {
         				if (IsPartOfSet(unpushable, above[2]) != -1  || IsPartOfSet(dontpush, above[2]) != -1) {return;}
-        				above[3] = TurnValid(nl.GetBlock((x+4*changeX), (y+4*changeY), (z+4*changeZ)));
+        				above[3] = TurnValid(nl.GetBlock(x+4*changeX, y+4*changeY, z+4*changeZ));
         				if (above[3] == Block.Air || above[3] == 8) {push = 3;}
         				else {
         				if (IsPartOfSet(unpushable, above[3]) != -1  || IsPartOfSet(dontpush, above[3]) != -1) {return;}
-        				above[4] = TurnValid(nl.GetBlock((x+5*changeX), (y+5*changeY), (z+5*changeZ)));
+        				above[4] = TurnValid(nl.GetBlock(x+5*changeX, y+5*changeY, z+5*changeZ));
         				if (above[4] == Block.Air || above[4] == 8) {push = 4;}
         				else {
         				if (IsPartOfSet(unpushable, above[4]) != -1  || IsPartOfSet(dontpush, above[4]) != -1) {return;}
-        				above[5] = TurnValid(nl.GetBlock((x+6*changeX), (y+6*changeY), (z+6*changeZ)));
+        				above[5] = TurnValid(nl.GetBlock(x+6*changeX, y+6*changeY, z+6*changeZ));
         				if (above[5] == Block.Air || above[5] == 8) {push = 5;}
         				else {
         				if (IsPartOfSet(unpushable, above[5]) != -1  || IsPartOfSet(dontpush, above[5]) != -1) {return;}
-        				above[6] = TurnValid(nl.GetBlock((x+7*changeX), (y+7*changeY), (z+7*changeZ)));
+        				above[6] = TurnValid(nl.GetBlock(x+7*changeX, y+7*changeY, z+7*changeZ));
         				if (above[6] == Block.Air || above[6] == 8) {push = 6;}
         				else {return;}
         				}}}}}}
@@ -1254,7 +1254,7 @@ namespace NotAwesomeSurvival {
         			for (int i = 0; i < players.Length; i++) {
 					Player who = players[i];
 					Vec3F32 posH = who.Pos.BlockCoords;
-					if (who.Pos.FeetBlockCoords == new Vec3S32((x+(push+1)*changeX), (y+(push+1)*changeY), (z+(push+1)*changeZ)) || who.Pos.BlockCoords == new Vec3S32((x+(push+1)*changeX), (y+(push+1)*changeY), (z+(push+1)*changeZ)))
+					if (who.Pos.FeetBlockCoords == new Vec3S32(x+(push+1)*changeX, y+(push+1)*changeY, z+(push+1)*changeZ) || who.Pos.BlockCoords == new Vec3S32(x+(push+1)*changeX, y+(push+1)*changeY, z+(push+1)*changeZ))
 					{
 						if (Get(Collision.ConvertToClientBlockID(nl.GetBlock((int)posH.X+changeX, (int)posH.Y+changeY, (int)posH.Z+changeZ))).collideAction != DefaultSolidCollideAction()){
 						Position posit = who.Pos;
@@ -1270,11 +1270,11 @@ namespace NotAwesomeSurvival {
         		if (type == "body") {
         			
         		if (!(
-        				((b[0] != null) && (b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 12 || ((changeY == 1 && b[0].type == 6) || (changeY == -1 && b[0].type == 5))))) ||
-        				((b[1] != null) && (b[1].strength > 0 && (b[1].type == 0 || b[1].type == 4 || b[1].type == 10|| b[1].type == 11))) ||
-        				((b[2] != null) && (b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 8 || b[2].type == 11))) ||
-        				((b[3] != null) && (b[3].strength > 0 && (b[3].type == 2 || b[3].type == 4 || b[3].type == 7 || b[3].type == 13))) ||
-        				((b[4] != null) && (b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 9 || b[4].type == 13)))
+        				((b[0] != null) && b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 12 || (changeY == 1 && b[0].type == 6) || (changeY == -1 && b[0].type == 5))) ||
+        				((b[1] != null) && b[1].strength > 0 && (b[1].type == 0 || b[1].type == 4 || b[1].type == 10|| b[1].type == 11)) ||
+        				((b[2] != null) && b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 8 || b[2].type == 11)) ||
+        				((b[3] != null) && b[3].strength > 0 && (b[3].type == 2 || b[3].type == 4 || b[3].type == 7 || b[3].type == 13)) ||
+        				((b[4] != null) && b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 9 || b[4].type == 13))
         			))
         			{
         				nl.SetBlock(x, y, z, pistonSet[0]);
@@ -1465,16 +1465,16 @@ namespace NotAwesomeSurvival {
         		Entity strength2 = new Entity();
         		int strength0 = b.strength;
         		if (direction == 0) {
-        			if (nl.blockEntities.ContainsKey((x+1)+" "+y+" "+z)) 
+        			if (nl.blockEntities.ContainsKey(x+1+" "+y+" "+z)) 
         			{
-        				Entity bEntity = nl.blockEntities[(x+1)+" "+y+" "+z];
+        				Entity bEntity = nl.blockEntities[x+1+" "+y+" "+z];
         				int checkType = bEntity.type;
         				if (checkType < 5 || checkType == 10 || checkType == 11)
         				     strength1 = bEntity;
         			}
-        			if (nl.blockEntities.ContainsKey((x-1)+" "+y+" "+z)) 
+        			if (nl.blockEntities.ContainsKey(x-1+" "+y+" "+z)) 
         			{
-        				Entity bEntity = nl.blockEntities[(x-1)+" "+y+" "+z];
+        				Entity bEntity = nl.blockEntities[x-1+" "+y+" "+z];
         				int checkType = bEntity.type;
         				if (checkType < 5 || checkType == 8 || checkType == 11)  
         				     strength2 = bEntity;
@@ -1602,8 +1602,8 @@ namespace NotAwesomeSurvival {
         			}
         		}
         		if (direction == 8) {
-        			if (nl.blockEntities.ContainsKey((x-1)+" "+y+" "+z)){
-        				strength1 = nl.blockEntities[(x-1)+" "+y+" "+z];
+        			if (nl.blockEntities.ContainsKey(x-1+" "+y+" "+z)){
+        				strength1 = nl.blockEntities[x-1+" "+y+" "+z];
         			}
         		}
         		if (direction == 9) {
@@ -1612,8 +1612,8 @@ namespace NotAwesomeSurvival {
         			}
         		}
         		if (direction == 10) {
-        			if (nl.blockEntities.ContainsKey((x+1)+" "+y+" "+z)){
-        				strength1 = nl.blockEntities[(x+1)+" "+y+" "+z];
+        			if (nl.blockEntities.ContainsKey(x+1+" "+y+" "+z)){
+        				strength1 = nl.blockEntities[x+1+" "+y+" "+z];
         			}
         		}
         		NasLevel.QueuedBlockUpdate qb = new NasLevel.QueuedBlockUpdate();
@@ -1633,9 +1633,9 @@ namespace NotAwesomeSurvival {
 				return (nl,nasBlock,x,y,z) => {
         		Entity b = nl.blockEntities[x+" "+y+" "+z];
         		
-        		if (!(strength1.type < 5 || strength1.type == b.type || ((strength1.type == 11 && (b.type == 10 || b.type == 8)) || 
+        		if (!(strength1.type < 5 || strength1.type == b.type || (strength1.type == 11 && (b.type == 10 || b.type == 8)) || 
         		      (strength1.type == 12 && (b.type == 5 || b.type == 6)) ||
-        		      (strength1.type == 13 && (b.type == 9 || b.type == 7))))) {strength1.strength = 0;}
+        		      (strength1.type == 13 && (b.type == 9 || b.type == 7)))) {strength1.strength = 0;}
         		if (type == 0 && strength1.strength > 0 ){
         			nl.SetBlock(x, y, z, repeaterSetActive[direction-5]);
         			b.strength = 15;
@@ -1666,11 +1666,11 @@ namespace NotAwesomeSurvival {
         		    if (nl.blockEntities.ContainsKey(x+" "+(y-1)+" "+z) && (changeY != -1))
         			{b[1] = nl.blockEntities[x+" "+(y-1)+" "+z];}
         		
-        		    if (nl.blockEntities.ContainsKey((x+1)+" "+y+" "+z) && (changeX != 1))
-        			{b[2] = nl.blockEntities[(x+1)+" "+y+" "+z];}
+        		    if (nl.blockEntities.ContainsKey(x+1+" "+y+" "+z) && (changeX != 1))
+        			{b[2] = nl.blockEntities[x+1+" "+y+" "+z];}
         			
-        			if (nl.blockEntities.ContainsKey((x-1)+" "+y+" "+z) && (changeX != -1))
-        			{b[3] = nl.blockEntities[(x-1)+" "+y+" "+z];}
+        			if (nl.blockEntities.ContainsKey(x-1+" "+y+" "+z) && (changeX != -1))
+        			{b[3] = nl.blockEntities[x-1+" "+y+" "+z];}
         			
         			if (nl.blockEntities.ContainsKey(x+" "+y+" "+(z+1)) && (changeZ != 1))
         			{b[4] = nl.blockEntities[x+" "+y+" "+(z+1)];}
@@ -1678,14 +1678,14 @@ namespace NotAwesomeSurvival {
         			if (nl.blockEntities.ContainsKey(x+" "+y+" "+(z-1)) && (changeZ != -1))
         			{b[5] = nl.blockEntities[x+" "+y+" "+(z-1)];}
         		
-        			bool powered = (
-        				((b[0] != null) && (b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 5 || b[0].type == 12))) ||
-        				((b[1] != null) && (b[1].strength > 0 && (b[1].type == 1 || b[1].type == 4 || b[1].type == 6 || b[1].type == 12))) ||
-        				((b[2] != null) && (b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 10|| b[2].type == 11))) ||
-        				((b[3] != null) && (b[3].strength > 0 && (b[3].type == 0 || b[3].type == 4 || b[3].type == 8 || b[3].type == 11))) ||
-        				((b[4] != null) && (b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 7 || b[4].type == 13))) ||
-        				((b[5] != null) && (b[5].strength > 0 && (b[5].type == 2 || b[5].type == 4 || b[5].type == 9 || b[5].type == 13)))
-        			);
+        			bool powered = 
+        				((b[0] != null) && b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 5 || b[0].type == 12)) ||
+        				((b[1] != null) && b[1].strength > 0 && (b[1].type == 1 || b[1].type == 4 || b[1].type == 6 || b[1].type == 12)) ||
+        				((b[2] != null) && b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 10|| b[2].type == 11)) ||
+        				((b[3] != null) && b[3].strength > 0 && (b[3].type == 0 || b[3].type == 4 || b[3].type == 8 || b[3].type == 11)) ||
+        				((b[4] != null) && b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 7 || b[4].type == 13)) ||
+        				((b[5] != null) && b[5].strength > 0 && (b[5].type == 2 || b[5].type == 4 || b[5].type == 9 || b[5].type == 13))
+        			;
         			if (!powered) 
         			{nl.blockEntities[x+" "+y+" "+z].type = 0; return;}
         			if (nl.blockEntities[x+" "+y+" "+z].type == 1) {return;}
@@ -1711,7 +1711,7 @@ namespace NotAwesomeSurvival {
                         bEntity.drop = null;
                     	}
         				if (addedBlockID == 0) {nl.SetBlock(x+changeX, y+changeY, z+changeZ, Block.FromRaw(clientBlockID)); 
-        					if (Get(bs.ID).container != null) {nl.blockEntities.Add(((x+changeX)+" "+(y+changeY)+" "+(z+changeZ)), new Entity());} return;}
+        					if (Get(bs.ID).container != null) {nl.blockEntities.Add(x+changeX+" "+(y+changeY)+" "+(z+changeZ), new Entity());} return;}
         				if (bEntity.drop == null) {
         				//Logger.Log(LogType.Debug, "Dispenser: Placing {0}, putting {1} back in", clientBlockID, addedBlockID);
         				nl.SetBlock(x+changeX, y+changeY, z+changeZ, Block.FromRaw(clientBlockID));
@@ -1722,7 +1722,7 @@ namespace NotAwesomeSurvival {
 	                    if (stack.ID == addedBlockID) {
 	                        if (addedBlockID != 0) stack.amount += 1;
 	                        nl.SetBlock(x+changeX, y+changeY, z+changeZ, Block.FromRaw(clientBlockID));
-	                        if (Get(bs.ID).container != null) {nl.blockEntities.Add(((x+changeX)+" "+(y+changeY)+" "+(z+changeZ)), new Entity());}
+	                        if (Get(bs.ID).container != null) {nl.blockEntities.Add(x+changeX+" "+(y+changeY)+" "+(z+changeZ), new Entity());}
 	                        return;
 		                    }
 		                }
@@ -1732,7 +1732,7 @@ namespace NotAwesomeSurvival {
 		                }
         				if (addedBlockID != 0) bEntity.drop.blockStacks.Add(new BlockStack(addedBlockID));
 	                    nl.SetBlock(x+changeX, y+changeY, z+changeZ, Block.FromRaw(clientBlockID));
-	                    if (Get(bs.ID).container != null) {nl.blockEntities.Add(((x+changeX)+" "+(y+changeY)+" "+(z+changeZ)), new Entity());}
+	                    if (Get(bs.ID).container != null) {nl.blockEntities.Add(x+changeX+" "+(y+changeY)+" "+(z+changeZ), new Entity());}
         
         				
         				
@@ -1827,11 +1827,11 @@ namespace NotAwesomeSurvival {
         			if (nl.blockEntities.ContainsKey(x+" "+(y-1)+" "+z)) 
         			{b[0] = nl.blockEntities[x+" "+(y-1)+" "+z];}
         			
-        			if (nl.blockEntities.ContainsKey((x+1)+" "+y+" "+z))
-        			{b[1] = nl.blockEntities[(x+1)+" "+y+" "+z];}
+        			if (nl.blockEntities.ContainsKey(x+1+" "+y+" "+z))
+        			{b[1] = nl.blockEntities[x+1+" "+y+" "+z];}
         			
-        			if (nl.blockEntities.ContainsKey((x-1)+" "+y+" "+z))
-        			{b[2] = nl.blockEntities[(x-1)+" "+y+" "+z];}
+        			if (nl.blockEntities.ContainsKey(x-1+" "+y+" "+z))
+        			{b[2] = nl.blockEntities[x-1+" "+y+" "+z];}
         			
         			if (nl.blockEntities.ContainsKey(x+" "+y+" "+(z+1)))
         			{b[3] = nl.blockEntities[x+" "+y+" "+(z+1)];}
@@ -1840,13 +1840,13 @@ namespace NotAwesomeSurvival {
         			{b[4] = nl.blockEntities[x+" "+y+" "+(z-1)];}
 
         			
-        		bool powered = (
-        				((b[0] != null) && (b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 6 || b[0].type == 12))) ||
-        				((b[1] != null) && (b[1].strength > 0 && (b[1].type == 0 || b[1].type == 4 || b[1].type == 10|| b[1].type == 11))) ||
-        				((b[2] != null) && (b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 8 || b[2].type == 11))) ||
-        				((b[3] != null) && (b[3].strength > 0 && (b[3].type == 2 || b[3].type == 4 || b[3].type == 7 || b[3].type == 13))) ||
-        				((b[4] != null) && (b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 9 || b[4].type == 13)))
-        			);
+        		bool powered = 
+        				((b[0] != null) && b[0].strength > 0 && (b[0].type == 1 || b[0].type == 4 || b[0].type == 6 || b[0].type == 12)) ||
+        				((b[1] != null) && b[1].strength > 0 && (b[1].type == 0 || b[1].type == 4 || b[1].type == 10|| b[1].type == 11)) ||
+        				((b[2] != null) && b[2].strength > 0 && (b[2].type == 0 || b[2].type == 4 || b[2].type == 8 || b[2].type == 11)) ||
+        				((b[3] != null) && b[3].strength > 0 && (b[3].type == 2 || b[3].type == 4 || b[3].type == 7 || b[3].type == 13)) ||
+        				((b[4] != null) && b[4].strength > 0 && (b[4].type == 2 || b[4].type == 4 || b[4].type == 9 || b[4].type == 13))
+        			;
         			if (!powered) 
         			{nl.blockEntities[x+" "+y+" "+z].type = 0; return;}
         			if (nl.blockEntities[x+" "+y+" "+z].type == 1) {return;}

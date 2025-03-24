@@ -122,7 +122,7 @@ namespace MCGalaxy
         
         [Obsolete("Use p.Message(message) instead", true)]
         public static void Message(Player p, string message) {
-            if (p == null) p = Player.Console;
+            if (p == null) p = Console;
             p.Message(0, message);
         }
         [Obsolete("Use p.Message(message) instead", true)]
