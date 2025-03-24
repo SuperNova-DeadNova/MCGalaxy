@@ -105,7 +105,7 @@
     <Compile Include="NasLevel.IO.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MCGalaxy\MCGalaxy_.csproj">
+    <ProjectReference Include="..\MCGalaxy_.csproj">
       <Project>{12597db0-7c34-4de1-88ea-9250ff3372eb}</Project>
       <Name>MCGalaxy_</Name>
     </ProjectReference>
