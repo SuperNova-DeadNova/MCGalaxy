@@ -40,8 +40,11 @@ namespace MCGalaxy {
         /// <summary> *** DO NOT USE THIS! *** Use VersionString, as this field is a constant and is inlined if used. </summary>
         public const string InternalVersion = "1.9.3.8";
         public static string Version { get { return InternalVersion; } }
-        
+#if TEN_BIT_BLOCKS
+        public static string SoftwareName = "MCGalaxy-NAS";
+#else
         public static string SoftwareName = "MCGalaxy";
+#endif
         static string fullName;
         public static string SoftwareNameVersioned {
             // By default, if SoftwareName gets externally changed, that is reflected in SoftwareNameVersioned too
@@ -50,7 +53,7 @@ namespace MCGalaxy {
         }
 
         // URL for connecting to the server
-        public static string URL = String.Empty;
+        public static string URL = string.Empty;
         public static INetListen Listener;
 
         //Other

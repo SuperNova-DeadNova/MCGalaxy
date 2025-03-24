@@ -101,7 +101,7 @@ namespace MCGalaxy.Commands.World {
             } else if (cmd == "RESIZE") {
                 value = p.level.name + " " + value;
                 string[] args = value.SplitSpaces();
-                if (args.Length < 4) { Command.Find("ResizeLvl").Help(p); return; }
+                if (args.Length < 4) { Find("ResizeLvl").Help(p); return; }
 
                 bool needConfirm;
                 if (CmdResizeLvl.DoResize(p, args, p.DefaultCmdData, out needConfirm)) return;
@@ -154,7 +154,7 @@ namespace MCGalaxy.Commands.World {
             string[] args = value.TrimEnd().SplitSpaces();
             if (args.Length == 3) value += " flat";
 
-            CmdNewLvl newLvl = (CmdNewLvl)Command.Find("NewLvl"); // TODO: this is a nasty hack, find a better way
+            CmdNewLvl newLvl = (CmdNewLvl)Find("NewLvl"); // TODO: this is a nasty hack, find a better way
             args = (level + " " + value).SplitSpaces();
             
             Level lvl = newLvl.GenerateMap(p, args, p.DefaultCmdData);

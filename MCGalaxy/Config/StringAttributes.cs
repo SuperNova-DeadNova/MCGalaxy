@@ -62,7 +62,7 @@ namespace MCGalaxy.Config
             : base(null, null) { allowEmpty = true; }
         
         public override object Parse(string value) {
-            if (String.IsNullOrEmpty(value) && !allowEmpty) {
+            if (string.IsNullOrEmpty(value) && !allowEmpty) {
                 Logger.Log(LogType.Warning, "Config key \"{0}\" has no value, using default of {1}", Name, defValue);
                 return defValue;
             }

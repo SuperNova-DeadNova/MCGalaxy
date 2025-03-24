@@ -316,7 +316,7 @@ namespace MCGalaxy.SQL {
 
         internal SQLiteStatement NextStatement() {
             if (stmt != null) DisposeStatement();
-            if (String.IsNullOrEmpty(strRemaining)) return null;
+            if (string.IsNullOrEmpty(strRemaining)) return null;
             
             try {
                 stmt = conn.Prepare(strRemaining, ref strRemaining);
@@ -443,8 +443,8 @@ namespace MCGalaxy.SQL {
 
         internal static Type[] affinity_to_type = {
             typeof(object),   // Uninitialized (0)
-            typeof(Int64),    // Int64 (1)
-            typeof(Double),   // Double (2)
+            typeof(long),    // Int64 (1)
+            typeof(double),   // Double (2)
             typeof(string),   // Text (3)
             typeof(byte[]),   // Blob (4)
             typeof(object),   // Null (5)
@@ -492,17 +492,17 @@ namespace MCGalaxy.SQL {
             typeof(decimal),  // Decimal (7)
             typeof(double),   // Double (8)
             typeof(Guid),     // Guid (9)
-            typeof(Int16),    // Int16 (10)
+            typeof(short),    // Int16 (10)
             typeof(Int32),    // Int32 (11)
-            typeof(Int64),    // Int64 (12)
+            typeof(long),    // Int64 (12)
             typeof(object),   // Object (13)
             typeof(sbyte),    // SByte (14)
             typeof(float),    // Single (15)
             typeof(string),   // String (16)
             typeof(DateTime), // Time (17)
-            typeof(UInt16),   // UInt16 (18)
-            typeof(UInt32),   // UInt32 (19)
-            typeof(UInt64),   // UInt64 (20)
+            typeof(ushort),   // UInt16 (18)
+            typeof(uint),   // UInt32 (19)
+            typeof(ulong),   // UInt64 (20)
         };
         
         static bool TryParseDbType(string typeName, out DbType type) {

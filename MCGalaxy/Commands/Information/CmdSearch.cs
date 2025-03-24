@@ -62,10 +62,10 @@ namespace MCGalaxy.Commands.Info {
         }
         
         static void SearchCommands(Player p, string keyword, string modifier) {
-            List<string> commands = Matcher.Filter(Command.allCmds, keyword, cmd => cmd.name,
+            List<string> commands = Matcher.Filter(allCmds, keyword, cmd => cmd.name,
                                                    null, cmd => CmdHelp.GetColor(cmd) + cmd.name);
-            List<string> shortcuts = Matcher.Filter(Command.allCmds, keyword, cmd => cmd.shortcut,
-                                                    cmd => !String.IsNullOrEmpty(cmd.shortcut), 
+            List<string> shortcuts = Matcher.Filter(allCmds, keyword, cmd => cmd.shortcut,
+                                                    cmd => !string.IsNullOrEmpty(cmd.shortcut), 
                                                     cmd => CmdHelp.GetColor(cmd) + cmd.name);
             
             // Match both names and shortcuts

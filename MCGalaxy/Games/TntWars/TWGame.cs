@@ -302,7 +302,7 @@ namespace MCGalaxy.Games {
             if (i == 1) col = "&7";
             if (i == 2) col = "&4";
             
-            return String.Format("{0}) {2} - {1}{3} points", i + 1, col,
+            return string.Format("{0}) {2} - {1}{3} points", i + 1, col,
                                  p.p.ColoredName, p.Score);
         }
         

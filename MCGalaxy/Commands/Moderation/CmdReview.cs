@@ -132,8 +132,8 @@ namespace MCGalaxy.Commands.Moderation {
                 p.Message("Player " + user + " is offline, and was removed from the review queue");
                 return;
             }
-            
-            Command.Find("TP").Use(p, target.name, data);
+
+            Find("TP").Use(p, target.name, data);
             p.Message("You have been teleported to " + p.FormatNick(target));
             target.Message("Your review request has been answered by {0}.", target.FormatNick(p));
             AnnounceQueueChanged();

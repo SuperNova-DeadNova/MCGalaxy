@@ -22,13 +22,13 @@ using BlockRaw = System.Byte;
 namespace MCGalaxy {
     public static partial class Block {
         
-        internal static string[] coreNames = new string[Block.Count];
+        internal static string[] coreNames = new string[Count];
         public static bool Undefined(BlockID block) { return IsPhysicsType(block) && coreNames[block].CaselessEq("unknown"); }
         
         public static bool ExistsGlobal(BlockID b) { return ExistsFor(Player.Console, b); }
         
         public static bool ExistsFor(Player p, BlockID b) {
-            if (b < Block.Count) return !Undefined(b);
+            if (b < Count) return !Undefined(b);
             
             if (!p.IsSuper) return p.level.GetBlockDef(b) != null;
             return BlockDefinition.GlobalDefs[b] != null;
@@ -45,7 +45,7 @@ namespace MCGalaxy {
             }
             if (def != null) return def.Name.Replace(" ", "");
             
-            return block < Block.Extended ? coreNames[block] : ToRaw(block).ToString();
+            return block < Extended ? coreNames[block] : ToRaw(block).ToString();
         }
         
         public static BlockID Parse(Player p, string input) {
@@ -53,13 +53,13 @@ namespace MCGalaxy {
             BlockID block;
             // raw ID is treated specially, before names
             if (BlockID.TryParse(input, out block)) {
-                if (block < Block.CPE_COUNT || (block <= Block.MaxRaw && defs[FromRaw(block)] != null)) {
+                if (block < CPE_COUNT || (block <= MaxRaw && defs[FromRaw(block)] != null)) {
                     return FromRaw(block);
                 }
             }
             
             block = GetBlockByName(input, defs);
-            if (block != Block.Invalid) return block;
+            if (block != Invalid) return block;
             
             byte coreID;
             bool success = Aliases.TryGetValue(input.ToLower(), out coreID);
@@ -72,7 +72,7 @@ namespace MCGalaxy {
                 if (def == null) continue;
                 if (def.Name.Replace(" ", "").CaselessEq(msg)) return def.GetBlock();
             }
-            return Block.Invalid;
+            return Invalid;
         }
         
         
@@ -116,14 +116,14 @@ namespace MCGalaxy {
             if (p.ProtocolVersion >= Server.VERSION_0020) return block;
             
             // protocol version 5 only supports up to Glass block
-            if (block == Block.Gold)      block = Block.Sponge;
-            if (block >= Block.Dandelion) block = Block.Sapling;
-            if (block >= Block.Red)       block = Block.Sand;
+            if (block == Gold)      block = Sponge;
+            if (block >= Dandelion) block = Sapling;
+            if (block >= Red)       block = Sand;
             if (p.ProtocolVersion >= Server.VERSION_0019) return block;
             
             // protocol version 4 only supports up to Leaves block
-            if (block == Block.Glass)  block = Block.Leaves;
-            if (block == Block.Sponge) block = Block.GoldOre;
+            if (block == Glass)  block = Leaves;
+            if (block == Sponge) block = GoldOre;
             
             // protocol version 3 seems to have same support
             // TODO what even changed between 3 and 4?

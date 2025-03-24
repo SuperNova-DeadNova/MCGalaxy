@@ -48,7 +48,7 @@ namespace MCGalaxy.Commands.Bots {
             string desc = bot.DisplayName;
             if (bot.DisplayName != bot.name) desc += "&S(&1" + bot.name + "&S)";
             
-            if (!String.IsNullOrEmpty(bot.AIName)) {
+            if (!string.IsNullOrEmpty(bot.AIName)) {
                 desc += "[" + bot.AIName + "]";
             } else if (bot.hunt) { desc += "[Hunt]"; }            
             if (bot.kill) desc += "-kill";

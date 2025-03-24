@@ -113,7 +113,7 @@ namespace MCGalaxy.Gui.Components {
             string trimMsg = "----- cut off, see log files for rest of logs -----" + Environment.NewLine;
             
             SelectedText = trimMsg;
-            SelectionColor = System.Drawing.Color.DarkGray;
+            SelectionColor = Color.DarkGray;
             selStart += trimMsg.Length - 1;            
         }
         

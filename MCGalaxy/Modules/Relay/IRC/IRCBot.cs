@@ -71,7 +71,7 @@ namespace MCGalaxy.Modules.Relay.IRC
         }
 
         void Join(string channel) {
-            if (String.IsNullOrEmpty(channel)) return;
+            if (string.IsNullOrEmpty(channel)) return;
             conn.SendJoin(channel);
         }
         
@@ -158,7 +158,7 @@ namespace MCGalaxy.Modules.Relay.IRC
         }
         
         protected override string ConvertMessage(string message) {
-            if (String.IsNullOrEmpty(message.Trim())) message = ".";
+            if (string.IsNullOrEmpty(message.Trim())) message = ".";
             const string resetSignal = "\x03\x0F";
             
             message = base.ConvertMessage(message);

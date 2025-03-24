@@ -44,7 +44,7 @@ namespace MCGalaxy {
             lock (locker) {
                 T[] newItems = new T[Items.Length + 1];
                 for (int i = 0; i < Items.Length; i++) {
-                    if (object.ReferenceEquals(Items[i], value)) return false;
+                    if (ReferenceEquals(Items[i], value)) return false;
                     newItems[i] = Items[i];
                 }
 
@@ -58,7 +58,7 @@ namespace MCGalaxy {
         public bool Contains(T value) {
             lock (locker) {
                 for (int i = 0; i < Items.Length; i++) {
-                    if (object.ReferenceEquals(Items[i], value)) return true;
+                    if (ReferenceEquals(Items[i], value)) return true;
                 }
             }
             return false;
@@ -72,7 +72,7 @@ namespace MCGalaxy {
                 T[] newItems = new T[Items.Length - 1];
                 int j = 0;
                 for (int i = 0; i < Items.Length; i++) {
-                    if (object.ReferenceEquals(Items[i], value)) continue;
+                    if (ReferenceEquals(Items[i], value)) continue;
                     
                     // For some reason item wasn't in the list
                     if (j == newItems.Length) return false;

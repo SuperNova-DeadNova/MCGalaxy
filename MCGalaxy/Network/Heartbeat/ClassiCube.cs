@@ -94,7 +94,7 @@ namespace MCGalaxy.Network
         
         protected override void OnResponse(WebResponse response) {
             string text = HttpUtil.GetResponseText(response);
-            if (String.IsNullOrEmpty(text)) return;
+            if (string.IsNullOrEmpty(text)) return;
             string hash = ExtractHash(text);
 
             // only need to do this when contents have changed

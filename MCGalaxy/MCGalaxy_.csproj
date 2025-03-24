@@ -692,6 +692,44 @@
     <Compile Include="properties\AssemblyInfo.cs" />
     <Compile Include="Player\Player.CPE.cs" />
     <Compile Include="Database\PlayerDB.cs" />
+    <Compile Include="nas\Collision.cs" />
+    <Compile Include="nas\Crafting.Setup.cs" />
+    <Compile Include="nas\Drop.cs" />
+    <Compile Include="nas\NasLevel.Adventure.cs" />
+    <Compile Include="nas\NasTimeCycle.cs" />
+    <Compile Include="nas\NasTimeCycle.IO.cs" />
+    <Compile Include="nas\NasTreeGens.cs" />
+    <Compile Include="nas\ItemProp.Setup.cs" />
+    <Compile Include="nas\NasBlock.Actions.cs" />
+    <Compile Include="nas\NasBlock.CollideActions.cs" />
+    <Compile Include="nas\NasBlock.Interactions.cs" />
+    <Compile Include="nas\NasBlock.Setup.cs" />
+    <Compile Include="nas\NasColor.cs" />
+    <Compile Include="nas\Crafting.cs" />
+    <Compile Include="nas\Effect.cs" />
+    <Compile Include="nas\Item.cs" />
+    <Compile Include="nas\ItemProp.cs" />
+    <Compile Include="nas\NasBlock.cs" />
+    <Compile Include="nas\NasBlockChange.cs" />
+    <Compile Include="nas\NasEntity.cs" />
+    <Compile Include="nas\NasGen.cs" />
+    <Compile Include="nas\NasLevel.cs" />
+    <Compile Include="nas\NasPlayer.Movement.cs" />
+    <Compile Include="nas\NasPlayerInventory.cs" />
+    <Compile Include="nas\Nas.cs" />
+    <Compile Include="nas\NasPlayer.cs" />
+    <Compile Include="nas\NasTree.cs" />
+    <Compile Include="nas\Priority Queue\FastPriorityQueue.cs" />
+    <Compile Include="nas\Priority Queue\FastPriorityQueueNode.cs" />
+    <Compile Include="nas\Priority Queue\GenericPriorityQueue.cs" />
+    <Compile Include="nas\Priority Queue\GenericPriorityQueueNode.cs" />
+    <Compile Include="nas\Priority Queue\IFixedSizePriorityQueue.cs" />
+    <Compile Include="nas\Priority Queue\IPriorityQueue.cs" />
+    <Compile Include="nas\Priority Queue\SimplePriorityQueue.cs" />
+    <Compile Include="nas\Priority Queue\StablePriorityQueue.cs" />
+    <Compile Include="nas\Priority Queue\StablePriorityQueueNode.cs" />
+    <Compile Include="nas\NasPlayerInventory.Items.cs" />
+    <Compile Include="nas\NasLevel.IO.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -728,6 +766,12 @@
     <Content Include="..\sqlite3_x64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

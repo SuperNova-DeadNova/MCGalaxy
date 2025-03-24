@@ -24,7 +24,7 @@ namespace MCGalaxy
     {
         /// <summary> Sets the first character of the input string to uppercase. </summary>
         public static string Capitalize(this string str) {
-            if (String.IsNullOrEmpty(str)) return str;
+            if (string.IsNullOrEmpty(str)) return str;
             
             char[] a = str.ToCharArray();
             a[0] = char.ToUpper(a[0]);
@@ -33,7 +33,7 @@ namespace MCGalaxy
         
         /// <summary> Removes an ending + from a username. </summary>
         public static string RemoveLastPlus(this string str) {
-            if (String.IsNullOrEmpty(str)) return str;
+            if (string.IsNullOrEmpty(str)) return str;
             
             if (str[str.Length - 1] != '+') return str;
             return str.Substring(0, str.Length - 1);
@@ -61,7 +61,7 @@ namespace MCGalaxy
             char[] c = str.ToCharArray();
             for (int i = 0; i < str.Length; i++)
                 c[i] = Cp437ToUnicode(str[i]);
-            return new String(c);
+            return new string(c);
         }
 
         /// <summary> Converts a unicode string into a string consisting of code page 437 indices. </summary>
@@ -72,7 +72,7 @@ namespace MCGalaxy
             char[] c = str.ToCharArray();
             for (int i = 0; i < str.Length; i++)
                 c[i] = UnicodeToCp437(str[i]);
-            return new String(c);
+            return new string(c);
         }
         
         

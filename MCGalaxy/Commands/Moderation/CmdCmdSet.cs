@@ -24,8 +24,8 @@ namespace MCGalaxy.Commands.Moderation {
             if (args.Length < 2) { Help(p); return; }
             
             string cmdName = args[0], cmdArgs = "";
-            Command.Search(ref cmdName, ref cmdArgs);
-            Command cmd = Command.Find(cmdName);
+            Search(ref cmdName, ref cmdArgs);
+            Command cmd = Find(cmdName);
             
             if (cmd == null) { p.Message("Could not find command entered"); return; }
             if (!p.CanUse(cmd)) {

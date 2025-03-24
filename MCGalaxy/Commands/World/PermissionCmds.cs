@@ -51,7 +51,7 @@ namespace MCGalaxy.Commands.World {
             string[] args = message.SplitSpaces();
             if (message.Length == 0 || args.Length > 2) { Help(p); return; }
             if (args.Length == 1 && p.IsSuper) {
-                Command.SuperRequiresArgs(name, p, "level"); return;
+                SuperRequiresArgs(name, p, "level"); return;
             }
             
             string map = args.Length == 1 ? p.level.name : Matcher.FindMaps(p, args[0]);

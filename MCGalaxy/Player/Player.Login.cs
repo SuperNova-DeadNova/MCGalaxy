@@ -148,7 +148,7 @@ namespace MCGalaxy
             if (Server.Config.PositionUpdateInterval > 1000)
                 Message("Lowlag mode is currently &aON.");
 
-            if (String.IsNullOrEmpty(appName)) {
+            if (string.IsNullOrEmpty(appName)) {
                 Logger.Log(LogType.UserActivity, "{0} [{1}] connected.", truename, IP);
             } else {
                 Logger.Log(LogType.UserActivity, "{0} [{1}] connected using {2}.", truename, IP, appName);

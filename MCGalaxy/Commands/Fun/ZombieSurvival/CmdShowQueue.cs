@@ -32,7 +32,7 @@ namespace MCGalaxy.Commands.Fun {
         }
         
         void ShowQueued(Player p, string queued, string type) {
-            if (String.IsNullOrEmpty(queued))
+            if (string.IsNullOrEmpty(queued))
                 p.Message("There is no " + type + " queued.");
             else
                 p.Message("\"" + queued + "\" is queued as the next " + type + ".");

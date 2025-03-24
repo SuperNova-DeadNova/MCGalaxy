@@ -422,7 +422,7 @@ namespace Sharkbite.Irc
 			}
 			else 
 			{
-				return String.Join(" ", strings, start, (strings.Length - start) );
+				return string.Join(" ", strings, start, (strings.Length - start) );
 			}
 		}
 		

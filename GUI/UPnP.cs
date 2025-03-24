@@ -77,7 +77,7 @@ namespace MCGalaxy
                                 Logger.Log(LogType.BackgroundActivity, "UPnP device found: " + location);
                                 
                                 _serviceUrl = GetServiceUrl(location);
-                                if (!String.IsNullOrEmpty(_serviceUrl)) return true;
+                                if (!string.IsNullOrEmpty(_serviceUrl)) return true;
                             }
                         }
                     } while (length > 0);
@@ -89,7 +89,7 @@ namespace MCGalaxy
         }
 
         public static void ForwardPort(int port, ProtocolType protocol, string description) {
-            if (String.IsNullOrEmpty(_serviceUrl) )
+            if (string.IsNullOrEmpty(_serviceUrl) )
                 throw new InvalidOperationException("No UPnP service available or Discover() has not been called");
             
             string xdoc = SOAPRequest(_serviceUrl, "AddPortMapping",
@@ -106,7 +106,7 @@ namespace MCGalaxy
         }
 
         public static void DeleteForwardingRule(int port, ProtocolType protocol) {
-            if (String.IsNullOrEmpty(_serviceUrl) )
+            if (string.IsNullOrEmpty(_serviceUrl) )
                 throw new InvalidOperationException("No UPnP service available or Discover() has not been called");
             
             string xdoc = SOAPRequest(_serviceUrl, "DeletePortMapping",
@@ -171,7 +171,7 @@ namespace MCGalaxy
                 "<s:Body>" + soap + "</s:Body>" +
                 "</s:Envelope>";
             
-            WebRequest r = HttpWebRequest.Create(url);
+            WebRequest r = WebRequest.Create(url);
             r.Method = "POST";            
             r.Headers.Add("SOAPACTION", "\"urn:schemas-upnp-org:service:WANIPConnection:1#" + function + "\"");
             r.ContentType = "text/xml; charset=\"utf-8\"";
