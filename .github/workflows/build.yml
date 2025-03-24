@@ -1,0 +1,36 @@
+name: Build Normal
+on:
+  push:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.ref }}-Normal
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile MCGalaxy using mono
+        shell: bash
+        id: compile
+        run: |
+          msbuild MCGalaxy.sln /p:Configuration=Release
+          cp -R bin/Release bin/Release_normal
+          rm bin/Release/MCGalaxy_.dll
+          msbuild MCGalaxy/MCGalaxy_.csproj /p:Configuration=Release /p:DefineConstants="TEN_BIT_BLOCKS"
+
+      - uses: ./.github/actions/notify_failure
+        if: ${{ always() && steps.compile.outcome == 'failure' }}
+        with:
+          NOTIFY_MESSAGE: 'Failed to compile MCGalaxy .NET build! <@999409543001931788>'
+          WEBHOOK_URL: '${{ secrets.WEBHOOK_URL }}'
+          
+      - uses: ./.github/actions/notify_success
+        if: ${{ always() && steps.compile.outcome == 'success' }}
+        with:
+          SOURCE_FILE: 'bin/Release_normal'
+          DEST_NAME: 'MCGalaxy'
+          NOTIFY_MESSAGE: 'Successfully compiled MCGalaxy .NET build.'
+          WEBHOOK_URL: '${{ secrets.WEBHOOK_URL }}'
