@@ -15,10 +15,10 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using MCGalaxy.Bots;
 
-namespace MCGalaxy.Commands.CPE {
+namespace MCGalaxy.Commands.CPE
+{
     public class CmdModelScale : EntityPropertyCmd {
         public override string name { get { return "ModelScale"; } }
         public override string type { get { return CommandTypes.Other; } }

@@ -101,7 +101,7 @@ Trying to mix two versions is unsupported - you may experience issues";
             //  however that doesn't work properly with some WINE versions (you get WINE icon instead)
             try {
                 ComponentResourceManager resources = new ComponentResourceManager(typeof(Window));
-                Icon = (Icon)(resources.GetObject("$this.Icon"));
+                Icon = (Icon)resources.GetObject("$this.Icon");
             } catch { }
         }
         
@@ -110,7 +110,7 @@ Trying to mix two versions is unsupported - you may experience issues";
             string players = " (" + playerCount + " players)";
             
             // ArgumentException thrown if text length is > 63
-            string text = (Server.Config.Name + players);
+            string text = Server.Config.Name + players;
             if (text.Length > 63) text = text.Substring(0, 63);
             notifyIcon.Text = text;
         }

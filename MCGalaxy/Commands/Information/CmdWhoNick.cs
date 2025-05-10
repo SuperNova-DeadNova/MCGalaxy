@@ -15,10 +15,8 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System.Data;
-using MCGalaxy.SQL;
-
-namespace MCGalaxy.Commands.Info {
+namespace MCGalaxy.Commands.Info
+{
     public sealed class CmdWhoNick : Command2 {
         public override string name { get { return "WhoNick"; } }
         public override string shortcut { get { return "RealName"; } }

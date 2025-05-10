@@ -21,7 +21,7 @@ using MCGalaxy.Network;
 using MCGalaxy.Tasks;
 
 namespace MCGalaxy {
-    public sealed partial class Server {
+    public partial class Server {
         public static bool cancelcommand;        
         public delegate void OnConsoleCommand(string cmd, string message);
         public static event OnConsoleCommand ConsoleCommand;
@@ -36,21 +36,22 @@ namespace MCGalaxy {
         public static PlayerExtList AutoloadMaps;
         public static PlayerMetaList RankInfo = new PlayerMetaList("text/rankinfo.txt");
         public static PlayerMetaList Notes = new PlayerMetaList("text/notes.txt");
-        
-        /// <summary> *** DO NOT USE THIS! *** Use VersionString, as this field is a constant and is inlined if used. </summary>
         public const string InternalVersion = "1.9.3.5";
+        /// <summary> *** DO NOT USE THIS! *** Use VersionString, as this field is a constant and is inlined if used. </summary>
+        public const string SurvivalInternalVersion = "1.0.0.3";
         public static string Version { get { return InternalVersion; } }
+        public static string SurvivalVersion { get { return SurvivalInternalVersion; } }
         
-        public static string SoftwareName = "MCGalaxy";
+        public static string SoftwareName = "MCGalaxy (Survival)";
         static string fullName;
         public static string SoftwareNameVersioned {
             // By default, if SoftwareName gets externally changed, that is reflected in SoftwareNameVersioned too
-            get { return fullName ?? SoftwareName + " " + Version; }
+            get { return fullName ?? SoftwareName + " " + SurvivalVersion; }
             set { fullName = value; }
         }
 
         // URL for connecting to the server
-        public static string URL = String.Empty;
+        public static string URL = string.Empty;
         public static INetListen Listener;
 
         //Other
@@ -65,8 +66,6 @@ namespace MCGalaxy {
         public static readonly List<string> Opstats = new List<string>() { "ban", "tempban", "xban", "banip", "kick", "warn", "mute", "freeze", "setrank" };
 
         public static Level mainLevel;
-        [Obsolete("Use LevelInfo.Loaded.Items")]
-        public static List<Level> levels;
 
         public static PlayerList reviewlist = new PlayerList();
         static string[] announcements = new string[0];

@@ -15,11 +15,11 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.Data;
 
-namespace MCGalaxy.SQL {
-    
+namespace MCGalaxy.SQL
+{
+
     /// <summary> Executes an SQL command or query using the given parameters/arguments. </summary>
     public static class SqlQuery {
 

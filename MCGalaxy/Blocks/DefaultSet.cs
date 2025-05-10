@@ -15,13 +15,12 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
-using System.Text;
 using BlockID = System.UInt16;
 using BlockRaw = System.Byte;
 
-namespace MCGalaxy.Blocks {
-    
+namespace MCGalaxy.Blocks
+{
+
     /// <summary> Stores default properties for blocks in Minecraft Classic. (and CPE blocks). </summary>
     public static class DefaultSet {
         

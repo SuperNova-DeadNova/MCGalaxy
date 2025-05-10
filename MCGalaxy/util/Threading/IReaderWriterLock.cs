@@ -16,13 +16,13 @@
     permissions and limitations under the Licenses.
  */
 using System;
-using System.Collections.Generic;
 using System.Threading;
 
 #if !NET_20
-namespace MCGalaxy.Util {
+namespace MCGalaxy.Util
+{
 
-    public sealed class IReaderWriterLock {
+    public class IReaderWriterLock {
         
         ReaderWriterLockSlim locker = new ReaderWriterLockSlim();
 

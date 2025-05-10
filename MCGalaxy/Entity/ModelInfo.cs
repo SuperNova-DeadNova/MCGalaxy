@@ -17,12 +17,12 @@
  */
 using System;
 using System.Collections.Generic;
-using MCGalaxy.Blocks;
 using MCGalaxy.Maths;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy {
-    
+namespace MCGalaxy
+{
+
     public struct ModelInfo {
         
         public readonly string Model;

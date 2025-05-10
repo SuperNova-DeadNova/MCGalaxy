@@ -15,11 +15,11 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.IO;
 using MCGalaxy.Scripting;
 
-namespace MCGalaxy.Commands.Scripting {
+namespace MCGalaxy.Commands.Scripting
+{
     public sealed class CmdPlugin : Command2 {
         public override string name { get { return "Plugin"; } }
         public override string type { get { return CommandTypes.Other; } }

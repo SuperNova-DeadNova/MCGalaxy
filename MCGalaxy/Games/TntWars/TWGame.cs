@@ -23,17 +23,11 @@
 //-------|__________________________________|-------\\
 using System;
 using System.Collections.Generic;
-using System.Threading;
-using MCGalaxy.Commands.World;
-using MCGalaxy.Events;
-using MCGalaxy.Events.LevelEvents;
-using MCGalaxy.Events.PlayerEvents;
 using MCGalaxy.Maths;
-using MCGalaxy.Network;
-using BlockID = System.UInt16;
 
-namespace MCGalaxy.Games {
-    
+namespace MCGalaxy.Games
+{
+
     public enum TWGameMode { FFA, TDM };
     public enum TWDifficulty {
         Easy,    // 2 Hits to die, Tnt has long delay
@@ -302,7 +296,7 @@ namespace MCGalaxy.Games {
             if (i == 1) col = "&7";
             if (i == 2) col = "&4";
             
-            return String.Format("{0}) {2} - {1}{3} points", i + 1, col,
+            return string.Format("{0}) {2} - {1}{3} points", i + 1, col,
                                  p.p.ColoredName, p.Score);
         }
         

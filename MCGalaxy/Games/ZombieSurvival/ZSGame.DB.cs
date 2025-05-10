@@ -16,13 +16,13 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.Data;
 using MCGalaxy.DB;
 using MCGalaxy.SQL;
 
-namespace MCGalaxy.Games {
-    
+namespace MCGalaxy.Games
+{
+
     public sealed partial class ZSGame : RoundsGame {
         
         struct ZombieStats { public int TotalRounds, MaxRounds, TotalInfected, MaxInfected; }

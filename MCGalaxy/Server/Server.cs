@@ -36,7 +36,7 @@ using MCGalaxy.Util;
 using MCGalaxy.Modules.Awards;
 
 namespace MCGalaxy {
-    public sealed partial class Server {
+    public partial class Server {
         
         public Server() { s = this; }
         
@@ -45,15 +45,6 @@ namespace MCGalaxy {
         public static bool Check(string cmd, string message) {
             if (ConsoleCommand != null) ConsoleCommand(cmd, message);
             return cancelcommand;
-        }
-        
-        [Obsolete("Use Logger.Log(LogType, String)")]
-        public void Log(string message) { Logger.Log(LogType.SystemActivity, message); }
-        
-        [Obsolete("Use Logger.Log(LogType, String)")]
-        public void Log(string message, bool systemMsg = false) {
-            LogType type = systemMsg ? LogType.BackgroundActivity : LogType.SystemActivity;
-            Logger.Log(type, message);
         }
         
         static void CheckFile(string file) {
@@ -78,10 +69,6 @@ namespace MCGalaxy {
             levelConfig  = ConfigElement.GetAll(typeof(LevelConfig));
             zoneConfig   = ConfigElement.GetAll(typeof(ZoneConfig));
             
-            #pragma warning disable 0618
-            Player.players = PlayerInfo.Online.list;
-            levels = LevelInfo.Loaded.list;
-            #pragma warning restore 0618
             
             StartTime = DateTime.UtcNow;
             shuttingDown = false;

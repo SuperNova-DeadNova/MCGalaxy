@@ -21,13 +21,11 @@ using MCGalaxy.Blocks;
 using MCGalaxy.Events;
 using MCGalaxy.Events.EconomyEvents;
 using MCGalaxy.Events.EntityEvents;
-using MCGalaxy.Events.LevelEvents;
 using MCGalaxy.Events.PlayerEvents;
-using MCGalaxy.Events.ServerEvents;
-using MCGalaxy.Network;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Games {
+namespace MCGalaxy.Games
+{
     public sealed partial class ZSGame : RoundsGame {
 
         protected override void HookEventHandlers() {

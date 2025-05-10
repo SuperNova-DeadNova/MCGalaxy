@@ -32,7 +32,7 @@ namespace MCGalaxy.Drawing.Brushes
         public CloudyBrush(BlockID[] blocks, int[] counts, NoiseArgs n) {
             this.blocks = blocks;
             this.counts = counts;
-            this.thresholds = new float[counts.Length];
+            thresholds = new float[counts.Length];
             Random r = n.Seed == int.MinValue ? new Random() : new Random(n.Seed);
             noise = new ImprovedNoise(r);
             

@@ -20,12 +20,12 @@ using System.Threading;
 using MCGalaxy.Blocks;
 using MCGalaxy.Blocks.Physics;
 using MCGalaxy.Events.LevelEvents;
-using MCGalaxy.Games;
 using MCGalaxy.Network;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy {
-    
+namespace MCGalaxy
+{
+
     public enum PhysicsState { Stopped, Warning, Other }
 
     public sealed partial class Level : IDisposable {
@@ -156,16 +156,11 @@ namespace MCGalaxy {
                         OnPhysicsUpdateEvent.Call(C.X, C.Y, C.Z, C.Data, this);
                     
                     C.Block = blocks[chk.Index];
-                    #if TEN_BIT_BLOCKS
                     BlockID extended = Block.ExtendedBase[C.Block];
                     if (extended > 0) {
                         C.Block = (BlockID)(extended | FastGetExtTile(C.X, C.Y, C.Z));
                     }
-                    #else
-                    if (C.Block == Block.custom_block) {
-                        C.Block = (BlockID)(Block.Extended | FastGetExtTile(C.X, C.Y, C.Z));
-                    }
-                    #endif
+
                     
                     if ((C.Data.Raw & mask) == 0 || C.Data.Type1 == PhysicsArgs.Custom || extraHandler(this, ref C)) {
                         HandlePhysics handler = handlers[C.Block];
@@ -219,8 +214,8 @@ namespace MCGalaxy {
         public void AddCheck(int index, bool overRide, PhysicsArgs data) {
             try {
                 int x = index % Width;
-                int y = (index / Width) / Length;
-                int z = (index / Width) % Length;
+                int y = index / Width / Length;
+                int z = index / Width % Length;
                 if (x >= Width || y >= Height || z >= Length) return;
                 
                 if (listCheckExists.TrySetOn(x, y, z)) {
@@ -253,8 +248,8 @@ namespace MCGalaxy {
         internal bool AddUpdate(int index, BlockID block, PhysicsArgs data, bool overRide = false) {
             try {
                 int x = index % Width;
-                int y = (index / Width) / Length;
-                int z = (index / Width) % Length;
+                int y = index / Width / Length;
+                int z = index / Width % Length;
                 if (x >= Width || y >= Height || z >= Length) return false;
                 
                 if (overRide) {

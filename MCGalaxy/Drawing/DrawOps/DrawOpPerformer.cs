@@ -152,12 +152,8 @@ namespace MCGalaxy.Drawing.Ops
                 
                 int index = b.X + lvl.Width * (b.Z + b.Y * lvl.Length);
                 BlockID old = lvl.blocks[index];
-                #if TEN_BIT_BLOCKS
                 BlockID extended = Block.ExtendedBase[old];
                 if (extended > 0) old = (BlockID)(extended | lvl.FastGetExtTile(b.X, b.Y, b.Z));
-                #else
-                if (old == Block.custom_block) old = (BlockID)(Block.Extended | lvl.FastGetExtTile(b.X, b.Y, b.Z));
-                #endif
                 
                 // Check to make sure the block is actually different and that can be used
                 if (old == b.Block || !p.group.Blocks[old] || !p.group.Blocks[b.Block]) return;
@@ -175,11 +171,7 @@ namespace MCGalaxy.Drawing.Ops
                 // Set the block (inlined)
                 lvl.Changed = true;
                 if (b.Block >= Block.Extended) {
-                    #if TEN_BIT_BLOCKS
                     lvl.blocks[index] = Block.ExtendedClass[b.Block >> Block.ExtendedShift];
-                    #else
-                    lvl.blocks[index] = Block.custom_block;
-                    #endif
                     lvl.FastSetExtTile(b.X, b.Y, b.Z, (BlockRaw)b.Block);
                 } else {
                     lvl.blocks[index] = (BlockRaw)b.Block;

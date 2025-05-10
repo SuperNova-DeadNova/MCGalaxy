@@ -16,10 +16,10 @@ using System;
 using MCGalaxy.Events.EntityEvents;
 using MCGalaxy.Games;
 using MCGalaxy.Network;
-using MCGalaxy.Maths;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
 
     /// <summary> Contains methods related to the management of entities (such as players). </summary>
     public static class Entities {
@@ -174,16 +174,6 @@ namespace MCGalaxy {
         #endregion
         
         
-        [Obsolete("Use p.CanSee")]
-        public static bool CanSee(Player p, Player target) { return p.CanSee(target); }
-        [Obsolete("Use p.CanSee")]
-        public static bool CanSee(CommandData data, Player p, Player target) {       
-            return p == target || target == null || !target.hidden || data.Rank >= target.hideRank;
-        }
-
-        [Obsolete("Use entity.UpdateModel")]
-        public static void UpdateModel(Entity e, string model) { e.UpdateModel(model); }
-
         internal static void BroadcastModel(Entity e, string m) {
             Player[] players = PlayerInfo.Online.Items;
             Level lvl = e.Level;
@@ -278,9 +268,9 @@ namespace MCGalaxy {
                 *ptr = opcode; ptr++;
                 *ptr = id; ptr++;
                 
-                *ptr = (byte)(delta.X); ptr++;
-                *ptr = (byte)(delta.Y); ptr++;
-                *ptr = (byte)(delta.Z); ptr++;
+                *ptr = (byte)delta.X; ptr++;
+                *ptr = (byte)delta.Y; ptr++;
+                *ptr = (byte)delta.Z; ptr++;
             } else if (oriChanged) {
                 *ptr = Opcode.OrientationUpdate; ptr++;
                 *ptr = id; ptr++;

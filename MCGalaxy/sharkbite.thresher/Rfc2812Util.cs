@@ -20,16 +20,15 @@
  * the archive of this library for complete text of license.
 */
 
-using System;
 using System.Text.RegularExpressions;
 
 namespace Sharkbite.Irc
 {
 
-	/// <summary>
-	/// RFC 2812 Utility methods.
-	/// </summary>
-	public static class Rfc2812Util 
+    /// <summary>
+    /// RFC 2812 Utility methods.
+    /// </summary>
+    public static class Rfc2812Util 
 	{
 		// Regex that matches a legal IRC nick 
 		private static readonly Regex nickRegex;

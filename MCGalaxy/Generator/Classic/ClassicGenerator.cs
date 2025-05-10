@@ -1,11 +1,11 @@
 ﻿// Copyright 2014-2017 ClassicalSharp | Licensed under BSD-3
 // Based on: https://github.com/UnknownShadow200/ClassiCube/wiki/Minecraft-Classic-map-generation-algorithm
 using System;
-using System.Collections.Generic;
 using MCGalaxy;
 
-namespace ClassicalSharp.Generator {
-    
+namespace ClassicalSharp.Generator
+{
+
     public sealed partial class ClassicGenerator {
         
         int waterLevel, oneY, Width, Length, Height;

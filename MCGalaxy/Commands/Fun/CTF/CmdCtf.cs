@@ -15,12 +15,12 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using MCGalaxy.Games;
 using MCGalaxy.Maths;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Commands.Fun {
+namespace MCGalaxy.Commands.Fun
+{
     public sealed class CmdCTF : RoundsGameCmd {
         public override string name { get { return "CTF"; } }
         public override string shortcut { get { return "CTFSetup"; } }

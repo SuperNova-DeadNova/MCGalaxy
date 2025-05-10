@@ -15,12 +15,12 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using MCGalaxy.Drawing.Brushes;
 using MCGalaxy.Drawing.Ops;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Commands.Building {    
+namespace MCGalaxy.Commands.Building
+{
     public class CmdReplaceBrush : DrawCmd {
         public override string name { get { return "ReplaceBrush"; } }
         public override string shortcut { get { return "rb"; } }

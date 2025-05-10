@@ -15,13 +15,13 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace MCGalaxy {
-    
+namespace MCGalaxy
+{
+
     /// <summary> Represents a list of player names. Case insensitive. Thread safe. </summary>
     public class PlayerList {
         public string Path;
@@ -67,8 +67,6 @@ namespace MCGalaxy {
         }
         
 
-        [Obsolete("Use Add instead")]
-        public bool AddUnique(string name) { return Add(name); }
         
         internal int IndexOf(string name) {
             lock (locker) return names.CaselessIndexOf(name);

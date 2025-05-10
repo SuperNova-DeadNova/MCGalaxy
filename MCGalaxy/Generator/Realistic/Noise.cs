@@ -50,7 +50,7 @@ namespace MCGalaxy.Generator.Realistic
             }
 
             //Normalize
-            float adj = (max - min);
+            float adj = max - min;
             for (int i = 0; i < array.Length; ++i)
                 array[i] = (array[i] - min) / adj;
         }
@@ -64,7 +64,7 @@ namespace MCGalaxy.Generator.Realistic
 
         static float SmoothNoise(int x, int y, int seed) {
             float corners = (Noise(x - 1, y - 1, seed) + Noise(x + 1, y - 1, seed) + Noise(x - 1, y + 1, seed) + Noise(x + 1, y + 1, seed)) / 16;
-            float sides = (Noise(x - 1, y, seed) + Noise(x + 1, y, seed) + Noise(x, y - 1, seed) + Noise(x, y + 1, seed) / 8);
+            float sides = Noise(x - 1, y, seed) + Noise(x + 1, y, seed) + Noise(x, y - 1, seed) + Noise(x, y + 1, seed) / 8;
             float center = Noise(x, y, seed) / 4;
             return corners + sides + center;
         }

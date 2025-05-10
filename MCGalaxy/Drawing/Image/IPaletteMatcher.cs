@@ -69,9 +69,9 @@ namespace MCGalaxy.Drawing
     {      
         LabColor[] palette;
         public void SetPalette(PaletteEntry[] front, PaletteEntry[] back) {
-            this.palette = new LabColor[front.Length];
+            palette = new LabColor[front.Length];
             for (int i = 0; i < front.Length; i++)
-                this.palette[i] = RgbToLab(front[i]);
+                palette[i] = RgbToLab(front[i]);
         }
         
         public BlockID BestMatch(byte R, byte G, byte B) {

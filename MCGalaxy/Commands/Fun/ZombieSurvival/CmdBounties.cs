@@ -15,10 +15,10 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System.Collections.Generic;
 using MCGalaxy.Games;
 
-namespace MCGalaxy.Commands.Fun {    
+namespace MCGalaxy.Commands.Fun
+{
     public sealed class CmdBounties : Command2 {       
         public override string name { get { return "Bounties"; } }
         public override string type { get { return CommandTypes.Games; } }

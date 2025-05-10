@@ -25,11 +25,9 @@ Ideas, concepts, and code were used from the following two sources:
 
  */
 using System;
-using MCGalaxy.Drawing;
-using MCGalaxy.Drawing.Ops;
 using MCGalaxy.Generator.Foliage;
 
-namespace MCGalaxy.Generator.Realistic 
+namespace MCGalaxy.Generator.Realistic
 {
     public sealed class RealisticMapGen 
     {
@@ -189,7 +187,7 @@ namespace MCGalaxy.Generator.Realistic
                                 break;
                         }
                     }
-                    Lvl.SetTile(x, (ushort)(y), z, (rng.Next(100) % 3 == 1 ? Block.Black : Block.Obsidian));
+                    Lvl.SetTile(x, (ushort)y, z, rng.Next(100) % 3 == 1 ? Block.Black : Block.Obsidian);
                 }
             } else {
                 for (ushort yy = 0; LiquidLevel - yy >= 0; yy++) {
@@ -321,8 +319,8 @@ namespace MCGalaxy.Generator.Realistic
         float NegateEdge(ushort x, ushort z, Level Lvl) {
             float tempx = 0.0f, tempy = 0.0f;
             float temp;
-            if (x != 0) { tempx = ((float)x / (float)Lvl.Width) * 0.5f; }
-            if (z != 0) { tempy = ((float)z / (float)Lvl.Length) * 0.5f; }
+            if (x != 0) { tempx = (float)x / (float)Lvl.Width * 0.5f; }
+            if (z != 0) { tempy = (float)z / (float)Lvl.Length * 0.5f; }
             tempx = Math.Abs(tempx - 0.25f);
             tempy = Math.Abs(tempy - 0.25f);
             

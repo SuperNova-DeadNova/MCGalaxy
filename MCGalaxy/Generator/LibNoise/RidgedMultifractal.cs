@@ -85,7 +85,7 @@ namespace LibNoise
                 }
 
                 // Add the signal to the output value.
-                value += (signal * SpectralWeights[octave]);
+                value += signal * SpectralWeights[octave];
 
                 // Go to the next octave.
                 x *= Lacunarity;

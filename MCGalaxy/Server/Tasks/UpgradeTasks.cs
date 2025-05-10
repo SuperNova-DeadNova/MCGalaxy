@@ -19,10 +19,10 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using MCGalaxy.Bots;
 using MCGalaxy.SQL;
 
-namespace MCGalaxy.Tasks {
+namespace MCGalaxy.Tasks
+{
     internal static class UpgradeTasks {
 
         internal static void UpgradeOldAgreed() {

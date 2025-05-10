@@ -3,9 +3,8 @@
 // Optimised form as we can always treat Z as being = 0.
 // Octave and combined noise based on:
 // https://github.com/UnknownShadow200/ClassiCube/wiki/Minecraft-Classic-map-generation-algorithm
-using System;
-
-namespace ClassicalSharp.Generator {
+namespace ClassicalSharp.Generator
+{
 
     public sealed class ImprovedNoise {
         

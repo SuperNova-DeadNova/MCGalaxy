@@ -15,13 +15,12 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.Collections.Generic;
-using System.Data;
 using MCGalaxy.DB;
 using MCGalaxy.SQL;
 
-namespace MCGalaxy.Commands.Info {
+namespace MCGalaxy.Commands.Info
+{
     public sealed class CmdTop : Command2 {
         public override string name { get { return "Top"; } }
         public override string shortcut { get { return "Most"; } }
@@ -55,7 +54,7 @@ namespace MCGalaxy.Commands.Info {
             for (int i = 0; i < stats.Count; i++) {
                 string nick  = p.FormatNick(stats[i][0]);
                 string value = stat.Formatter(stats[i][1]);
-                p.Message("{0}) {1} &S- {2}", offset + (i + 1), nick, value);
+                p.Message("{0}) {1} &S- {2}", offset + i + 1, nick, value);
             }
         }
         

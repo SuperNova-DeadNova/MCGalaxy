@@ -15,9 +15,8 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
 */
-using System;
-
-namespace MCGalaxy.Commands.Maintenance { 
+namespace MCGalaxy.Commands.Maintenance
+{
     public sealed class CmdBlockSpeed : Command2 {        
         public override string name { get { return "BlockSpeed"; } }
         public override string type { get { return CommandTypes.Moderation; } }
@@ -77,7 +76,7 @@ namespace MCGalaxy.Commands.Maintenance {
             p.Message("{0} blocks every {1} milliseconds = {2} blocks per second.", 
                            updates, time, blocksPerSec);
             p.Message("Using ~{0}KB/s times {1} players = ~{2}KB/s", 
-                           (blocksPerSec * 8) / 1000, count, (count * blocksPerSec * 8) / 1000);
+                           blocksPerSec * 8 / 1000, count, count * blocksPerSec * 8 / 1000);
         }
         
         public override void Help(Player p) {

@@ -2,19 +2,11 @@
 using MCGalaxy.Tasks;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using MCGalaxy.Events;
-using MCGalaxy.Events.ServerEvents;
-using MCGalaxy.Network;
 namespace NotAwesomeSurvival
 {
-    public partial class NasTimeCycle {
+    public partial class NasTimeCycle
+    {
 
         // Vars
         public static float globalCurrentTime;
@@ -22,9 +14,9 @@ namespace NotAwesomeSurvival
         public static float staticMaxTime;
         public static int gameday = 0; // just defining it here, starting at 0. then adding on to it :)
         public static string TimeFilePath = Nas.CoreSavePath + "time.json";
-        static JsonSerializer serializer = new JsonSerializer();
-		public static Scheduler weatherScheduler;
-		public static SchedulerTask task;
+        public static JsonSerializer serializer = new JsonSerializer();
+        public static Scheduler weatherScheduler;
+        public static SchedulerTask task;
         public static string globalSkyColor; // self explanatory
         public static string globalCloudColor;
         public static string globalSunColor;
@@ -45,8 +37,8 @@ namespace NotAwesomeSurvival
 
         public static void Setup()
         {
-        	if (weatherScheduler == null) weatherScheduler = new Scheduler("WeatherScheduler");
-        	task = weatherScheduler.QueueRepeat(Update, null, new TimeSpan(0, 0, 7));
+            if (weatherScheduler == null) weatherScheduler = new Scheduler("WeatherScheduler");
+            task = weatherScheduler.QueueRepeat(Update, null, new TimeSpan(0, 0, 7));
             dayCycle = DayCycles.Sunrise; // start with sunrise state
             // Static variables to keep time after switching scenes
 
@@ -71,7 +63,7 @@ namespace NotAwesomeSurvival
             gameday = cyc.day;
             cycleCurrentTime = cyc.minutes;
             dayCycle = cyc.cycle;
-            
+
             staticMaxTime = cycleMaxTime;
         }
 
@@ -98,11 +90,11 @@ namespace NotAwesomeSurvival
             }
 
             //when to change cycles
-            if (cycleCurrentTime >= 7 * hourMinutes & cycleCurrentTime < 8 *hourMinutes) {dayCycle = DayCycles.Sunrise;} // 7am
-            if (cycleCurrentTime >= 8 * hourMinutes & cycleCurrentTime < 19*hourMinutes) {dayCycle = DayCycles.Day;} // 8am
-            if (cycleCurrentTime >= 19 * hourMinutes & cycleCurrentTime < 20*hourMinutes) {dayCycle = DayCycles.Sunset;} // 6pm
-            if (cycleCurrentTime >= 20 * hourMinutes & cycleCurrentTime < 24*hourMinutes) {dayCycle = DayCycles.Night;} // 8pm
-            if (cycleCurrentTime == 24 * hourMinutes | cycleCurrentTime == 0 | cycleCurrentTime < 7*hourMinutes) {dayCycle = DayCycles.Midnight;} // 0 am
+            if (cycleCurrentTime >= 7 * hourMinutes & cycleCurrentTime < 8 * hourMinutes) { dayCycle = DayCycles.Sunrise; } // 7am
+            if (cycleCurrentTime >= 8 * hourMinutes & cycleCurrentTime < 19 * hourMinutes) { dayCycle = DayCycles.Day; } // 8am
+            if (cycleCurrentTime >= 19 * hourMinutes & cycleCurrentTime < 20 * hourMinutes) { dayCycle = DayCycles.Sunset; } // 6pm
+            if (cycleCurrentTime >= 20 * hourMinutes & cycleCurrentTime < 24 * hourMinutes) { dayCycle = DayCycles.Night; } // 8pm
+            if (cycleCurrentTime == 24 * hourMinutes | cycleCurrentTime == 0 | cycleCurrentTime < 7 * hourMinutes) { dayCycle = DayCycles.Midnight; } // 0 am
             // Sunrise state (you can do a lot of stuff based on every cycle state, like enable monster spawning only when dark)
             if (dayCycle == DayCycles.Sunrise)
             {
@@ -147,30 +139,31 @@ namespace NotAwesomeSurvival
                 globalSunColor = "#404040"; // darko grey
                 globalShadowColor = "#494949";
             }
-			//globalCloudColor = "#ffffff"; // white
+            //globalCloudColor = "#ffffff"; // white
             UpdateEnvSettings(globalCloudColor, globalSkyColor, globalSunColor, globalShadowColor);
             StoreTimeData(gameday, cycleCurrentTime, dayCycle);
         }
 
-        static void UpdateEnvSettings(string cloud, string sky, string sun, string shadow)
+        public static void UpdateEnvSettings(string cloud, string sky, string sun, string shadow)
         {
-             
-           
-             foreach (Level lvl in LevelInfo.Loaded.Items)
+
+
+            foreach (Level lvl in LevelInfo.Loaded.Items)
             {
-             	if (NasLevel.Get(lvl.name).biome < 0) {continue;}
-             	//Logger.Log(LogType.Debug, "updating " + lvl.name);
+                if (NasLevel.Get(lvl.name).biome < 0) { continue; }
+                //Logger.Log(LogType.Debug, "updating " + lvl.name);
                 lvl.Config.LightColor = sun; // Sun Colour
                 lvl.Config.CloudColor = cloud; // Cloud Colour
                 lvl.Config.SkyColor = sky; // Sky
                 lvl.Config.ShadowColor = shadow; // Shadow
                 lvl.SaveSettings(); // We save these settings after
-             	}
-             foreach (Player p in PlayerInfo.Online.Items) {
-             	if (NasLevel.Get(p.level.name).biome < 0) {continue;}
-             	p.SendCurrentEnv();
-             }
-             
+            }
+            foreach (Player p in PlayerInfo.Online.Items)
+            {
+                if (NasLevel.Get(p.level.name).biome < 0) { continue; }
+                p.SendCurrentEnv();
+            }
+
 
         }
 

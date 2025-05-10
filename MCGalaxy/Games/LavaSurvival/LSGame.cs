@@ -17,10 +17,10 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Games {
+namespace MCGalaxy.Games
+{
     internal sealed class LSData {
         public int TimesDied;
     }

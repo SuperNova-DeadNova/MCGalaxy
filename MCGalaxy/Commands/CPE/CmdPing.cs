@@ -15,9 +15,8 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using MCGalaxy.Network;
-
-namespace MCGalaxy.Commands.Chatting {
+namespace MCGalaxy.Commands.Chatting
+{
     public sealed class CmdPing : Command2 {
         public override string name { get { return "Ping"; } }
         public override string type { get { return CommandTypes.Information; } }

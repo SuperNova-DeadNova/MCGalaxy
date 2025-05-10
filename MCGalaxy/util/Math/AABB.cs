@@ -15,12 +15,12 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using MCGalaxy.Blocks;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Maths {
-    
+namespace MCGalaxy.Maths
+{
+
     public struct AABB {
         
         /// <summary> Fixed-point min coordinate of this bounding box. </summary>

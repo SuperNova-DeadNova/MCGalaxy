@@ -15,11 +15,10 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using MCGalaxy.Commands;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Drawing.Brushes 
+namespace MCGalaxy.Drawing.Brushes
 {
     public sealed class ReplaceBrushFactory : BrushFactory 
     {

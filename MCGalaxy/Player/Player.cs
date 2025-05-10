@@ -13,10 +13,7 @@ or implied. See the Licenses for the specific language governing
 permissions and limitations under the Licenses.
 */
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
-using System.Net.Sockets;
 using System.Threading;
 using MCGalaxy.DB;
 using MCGalaxy.Drawing;
@@ -30,7 +27,8 @@ using MCGalaxy.Network;
 using MCGalaxy.SQL;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
     sealed class ConsolePlayer : Player {
         public ConsolePlayer() : base("(console)") {
             group = Group.NobodyRank;
@@ -110,7 +108,7 @@ namespace MCGalaxy {
             
             // fallback to level MOTD, then rank MOTD, then server MOTD            
             if (motd == "ignore") motd = level.Config.MOTD;           
-            if (motd == "ignore") motd = String.IsNullOrEmpty(group.MOTD) ? Server.Config.MOTD : group.MOTD;
+            if (motd == "ignore") motd = string.IsNullOrEmpty(group.MOTD) ? Server.Config.MOTD : group.MOTD;
             
             OnGettingMotdEvent.Call(this, ref motd);
             return motd;
@@ -330,8 +328,6 @@ namespace MCGalaxy {
         #endregion
         #region == OTHER ==
         
-        [Obsolete("Use PlayerInfo.Online.Items")]
-        public static List<Player> players;
 
         public static bool ValidName(string name) {
             if (name.Length == 0) return false;

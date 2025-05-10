@@ -12,13 +12,13 @@ BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
 or implied. See the Licenses for the specific language governing
 permissions and limitations under the Licenses.
  */
-using System;
 using System.Collections.Generic;
 using MCGalaxy.Blocks;
 using MCGalaxy.Commands.CPE;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Commands.Info {
+namespace MCGalaxy.Commands.Info
+{
     public sealed class CmdHelp : Command2 {
         public override string name { get { return "Help"; } }
         public override string type { get { return CommandTypes.Information; } }

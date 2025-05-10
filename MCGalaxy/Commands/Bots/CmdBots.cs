@@ -15,10 +15,8 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
-using System.Collections.Generic;
-
-namespace MCGalaxy.Commands.Bots {
+namespace MCGalaxy.Commands.Bots
+{
     public sealed class CmdBots : Command2 {
         public override string name { get { return "Bots"; } }
         public override string shortcut { get { return "BotList"; } }
@@ -48,7 +46,7 @@ namespace MCGalaxy.Commands.Bots {
             string desc = bot.DisplayName;
             if (bot.DisplayName != bot.name) desc += "&S(&1" + bot.name + "&S)";
             
-            if (!String.IsNullOrEmpty(bot.AIName)) {
+            if (!string.IsNullOrEmpty(bot.AIName)) {
                 desc += "[" + bot.AIName + "]";
             } else if (bot.hunt) { desc += "[Hunt]"; }            
             if (bot.kill) desc += "-kill";

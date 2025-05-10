@@ -18,12 +18,11 @@
     permissions and limitations under the Licenses.
  */
 using System.CodeDom.Compiler;
-using System;
 #if NETSTANDARD
 using Microsoft.CodeDom.Providers.DotNetCompilerPlatform;
 #endif
 
-namespace MCGalaxy.Scripting 
+namespace MCGalaxy.Scripting
 {
     public sealed class CSCompiler : ICodeDomCompiler 
     {

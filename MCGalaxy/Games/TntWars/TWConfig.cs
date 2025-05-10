@@ -22,11 +22,11 @@
 ///------|        them in the sidebar!!     |------\\\
 //-------|__________________________________|-------\\
 using System;
-using System.IO;
 using MCGalaxy.Config;
 using MCGalaxy.Maths;
 
-namespace MCGalaxy.Games {
+namespace MCGalaxy.Games
+{
     public sealed class TWConfig : RoundsGameConfig {
         public override bool AllowAutoload { get { return false; } }
         protected override string GameName { get { return "TNT Wars"; } }

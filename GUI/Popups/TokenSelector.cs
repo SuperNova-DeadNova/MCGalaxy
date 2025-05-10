@@ -1,9 +1,9 @@
 ﻿// Part of fCraft | Copyright 2009-2015 Matvei Stefarov <me@matvei.org> | BSD-3 | See LICENSE.txt
-using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace MCGalaxy.Gui.Popups {
+namespace MCGalaxy.Gui.Popups
+{
     internal sealed partial class TokenSelector : Form {
         public string Token;
 
@@ -54,9 +54,9 @@ namespace MCGalaxy.Gui.Popups {
             int x = 0;
             // Centre if even count, align under row if odd count
             if ((rows & 1) == 0) {
-                x = (rows * btnWidth) / 2 - (100 / 2);
+                x = rows * btnWidth / 2 - (100 / 2);
             } else {
-                x = ((rows / 2) * btnWidth) + (btnWidth - 100) / 2;
+                x = (rows / 2 * btnWidth) + (btnWidth - 100) / 2;
             }
 
             btnCancel.Location = new Point(8 + x, 12 + btnHeight * btnsPerCol);

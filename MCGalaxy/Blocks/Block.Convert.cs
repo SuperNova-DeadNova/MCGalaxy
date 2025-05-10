@@ -15,11 +15,10 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
 */
-using System;
 using BlockID = System.UInt16;
-using BlockRaw = System.Byte;
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
     public static partial class Block {
         
         internal static string[] coreNames = new string[Count];

@@ -13,13 +13,13 @@ or implied. See the Licenses for the specific language governing
 permissions and limitations under the Licenses.
  */
 
-using System;
 using System.Collections.Generic;
 using System.Data;
 using MCGalaxy.DB;
 using MCGalaxy.SQL;
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
     public static class PlayerInfo {
         
         /// <summary> Array of all currently online players. </summary>
@@ -31,8 +31,6 @@ namespace MCGalaxy {
             return target != null ? target.group : Group.GroupIn(name);
         }
         
-        [Obsolete("Use p.FormatNick instead")]
-        public static string GetColoredName(Player p, string name) { return p.FormatNick(name); }
         
         /// <summary> Calculates default color for the given player. </summary>
         public static string DefaultColor(Player p) {

@@ -22,7 +22,7 @@ using System.IO;
 namespace MCGalaxy.Util {
     
     /// <summary> Represents a text file and associated data for it. </summary>
-    public sealed class TextFile {
+    public class TextFile {
         public readonly string Filename;
         public readonly string[] DefaultText;        
         public Action OnTextChanged;

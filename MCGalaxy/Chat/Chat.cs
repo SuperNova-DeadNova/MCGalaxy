@@ -12,12 +12,12 @@ BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
 or implied. See the Licenses for the specific language governing
 permissions and limitations under the Licenses.
  */
-using System;
 using System.Text;
 using MCGalaxy.Commands;
 using MCGalaxy.Events.ServerEvents;
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
     public enum ChatScope {
         /// <summary> Messages all players on the server </summary>
         All,
@@ -27,10 +27,6 @@ namespace MCGalaxy {
         /// <summary> Messages all players on a particular level </summary>
         /// <remarks> Excludes players who are ignoring all chat </remarks>
         Level,
-        [Obsolete("Chatrooms have been removed")]
-        Chatroom,
-        [Obsolete("Chatrooms have been removed")]
-        AllChatrooms,
         
         /// <summary> Messages all players of a given rank </summary>
         Rank,

@@ -19,11 +19,10 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
-using System.Net;
 using MCGalaxy.Network;
 using MCGalaxy.Drawing;
 
-namespace MCGalaxy.Generator 
+namespace MCGalaxy.Generator
 {
     public static class HeightmapGen 
     {       

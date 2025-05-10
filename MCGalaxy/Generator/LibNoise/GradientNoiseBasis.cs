@@ -20,8 +20,6 @@
 // DEALINGS IN THE SOFTWARE.
 // 
 
-using System;
-
 namespace LibNoise
 {
     public class GradientNoiseBasis
@@ -294,11 +292,11 @@ namespace LibNoise
 
         public static double GradientCoherentNoise(double x, double y, double z, int seed)
         {
-            int x0 = (x > 0.0 ? (int)x : (int)x - 1);
+            int x0 = x > 0.0 ? (int)x : (int)x - 1;
             int x1 = x0 + 1;
-            int y0 = (y > 0.0 ? (int)y : (int)y - 1);
+            int y0 = y > 0.0 ? (int)y : (int)y - 1;
             int y1 = y0 + 1;
-            int z0 = (z > 0.0 ? (int)z : (int)z - 1);
+            int z0 = z > 0.0 ? (int)z : (int)z - 1;
             int z1 = z0 + 1;
 
             // case NoiseQuality.Standard:
@@ -328,21 +326,21 @@ namespace LibNoise
 
         static double GradientNoise(double fx, double fy, double fz, int ix, int iy, int iz, int seed)
         {
-            int vectorIndex = (
+            int vectorIndex = 
                   XNoiseGen * ix
                 + YNoiseGen * iy
                 + ZNoiseGen * iz
-                + SeedNoiseGen * seed);
-            vectorIndex ^= (vectorIndex >> ShiftNoiseGen);
+                + SeedNoiseGen * seed;
+            vectorIndex ^= vectorIndex >> ShiftNoiseGen;
             vectorIndex &= 0xff;
 
-            double xvGradient = RandomVectors[(vectorIndex << 2)];
+            double xvGradient = RandomVectors[vectorIndex << 2];
             double yvGradient = RandomVectors[(vectorIndex << 2) + 1];
             double zvGradient = RandomVectors[(vectorIndex << 2) + 2];
 
-            double xvPoint = (fx - ix);
-            double yvPoint = (fy - iy);
-            double zvPoint = (fz - iz);
+            double xvPoint = fx - ix;
+            double yvPoint = fy - iy;
+            double zvPoint = fz - iz;
 
             return ((xvGradient * xvPoint)
                 + (yvGradient * yvPoint)
@@ -363,7 +361,7 @@ namespace LibNoise
         /// </summary>
         static double SCurve3(double a)
         {
-            return (a * a * (3.0 - 2.0 * a));
+            return a * a * (3.0 - 2.0 * a);
         }      
     }
 }

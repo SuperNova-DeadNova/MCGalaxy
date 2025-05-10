@@ -97,10 +97,10 @@ namespace MCGalaxy.Commands.Info {
             PrintRanks(p, data.Build, "  Modifiable by ");
             
             string realmOwner = cfg.RealmOwner;
-            if (String.IsNullOrEmpty(cfg.RealmOwner)) {
+            if (string.IsNullOrEmpty(cfg.RealmOwner)) {
                 realmOwner = DefaultRealmOwner(data.MapName);
             }
-            if (String.IsNullOrEmpty(realmOwner)) return;
+            if (string.IsNullOrEmpty(realmOwner)) return;
             
             string[] owners = realmOwner.SplitComma();
             p.Message("  This map is a personal realm of {0}", owners.Join(n => p.FormatNick(n)));
@@ -117,7 +117,7 @@ namespace MCGalaxy.Commands.Info {
             
             string[] authors = cfg.Authors.SplitComma();
             p.Message("Map authors: {0}", authors.Join(n => p.FormatNick(n)));
-            int winChance = cfg.RoundsPlayed == 0 ? 100 : (cfg.RoundsHumanWon * 100) / cfg.RoundsPlayed;
+            int winChance = cfg.RoundsPlayed == 0 ? 100 : cfg.RoundsHumanWon * 100 / cfg.RoundsPlayed;
             p.Message("&a{0} &Srounds played total, &a{1}% &Swin chance for humans.",
                            cfg.RoundsPlayed, winChance);
             p.Message("This map has &a{0} likes &Sand &c{1} dislikes",
@@ -130,7 +130,7 @@ namespace MCGalaxy.Commands.Info {
             if (plus && map.IndexOf('+') == -1) return null;
             
             string name = null, origMap = map;
-            while (map.Length > 0 && Char.IsNumber(map[map.Length - 1])) {
+            while (map.Length > 0 && char.IsNumber(map[map.Length - 1])) {
                 // If the server does not have account with +, we have to account for the
                 // that say Player123's second level is Player1232, and the realm owner is Player123
                 name = plus ? null : PlayerDB.FindName(map);
@@ -196,7 +196,7 @@ namespace MCGalaxy.Commands.Info {
             }
             
             public void FromMap(string map) {
-                this.Name = map; MapName = map;
+                Name = map; MapName = map;
                 string path  = LevelInfo.MapPath(map);
                 Vec3U16 dims = IMapImporter.GetFor(path).ReadDimensions(path);
                 

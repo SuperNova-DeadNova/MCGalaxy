@@ -75,7 +75,7 @@ namespace MCGalaxy.SQL {
                     long value = record.GetInt64(col); // TODO: try to use GetInt32 where possible
                     sql.Write(value);
                 }
-                sql.Write((col < colTypes.Length - 1 ? ", " : ");"));
+                sql.Write(col < colTypes.Length - 1 ? ", " : ");");
             }
             
             sql.WriteLine();

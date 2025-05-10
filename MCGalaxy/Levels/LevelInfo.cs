@@ -16,13 +16,13 @@
     permissions and limitations under the Licenses.
  */
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using MCGalaxy.Events.LevelEvents;
 using MCGalaxy.SQL;
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
 
     public static class LevelInfo {
         

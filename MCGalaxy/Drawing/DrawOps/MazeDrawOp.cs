@@ -121,7 +121,7 @@ namespace MCGalaxy.Drawing.Ops
                 r[0] = 0;
                 if (randomizer == 0) {
                     rng1.GetBytes(r);
-                    r[0] /= (255 / 4);
+                    r[0] /= 255 / 4;
                 } else {
                     r[0] = (byte)rng2.Next(4);
                 }

@@ -15,14 +15,14 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using MCGalaxy.SQL;
 
-namespace MCGalaxy.DB {
-    
+namespace MCGalaxy.DB
+{
+
     /// <summary> Stores per-player persistent data. </summary>
     public static class PlayerDB {
         

@@ -20,12 +20,11 @@ using System.Collections.Generic;
 using System.IO;
 using MCGalaxy.Blocks;
 using MCGalaxy.Commands;
-using MCGalaxy.DB;
 using MCGalaxy.Config;
 using MCGalaxy.Events.GroupEvents;
-using BlockID = System.UInt16;
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
     /// <summary> This is the group object, where ranks and their data are stored </summary>
     public sealed partial class Group {
 

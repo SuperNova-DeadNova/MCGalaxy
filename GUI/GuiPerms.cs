@@ -47,7 +47,7 @@ namespace MCGalaxy.Gui {
             if (grp == null) {
                 box.SelectedIndex = 1;
             } else {
-                int idx = Array.IndexOf<string>(RankNames, grp.Name);
+                int idx = Array.IndexOf(RankNames, grp.Name);
                 box.SelectedIndex = idx >= 0 ? idx : 1;
             }
         }

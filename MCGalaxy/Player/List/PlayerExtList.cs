@@ -15,13 +15,13 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace MCGalaxy {
-    
+namespace MCGalaxy
+{
+
     /// <summary> Represents a list of player names and simple associated data. Case insensitive. Thread safe. </summary>
     public class PlayerExtList {
         public char Separator = ' ';
@@ -86,11 +86,6 @@ namespace MCGalaxy {
         }
 
         
-        [Obsolete("Use Update instead")]
-        public void Add(string name, string data) { Update(name, data); }
-
-        [Obsolete("Use Update instead")]        
-        public void AddOrReplace(string name, string data) { Update(name, data); }
         
         
         public void Save() { Save(true); }

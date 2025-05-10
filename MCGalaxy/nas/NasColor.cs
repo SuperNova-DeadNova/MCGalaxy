@@ -1,33 +1,37 @@
 ﻿using System;
 using System.IO;
 using System.Drawing;
-using System.Text;
 using MCGalaxy;
 using MCGalaxy.Network;
 using MCGalaxy.Tasks;
 
-namespace NotAwesomeSurvival {
+namespace NotAwesomeSurvival
+{
 
-    public class DynamicColor {
-        static SchedulerTask task;
+    public class DynamicColor
+    {
+        public static SchedulerTask task;
         public static ColorDesc[] defaultColors;
         public static ColorDesc[] fullHealthColors;
         public static ColorDesc[] mediumHealthColors;
         public static ColorDesc[] lowHealthColors;
         public static ColorDesc[] direHealthColors;
-        const string selectorImageName = "selectorColors.png";
-        public static bool Setup() {
-            if (File.Exists("plugins/" + selectorImageName)) {
+        public const string selectorImageName = "selectorColors.png";
+        public static bool Setup()
+        {
+            if (File.Exists("plugins/" + selectorImageName))
+            {
                 File.Move("plugins/" + selectorImageName, Nas.Path + selectorImageName);
             }
-            if (!File.Exists(Nas.Path + selectorImageName)) {
+            if (!File.Exists(Nas.Path + selectorImageName))
+            {
                 Player.Console.Message("Could not locate {0} (needed for tool health/selection colors)", selectorImageName);
                 return false;
             }
-            
+
             Bitmap colorImage;
             colorImage = new Bitmap(Nas.Path + "selectorColors.png");
-            
+
             defaultColors = new ColorDesc[colorImage.Width];
             fullHealthColors = new ColorDesc[colorImage.Width];
             mediumHealthColors = new ColorDesc[colorImage.Width];
@@ -45,8 +49,10 @@ namespace NotAwesomeSurvival {
             task = Server.MainScheduler.QueueRepeat(Update, null, TimeSpan.FromMilliseconds(100));
             return true;
         }
-        static void SetupDescs(int yOffset, Bitmap colorImage, ref ColorDesc[] colorDescs) {
-            for (int i = 0; i < colorImage.Width; i++) {
+        public static void SetupDescs(int yOffset, Bitmap colorImage, ref ColorDesc[] colorDescs)
+        {
+            for (int i = 0; i < colorImage.Width; i++)
+            {
                 Color color = colorImage.GetPixel(i, yOffset);
                 colorDescs[i].R = color.R;
                 colorDescs[i].G = color.G;
@@ -56,20 +62,24 @@ namespace NotAwesomeSurvival {
                 colorDescs[i].Fallback = 'f';
             }
         }
-        public static void TakeDown() {
+        public static void TakeDown()
+        {
             if (task == null) return;
             Server.MainScheduler.Cancel(task);
         }
 
-        static int index;
-        static void Update(SchedulerTask task) {
+        public static int index;
+        public static void Update(SchedulerTask task)
+        {
             index = (index + 1) % defaultColors.Length;
             Player[] players = PlayerInfo.Online.Items;
 
-            foreach (Player p in players) {
+            foreach (Player p in players)
+            {
                 if (!p.Supports(CpeExt.TextColors)) continue;
                 NasPlayer np = NasPlayer.GetNasPlayer(p);
-                if (np == null) {
+                if (np == null)
+                {
                     //p.Message("your NP is null");
                     continue;
                 }

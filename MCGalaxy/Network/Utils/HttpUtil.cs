@@ -16,10 +16,10 @@ using System;
 using System.IO;
 using System.Net;
 using System.Net.Security;
-using System.Net.Sockets;
 using System.Security.Authentication;
 
-namespace MCGalaxy.Network {
+namespace MCGalaxy.Network
+{
     /// <summary> Static class for assisting with making web requests. </summary>
     public static class HttpUtil {
 

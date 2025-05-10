@@ -15,15 +15,13 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
 */
-using System;
 using MCGalaxy.Events;
 using MCGalaxy.Events.EconomyEvents;
-using MCGalaxy.Events.GroupEvents;
 using MCGalaxy.Events.PlayerEvents;
 using MCGalaxy.Events.ServerEvents;
-using MCGalaxy.Tasks;
 
-namespace MCGalaxy.Core {
+namespace MCGalaxy.Core
+{
 
     public sealed class CorePlugin : Plugin {
         public override string creator { get { return Server.SoftwareName + " team"; } }

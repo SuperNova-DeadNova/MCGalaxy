@@ -23,7 +23,7 @@ using System.Threading;
 namespace MCGalaxy.Tasks {
     public delegate void SchedulerCallback(SchedulerTask task);
     
-    public sealed class Scheduler {
+    public class Scheduler {
 
         readonly List<SchedulerTask> tasks = new List<SchedulerTask>();
         readonly AutoResetEvent handle = new AutoResetEvent(false);

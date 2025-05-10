@@ -18,11 +18,11 @@
 using System;
 using System.Collections.Generic;
 using MCGalaxy.Commands;
-using MCGalaxy.DB;
 using MCGalaxy.Games;
 
-namespace MCGalaxy.Eco {
-    
+namespace MCGalaxy.Eco
+{
+
     public sealed class BlocksItem : SimpleItem {
         
         public BlocksItem() {

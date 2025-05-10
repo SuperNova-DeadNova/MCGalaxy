@@ -17,11 +17,11 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using MCGalaxy.SQL;
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
     public sealed partial class Server {
         
         static ColumnDesc[] playersTable = new ColumnDesc[] {

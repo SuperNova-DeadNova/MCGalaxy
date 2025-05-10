@@ -15,10 +15,10 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Commands.World {
+namespace MCGalaxy.Commands.World
+{
     public sealed class CmdUnflood : Command2 {
         public override string name { get { return "Unflood"; } }
         public override string type { get { return CommandTypes.World; } }

@@ -154,20 +154,6 @@ namespace MCGalaxy {
     
     // Kept around for backwards compatibility
     public sealed class CommandList {
-        [Obsolete("Use Command.Register() instead", true)]
-        public void Add(Command cmd) { Command.Register(cmd); }
-        [Obsolete("Use Command.Unregister() instead", true)]
-        public bool Remove(Command cmd) { return Command.Unregister(cmd); }
-        
-        [Obsolete("Use Command.Find() instead", true)]
-        public Command FindByName(string name) { return Command.Find(name); }
-        [Obsolete("Use Command.Find() instead")]
-        public Command Find(string name) {
-            foreach (Command cmd in Command.allCmds) {
-                if (cmd.name.CaselessEq(name) || cmd.shortcut.CaselessEq(name)) return cmd;
-            }
-            return null;
-        }
     }
     
     [Flags]

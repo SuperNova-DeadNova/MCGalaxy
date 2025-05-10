@@ -17,15 +17,15 @@
  */
 using System;
 using System.Threading;
-using MCGalaxy;
 
-namespace MCGalaxy.UI {
+namespace MCGalaxy.UI
+{
     public static class UIHelpers {
         
         static string lastCMD = "";
         public static void HandleChat(string text) {
             if (text != null) text = text.Trim();
-            if (String.IsNullOrEmpty(text)) return;
+            if (string.IsNullOrEmpty(text)) return;
             
             Player p = Player.Console;
             if (ChatModes.Handle(p, text)) return;
@@ -44,7 +44,7 @@ namespace MCGalaxy.UI {
         
         public static void HandleCommand(string text) {
             if (text != null) text = text.Trim();
-            if (String.IsNullOrEmpty(text)) {
+            if (string.IsNullOrEmpty(text)) {
                 Logger.Log(LogType.CommandUsage, "(console): Whitespace commands are not allowed."); 
                 return;
             }

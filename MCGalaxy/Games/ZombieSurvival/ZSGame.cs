@@ -18,13 +18,11 @@
  */
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Threading;
-using MCGalaxy.DB;
 using MCGalaxy.SQL;
 
-namespace MCGalaxy.Games {
-    
+namespace MCGalaxy.Games
+{
+
     public class BountyData {
         public string Origin, Target;
         public int Amount;

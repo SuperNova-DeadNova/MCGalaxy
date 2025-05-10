@@ -17,13 +17,12 @@
 */
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Net.Sockets;
 using System.Windows.Forms;
-using MCGalaxy.Core;
 
-namespace MCGalaxy.Gui.Popups {
+namespace MCGalaxy.Gui.Popups
+{
     public partial class PortTools : Form {
 
         readonly BackgroundWorker worker;

@@ -5,6 +5,6 @@
         /// <summary>
         /// Represents the order the node was inserted in
         /// </summary>
-        public long InsertionIndex { get; internal set; }
+        public long InsertionIndex { get; set; }
     }
 }

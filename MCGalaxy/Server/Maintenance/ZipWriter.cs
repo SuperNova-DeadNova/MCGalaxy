@@ -142,7 +142,7 @@ namespace MCGalaxy {
             
             // set bit flag for non-ascii filename
             foreach (char c in file) {
-                if (c < ' ' || c > '~') entry.BitFlags |= (1 << 11);
+                if (c < ' ' || c > '~') entry.BitFlags |= 1 << 11;
             }
             
             ZipWriterStream dst = new ZipWriterStream(stream);

@@ -17,13 +17,13 @@
  */
 using System;
 using System.IO;
-using MCGalaxy.Blocks;
 using MCGalaxy.Config;
 using MCGalaxy.Network;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy {
-    public sealed class BlockDefinition {
+namespace MCGalaxy
+{
+    public class BlockDefinition {
         
         [ConfigUShort("BlockID", null)]
         public ushort RawID;
@@ -113,7 +113,7 @@ namespace MCGalaxy {
                     if (obj == null || obj.Meta == null) continue;
                     
                     BlockDefinition def = (BlockDefinition)obj.Meta;
-                    if (String.IsNullOrEmpty(def.Name)) continue;
+                    if (string.IsNullOrEmpty(def.Name)) continue;
                     
                     BlockID block = def.GetBlock();
                     if (block >= defs.Length) {
@@ -151,7 +151,8 @@ namespace MCGalaxy {
                     if (def == null) continue;
                     
                     w.Write(separator);
-                    Json.Serialise(w, elems, def);
+                    JsonConfigWriter jcw = new JsonConfigWriter(w, elems);
+                    jcw.WriteObject(def);
                     separator = ",\r\n";
                 }
                 w.WriteLine("]");

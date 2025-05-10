@@ -14,19 +14,16 @@ permissions and limitations under the Licenses.
  */
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
-using MCGalaxy.Commands;
 using MCGalaxy.DB;
 using MCGalaxy.Events.PlayerEvents;
 using MCGalaxy.Games;
-using MCGalaxy.Maths;
 using MCGalaxy.Network;
 using MCGalaxy.SQL;
 using MCGalaxy.Tasks;
 using MCGalaxy.Util;
 
-namespace MCGalaxy 
+namespace MCGalaxy
 {
     public partial class Player : IDisposable 
     { 
@@ -159,7 +156,7 @@ namespace MCGalaxy
             if (Server.Config.PositionUpdateInterval > 1000)
                 Message("Lowlag mode is currently &aON.");
 
-            if (String.IsNullOrEmpty(appName)) {
+            if (string.IsNullOrEmpty(appName)) {
                 Logger.Log(LogType.UserActivity, "{0} [{1}] connected.", truename, IP);
             } else {
                 Logger.Log(LogType.UserActivity, "{0} [{1}] connected using {2}.", truename, IP, appName);

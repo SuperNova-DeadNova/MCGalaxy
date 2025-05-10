@@ -261,7 +261,7 @@ namespace MCGalaxy.Config {
         protected override void WriteValue(object value) { WriteObject(value); }
         
         void WriteConfigValue(ConfigAttribute a, string value) {
-            if (String.IsNullOrEmpty(value)) {
+            if (string.IsNullOrEmpty(value)) {
                 WriteNull();
             } else if (a is ConfigBoolAttribute || a is ConfigIntegerAttribute || a is ConfigRealAttribute) {
                 Write(value);
@@ -289,20 +289,7 @@ namespace MCGalaxy.Config {
     }
     
     public static class Json {
-        
-        [Obsolete("Use JsonReader instead")]
-        public static object Parse(string s, out bool success) {
-            JsonReader reader = new JsonReader(s);
-            object obj = reader.Parse();
-            success    = !reader.Failed;
-            return obj;
-        }
-        
-        [Obsolete("Use JsonWriter instead")]
-        public static void Serialise(TextWriter dst, ConfigElement[] elems, object instance) {
-            JsonConfigWriter w = new JsonConfigWriter(dst, elems);
-            w.WriteObject(instance);
-        }
+      
         
         /// <summary> Shorthand for serialising an object to a JSON object </summary>
         public static string SerialiseObject(object obj) {

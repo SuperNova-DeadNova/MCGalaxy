@@ -15,14 +15,12 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.Collections.Generic;
-using System.IO;
 using MCGalaxy.Commands.CPE;
-using MCGalaxy.Commands.Moderation;
 using MCGalaxy.Generator;
 
-namespace MCGalaxy.Commands.World {
+namespace MCGalaxy.Commands.World
+{
     public sealed partial class CmdOverseer : Command2 {
 
         static void HandleBlockProps(Player p, string arg1, string arg2) {

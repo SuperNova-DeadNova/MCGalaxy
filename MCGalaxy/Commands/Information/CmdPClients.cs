@@ -15,11 +15,11 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MCGalaxy.Commands.Info {  
+namespace MCGalaxy.Commands.Info
+{
     public sealed class CmdPClients : Command2 {        
         public override string name { get { return "PClients"; } }
         public override string shortcut { get { return "Clients"; } }
@@ -33,7 +33,7 @@ namespace MCGalaxy.Commands.Info {
             foreach (Player pl in online) {
                 if (!p.CanSee(pl, data.Rank)) continue;
                 string appName = pl.appName;
-                if (String.IsNullOrEmpty(appName)) appName = "(unknown)";
+                if (string.IsNullOrEmpty(appName)) appName = "(unknown)";
                     
                List<Player> usingClient;
                if (!clients.TryGetValue(appName, out usingClient)) {

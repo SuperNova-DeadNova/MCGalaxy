@@ -15,9 +15,8 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
 */
-using MCGalaxy.Drawing.Transforms;
-
-namespace MCGalaxy.Commands.Building {
+namespace MCGalaxy.Commands.Building
+{
     public sealed class CmdDoNotMark : Command2 {
         public override string name { get { return "DoNotMark"; } }
         public override string shortcut { get { return "dnm"; } }

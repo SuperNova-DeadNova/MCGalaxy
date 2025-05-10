@@ -21,14 +21,12 @@
 */
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using System.Threading;
 
 namespace Sharkbite.Irc
 {
-	public delegate void ReplyEventHandler( ReplyCode code, string message );
+    public delegate void ReplyEventHandler( ReplyCode code, string message );
 	public delegate void ErrorMessageEventHandler( ReplyCode code, string message );
 	public delegate void NickErrorEventHandler( string badNick, string reason ) ;
 	public delegate void PingEventHandler( string message );
@@ -422,7 +420,7 @@ namespace Sharkbite.Irc
 			}
 			else 
 			{
-				return String.Join(" ", strings, start, (strings.Length - start) );
+				return string.Join(" ", strings, start, strings.Length - start );
 			}
 		}
 		

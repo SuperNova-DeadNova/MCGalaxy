@@ -17,9 +17,9 @@
 */
 using System;
 using System.Collections.Generic;
-using System.IO;
 
-namespace MCGalaxy.Commands.Info { 
+namespace MCGalaxy.Commands.Info
+{
     public sealed class CmdRankInfo : Command2 {        
         public override string name { get { return "RankInfo"; } }
         public override string shortcut { get { return "ri"; } }

@@ -18,9 +18,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.IO;
 
-namespace MCGalaxy.SQL {
+namespace MCGalaxy.SQL
+{
     /// <summary> Callback function invoked on a row returned from an SQL query. </summary>
     public delegate object ReaderCallback(IDataRecord record, object arg);
     

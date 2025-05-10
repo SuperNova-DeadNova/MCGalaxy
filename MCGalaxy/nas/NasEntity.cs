@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Drawing;
-using System.Collections.Generic;
-using System.Text;
 using Newtonsoft.Json;
 using MCGalaxy;
-using MCGalaxy.Events.PlayerEvents;
-using BlockID = System.UInt16;
-using MCGalaxy.Network;
+
 using MCGalaxy.Maths;
-using MCGalaxy.Tasks;
 
 namespace NotAwesomeSurvival
 {
@@ -135,10 +129,10 @@ namespace NotAwesomeSurvival
                             {
                                 nl.lvl = pl.Level;
                             }
-                            BlockID block = nl.lvl.GetBlock(xP, yP, zP);
+                            ushort block = nl.lvl.GetBlock(xP, yP, zP);
                             if (block == 0) block = Block.Air;
                             if (block == Block.Invalid) continue;
-                            NasBlock nb = NasBlock.blocksIndexedByServerBlockID[block];
+                            NasBlock nb = NasBlock.blocksIndexedByServerushort[block];
                             AABB blockBB = nb.bounds.Offset(x * 32, y * 32, z * 32);
                             if (!AABB.Intersects(ref worldAABB, ref blockBB)) continue;
                             if (nb == null || nb.collideAction == null) { continue; }

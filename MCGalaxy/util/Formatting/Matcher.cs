@@ -18,14 +18,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-using MCGalaxy.Eco;
 using MCGalaxy.Modules.Awards;
 
-namespace MCGalaxy {
-    
+namespace MCGalaxy
+{
+
     /// <summary> Finds partial matches of a 'name' against the names of the items in an enumerable. </summary>
     /// <remarks> returns number of matches found, and the matching item if only 1 match is found. </remarks>
     public static class Matcher {

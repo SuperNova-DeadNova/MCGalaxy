@@ -15,9 +15,7 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
 */
-using System;
-
-namespace MCGalaxy 
+namespace MCGalaxy
 {
     public static partial class Block 
     {
@@ -48,7 +46,6 @@ namespace MCGalaxy
         // E.g. 0x080 = class 01, value 128 = physics block 128
         // E.g. 0x180 = class 00, value 128 =  custom block 128
         
-        #if TEN_BIT_BLOCKS
         public const ushort MaxRaw = 767;
         public const int ExtendedCount = 256 * 4;
         public static ushort[] ExtendedBase = new ushort[Block.Count];
@@ -64,10 +61,6 @@ namespace MCGalaxy
             ExtendedClass[2] = custom_block_2;
             ExtendedClass[3] = custom_block_3;
         }
-        #else
-        public const ushort MaxRaw = 255;
-        public const int ExtendedCount = 256 * 2;
-        #endif
         
         // Original blocks
         public const byte Air = 0;
@@ -303,10 +296,8 @@ namespace MCGalaxy
         public const byte Geyser = 196;
         
         public const byte Checkpoint = 197;
-        #if TEN_BIT_BLOCKS
         public const byte custom_block_2 = 198;
         public const byte custom_block_3 = 199;
-        #endif
         
         // Air type blocks
         public const byte Air_Flood = 200;

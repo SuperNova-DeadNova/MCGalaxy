@@ -18,12 +18,12 @@
 using System;
 using System.Collections.Generic;
 using MCGalaxy.Blocks;
-using MCGalaxy.Commands.Building;
 using MCGalaxy.Maths;
 using BlockID = System.UInt16;
 using BlockRaw = System.Byte;
 
-namespace MCGalaxy.Commands.CPE {
+namespace MCGalaxy.Commands.CPE
+{
     internal static class CustomBlockCommand {
         
         public static void Execute(Player p, string message, CommandData data, bool global, string cmd) {
@@ -337,7 +337,7 @@ namespace MCGalaxy.Commands.CPE {
                 }
             } else if (step == 4) {
                 if (CommandParser.GetUShort(p, value, "Texture ID", ref bd.TopTex)) {
-                    step += (bd.Shape == 0 ? 5 : 1); // skip other texture steps for sprites
+                    step += bd.Shape == 0 ? 5 : 1; // skip other texture steps for sprites
                     if (bd.Shape == 0) bd.SetAllTex(bd.TopTex);
                 }
             } else if (step == 5) {
@@ -377,7 +377,7 @@ namespace MCGalaxy.Commands.CPE {
                     step++;
             } else if (step == 15) {
                 if (CommandParser.GetByte(p, value, "Fog density", ref bd.FogDensity)) {
-                    step += (bd.FogDensity == 0 ? 2 : 1);
+                    step += bd.FogDensity == 0 ? 2 : 1;
                 }
             } else if (step == 16) {
                 ColorDesc rgb = default(ColorDesc);
@@ -677,7 +677,7 @@ namespace MCGalaxy.Commands.CPE {
         
         static bool CheckRaw(Player p, string arg, out int raw, bool air = false) {
             raw = -1;
-            int min = (air ? 0 : 1);
+            int min = air ? 0 : 1;
             int max = Block.MaxRaw;
             return CommandParser.GetInt(p, arg, "Block ID", ref raw, min, max);
         }

@@ -15,11 +15,10 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using MCGalaxy.Network;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy 
+namespace MCGalaxy
 {
     public sealed class CpeExtension 
     {
@@ -56,9 +55,7 @@ namespace MCGalaxy
             new CpeExtension(CpeExt.ExtTextures),      new CpeExtension(CpeExt.SetHotbar),
             new CpeExtension(CpeExt.SetSpawnpoint),    new CpeExtension(CpeExt.VelocityControl),
             new CpeExtension(CpeExt.CustomParticles),  new CpeExtension(CpeExt.CustomModels, 2),
-            #if TEN_BIT_BLOCKS
             new CpeExtension(CpeExt.ExtBlocks),
-            #endif
         };
         
         CpeExtension FindExtension(string extName) {
@@ -147,12 +144,10 @@ namespace MCGalaxy
             } else if (ext.Name == CpeExt.ExtTextures) {
                 hasExtTexs = true;
             }
-            #if TEN_BIT_BLOCKS
             else if (ext.Name == CpeExt.ExtBlocks) {
                 hasExtBlocks = true;
                 if (MaxRawBlock < 767) MaxRawBlock = 767;
             }
-            #endif
         }
         
         void CheckReadAllExtensions() {

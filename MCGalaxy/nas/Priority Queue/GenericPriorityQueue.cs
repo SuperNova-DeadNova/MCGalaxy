@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 namespace Priority_Queue
 {
@@ -10,14 +9,14 @@ namespace Priority_Queue
     /// </summary>
     /// <typeparam name="TItem">The values in the queue.  Must extend the GenericPriorityQueueNode class</typeparam>
     /// <typeparam name="TPriority">The priority-type.  Must extend IComparable&lt;TPriority&gt;</typeparam>
-    public sealed class GenericPriorityQueue<TItem, TPriority> : IFixedSizePriorityQueue<TItem, TPriority>
+    public class GenericPriorityQueue<TItem, TPriority> : IFixedSizePriorityQueue<TItem, TPriority>
         where TItem : GenericPriorityQueueNode<TPriority>
         where TPriority : IComparable<TPriority>
     {
-        private int _numNodes;
-        private TItem[] _nodes;
-        private long _numNodesEverEnqueued;
-        private readonly Comparison<TPriority> _comparer;
+        public int _numNodes;
+        public TItem[] _nodes;
+        public long _numNodesEverEnqueued;
+        public Comparison<TPriority> _comparer;
 
         /// <summary>
         /// Instantiate a new Priority Queue
@@ -100,7 +99,7 @@ namespace Priority_Queue
         public bool Contains(TItem node)
         {
 #if DEBUG
-            if(node == null)
+            if (node == null)
             {
                 throw new ArgumentNullException("node");
             }
@@ -130,11 +129,11 @@ namespace Priority_Queue
         public void Enqueue(TItem node, TPriority priority)
         {
 #if DEBUG
-            if(node == null)
+            if (node == null)
             {
                 throw new ArgumentNullException("node");
             }
-            if(_numNodes >= _nodes.Length - 1)
+            if (_numNodes >= _nodes.Length - 1)
             {
                 throw new InvalidOperationException("Queue is full - node cannot be added: " + node);
             }
@@ -160,7 +159,7 @@ namespace Priority_Queue
 #if NET_VERSION_4_5
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private void CascadeUp(TItem node)
+        public void CascadeUp(TItem node)
         {
             //aka Heapify-up
             int parent;
@@ -168,7 +167,7 @@ namespace Priority_Queue
             {
                 parent = node.QueueIndex >> 1;
                 TItem parentNode = _nodes[parent];
-                if(HasHigherPriority(parentNode, node))
+                if (HasHigherPriority(parentNode, node))
                     return;
 
                 //Node has lower priority value, so move parent down the heap to make room
@@ -181,11 +180,11 @@ namespace Priority_Queue
             {
                 return;
             }
-            while(parent > 1)
+            while (parent > 1)
             {
                 parent >>= 1;
                 TItem parentNode = _nodes[parent];
-                if(HasHigherPriority(parentNode, node))
+                if (HasHigherPriority(parentNode, node))
                     break;
 
                 //Node has lower priority value, so move parent down the heap to make room
@@ -200,14 +199,14 @@ namespace Priority_Queue
 #if NET_VERSION_4_5
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private void CascadeDown(TItem node)
+        public void CascadeDown(TItem node)
         {
             //aka Heapify-down
             int finalQueueIndex = node.QueueIndex;
             int childLeftIndex = 2 * finalQueueIndex;
 
             // If leaf node, we're done
-            if(childLeftIndex > _numNodes)
+            if (childLeftIndex > _numNodes)
             {
                 return;
             }
@@ -215,10 +214,10 @@ namespace Priority_Queue
             // Check if the left-child is higher-priority than the current node
             int childRightIndex = childLeftIndex + 1;
             TItem childLeft = _nodes[childLeftIndex];
-            if(HasHigherPriority(childLeft, node))
+            if (HasHigherPriority(childLeft, node))
             {
                 // Check if there is a right child. If not, swap and finish.
-                if(childRightIndex > _numNodes)
+                if (childRightIndex > _numNodes)
                 {
                     node.QueueIndex = childLeftIndex;
                     childLeft.QueueIndex = finalQueueIndex;
@@ -228,7 +227,7 @@ namespace Priority_Queue
                 }
                 // Check if the left-child is higher-priority than the right-child
                 TItem childRight = _nodes[childRightIndex];
-                if(HasHigherPriority(childLeft, childRight))
+                if (HasHigherPriority(childLeft, childRight))
                 {
                     // left is highest, move it up and continue
                     childLeft.QueueIndex = finalQueueIndex;
@@ -244,7 +243,7 @@ namespace Priority_Queue
                 }
             }
             // Not swapping with left-child, does right-child exist?
-            else if(childRightIndex > _numNodes)
+            else if (childRightIndex > _numNodes)
             {
                 return;
             }
@@ -252,7 +251,7 @@ namespace Priority_Queue
             {
                 // Check if the right-child is higher-priority than the current node
                 TItem childRight = _nodes[childRightIndex];
-                if(HasHigherPriority(childRight, node))
+                if (HasHigherPriority(childRight, node))
                 {
                     childRight.QueueIndex = finalQueueIndex;
                     _nodes[finalQueueIndex] = childRight;
@@ -265,12 +264,12 @@ namespace Priority_Queue
                 }
             }
 
-            while(true)
+            while (true)
             {
                 childLeftIndex = 2 * finalQueueIndex;
 
                 // If leaf node, we're done
-                if(childLeftIndex > _numNodes)
+                if (childLeftIndex > _numNodes)
                 {
                     node.QueueIndex = finalQueueIndex;
                     _nodes[finalQueueIndex] = node;
@@ -280,10 +279,10 @@ namespace Priority_Queue
                 // Check if the left-child is higher-priority than the current node
                 childRightIndex = childLeftIndex + 1;
                 childLeft = _nodes[childLeftIndex];
-                if(HasHigherPriority(childLeft, node))
+                if (HasHigherPriority(childLeft, node))
                 {
                     // Check if there is a right child. If not, swap and finish.
-                    if(childRightIndex > _numNodes)
+                    if (childRightIndex > _numNodes)
                     {
                         node.QueueIndex = childLeftIndex;
                         childLeft.QueueIndex = finalQueueIndex;
@@ -293,7 +292,7 @@ namespace Priority_Queue
                     }
                     // Check if the left-child is higher-priority than the right-child
                     TItem childRight = _nodes[childRightIndex];
-                    if(HasHigherPriority(childLeft, childRight))
+                    if (HasHigherPriority(childLeft, childRight))
                     {
                         // left is highest, move it up and continue
                         childLeft.QueueIndex = finalQueueIndex;
@@ -309,7 +308,7 @@ namespace Priority_Queue
                     }
                 }
                 // Not swapping with left-child, does right-child exist?
-                else if(childRightIndex > _numNodes)
+                else if (childRightIndex > _numNodes)
                 {
                     node.QueueIndex = finalQueueIndex;
                     _nodes[finalQueueIndex] = node;
@@ -319,7 +318,7 @@ namespace Priority_Queue
                 {
                     // Check if the right-child is higher-priority than the current node
                     TItem childRight = _nodes[childRightIndex];
-                    if(HasHigherPriority(childRight, node))
+                    if (HasHigherPriority(childRight, node))
                     {
                         childRight.QueueIndex = finalQueueIndex;
                         _nodes[finalQueueIndex] = childRight;
@@ -343,7 +342,7 @@ namespace Priority_Queue
 #if NET_VERSION_4_5
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private bool HasHigherPriority(TItem higher, TItem lower)
+        public bool HasHigherPriority(TItem higher, TItem lower)
         {
             var cmp = _comparer(higher.Priority, lower.Priority);
             return cmp < 0 || (cmp == 0 && higher.InsertionIndex < lower.InsertionIndex);
@@ -360,12 +359,12 @@ namespace Priority_Queue
         public TItem Dequeue()
         {
 #if DEBUG
-            if(_numNodes <= 0)
+            if (_numNodes <= 0)
             {
                 throw new InvalidOperationException("Cannot call Dequeue() on an empty queue");
             }
 
-            if(!IsValidQueue())
+            if (!IsValidQueue())
             {
                 throw new InvalidOperationException("Queue has been corrupted (Did you update a node priority manually instead of calling UpdatePriority()?" +
                                                     "Or add the same node to two different queues?)");
@@ -374,7 +373,7 @@ namespace Priority_Queue
 
             TItem returnMe = _nodes[1];
             //If the node is already the last node, we can remove it immediately
-            if(_numNodes == 1)
+            if (_numNodes == 1)
             {
                 _nodes[1] = null;
                 _numNodes = 0;
@@ -428,7 +427,7 @@ namespace Priority_Queue
             get
             {
 #if DEBUG
-                if(_numNodes <= 0)
+                if (_numNodes <= 0)
                 {
                     throw new InvalidOperationException("Cannot call .First on an empty queue");
                 }
@@ -450,7 +449,7 @@ namespace Priority_Queue
         public void UpdatePriority(TItem node, TPriority priority)
         {
 #if DEBUG
-            if(node == null)
+            if (node == null)
             {
                 throw new ArgumentNullException("node");
             }
@@ -471,12 +470,12 @@ namespace Priority_Queue
 #if NET_VERSION_4_5
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private void OnNodeUpdated(TItem node)
+        public void OnNodeUpdated(TItem node)
         {
             //Bubble the updated node up or down as appropriate
             int parentIndex = node.QueueIndex >> 1;
 
-            if(parentIndex > 0 && HasHigherPriority(node, _nodes[parentIndex]))
+            if (parentIndex > 0 && HasHigherPriority(node, _nodes[parentIndex]))
             {
                 CascadeUp(node);
             }
@@ -498,7 +497,7 @@ namespace Priority_Queue
         public void Remove(TItem node)
         {
 #if DEBUG
-            if(node == null)
+            if (node == null)
             {
                 throw new ArgumentNullException("node");
             }
@@ -513,7 +512,7 @@ namespace Priority_Queue
 #endif
 
             //If the node is already the last node, we can remove it immediately
-            if(node.QueueIndex == _numNodes)
+            if (node.QueueIndex == _numNodes)
             {
                 _nodes[_numNodes] = null;
                 _numNodes--;
@@ -567,7 +566,7 @@ namespace Priority_Queue
             IEnumerable<TItem> e = new ArraySegment<TItem>(_nodes, 1, _numNodes);
             return e.GetEnumerator();
 #else
-            for(int i = 1; i <= _numNodes; i++)
+            for (int i = 1; i <= _numNodes; i++)
                 yield return _nodes[i];
 #endif
         }
@@ -583,16 +582,16 @@ namespace Priority_Queue
         /// </summary>
         public bool IsValidQueue()
         {
-            for(int i = 1; i < _nodes.Length; i++)
+            for (int i = 1; i < _nodes.Length; i++)
             {
-                if(_nodes[i] != null)
+                if (_nodes[i] != null)
                 {
                     int childLeftIndex = 2 * i;
-                    if(childLeftIndex < _nodes.Length && _nodes[childLeftIndex] != null && HasHigherPriority(_nodes[childLeftIndex], _nodes[i]))
+                    if (childLeftIndex < _nodes.Length && _nodes[childLeftIndex] != null && HasHigherPriority(_nodes[childLeftIndex], _nodes[i]))
                         return false;
 
                     int childRightIndex = childLeftIndex + 1;
-                    if(childRightIndex < _nodes.Length && _nodes[childRightIndex] != null && HasHigherPriority(_nodes[childRightIndex], _nodes[i]))
+                    if (childRightIndex < _nodes.Length && _nodes[childRightIndex] != null && HasHigherPriority(_nodes[childRightIndex], _nodes[i]))
                         return false;
                 }
             }

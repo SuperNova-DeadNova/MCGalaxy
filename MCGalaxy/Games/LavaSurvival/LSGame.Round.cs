@@ -16,10 +16,10 @@
     permissions and limitations under the Licenses.
  */
 using System;
-using System.Collections.Generic;
 using System.Threading;
 
-namespace MCGalaxy.Games {
+namespace MCGalaxy.Games
+{
     public sealed partial class LSGame : RoundsGame {
 
         protected override void DoRound() {

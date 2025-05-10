@@ -73,7 +73,7 @@ namespace MCGalaxy.Commands {
                 Add(cmd, num, desc, min, allowed, disallowed);
             } else {
                 perms.CmdName = cmd; perms.Num = num;
-                if (!String.IsNullOrEmpty(desc)) perms.Desc = desc;
+                if (!string.IsNullOrEmpty(desc)) perms.Desc = desc;
                 perms.Init(min, allowed, disallowed);
             }
         }

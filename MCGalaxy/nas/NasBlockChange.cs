@@ -4,7 +4,7 @@ using System.Drawing;
 using MCGalaxy;
 using MCGalaxy.Blocks;
 using MCGalaxy.Events.PlayerEvents;
-using BlockID = System.UInt16;
+
 using MCGalaxy.Tasks;
 using MCGalaxy.DB;
 namespace NotAwesomeSurvival
@@ -15,8 +15,8 @@ namespace NotAwesomeSurvival
         public static Scheduler breakScheduler;
         public static Scheduler repeaterScheduler;
         public static Scheduler fishingScheduler;
-        static Color[] blockColors = new Color[Block.MaxRaw + 1];
-        const string terrainImageName = "terrain.png";
+        public static Color[] blockColors = new Color[Block.MaxRaw + 1];
+        public const string terrainImageName = "terrain.png";
 
         public static bool Setup()
         {
@@ -38,7 +38,7 @@ namespace NotAwesomeSurvival
             terrain = new Bitmap(terrain, terrain.Width / 16, terrain.Height / 16);
             //terrain.Save("plugins/nas/smolTerrain.png", System.Drawing.Imaging.ImageFormat.Png);
 
-            for (BlockID blockID = 0; blockID <= Block.MaxRaw; blockID++)
+            for (ushort blockID = 0; blockID <= Block.MaxRaw; blockID++)
             {
                 BlockDefinition def = BlockDefinition.GlobalDefs[Block.FromRaw(blockID)];
 
@@ -57,42 +57,42 @@ namespace NotAwesomeSurvival
             return true;
         }
 
-        const string ClickableBlocksKey = "__clickableBlocks_";
-        const string LastClickedCoordsKey = ClickableBlocksKey + "lastClickedCoords";
-        const string BreakAmountKey = ClickableBlocksKey + "breakAmount";
-        const string BreakIDKey = ClickableBlocksKey + "breakID";
-        const byte BreakEffectIDcount = 6;
-        static byte BreakEffectID = 255;
+        public const string ClickableBlocksKey = "__clickableBlocks_";
+        public const string LastClickedCoordsKey = ClickableBlocksKey + "lastClickedCoords";
+        public const string BreakAmountKey = ClickableBlocksKey + "breakAmount";
+        public const string BreakIDKey = ClickableBlocksKey + "breakID";
+        public const byte BreakEffectIDcount = 6;
+        public static byte BreakEffectID = 255;
         public const byte BreakMeterID = byte.MaxValue - BreakEffectIDcount;
-        const int BreakMeterSpawnDelay = 100;
+        public const int BreakMeterSpawnDelay = 100;
 
-        static readonly object breakIDLocker = new object();
+        public static object breakIDLocker = new object();
 
-        static string LastClickedCoords(Player p)
+        public static string LastClickedCoords(Player p)
         {
             return p.Extras.GetString(LastClickedCoordsKey, "-1 -1 -1");
         }
-        static void SetLastClickedCoords(Player p, ushort x, ushort y, ushort z)
+        public static void SetLastClickedCoords(Player p, ushort x, ushort y, ushort z)
         {
             p.Extras[LastClickedCoordsKey] = x + " " + y + " " + z;
         }
-        static int BreakAmount(Player p)
+        public static int BreakAmount(Player p)
         {
             return p.Extras.GetInt(BreakAmountKey, 0);
         }
-        static void SetBreakAmount(Player p, int amount)
+        public static void SetBreakAmount(Player p, int amount)
         {
             p.Extras[BreakAmountKey] = amount;
         }
 
-        static byte GetBreakID()
+        public static byte GetBreakID()
         {
             lock (breakIDLocker)
             {
                 return BreakEffectID;
             }
         }
-        static void SetBreakID(byte value)
+        public static void SetBreakID(byte value)
         {
             lock (breakIDLocker)
             {
@@ -101,11 +101,11 @@ namespace NotAwesomeSurvival
             }
         }
 
-        static void BreakBlock(NasPlayer np, ushort x, ushort y, ushort z, BlockID serverBlockID, NasBlock nasBlock)
+        public static void BreakBlock(NasPlayer np, ushort x, ushort y, ushort z, ushort serverushort, NasBlock nasBlock)
         {
             if (np.nl == null) { return; }
-            BlockID here = np.p.level.GetBlock(x, y, z);
-            if (here != serverBlockID) { return; } //don't let them break it if the block changed since we've started
+            ushort here = np.p.level.GetBlock(x, y, z);
+            if (here != serverushort) { return; } //don't let them break it if the block changed since we've started
 
             //If there's a container and it's not empty or locked by someone else, it can't be broken
             //COPY PASTED IN 2 PLACES
@@ -119,7 +119,8 @@ namespace NotAwesomeSurvival
 
             if (np.isInserting)
             {
-                np.p.Message("%ePlease insert items into the container before breaking blocks."); return;
+                np.p.Message("&ePlease insert items into the container before breaking blocks."); 
+                return;
             }
 
             if (nasBlock.parentID != 0)
@@ -133,7 +134,7 @@ namespace NotAwesomeSurvival
             else
             {
                 np.p.Message("Why the hell are you trying to get {0}? It's not even a real block..",
-                          Block.GetName(np.p, serverBlockID)
+                          Block.GetName(np.p, serverushort)
                          );
             }
 
@@ -154,8 +155,8 @@ namespace NotAwesomeSurvival
 
             if (!np.hasBeenSpawned)
             {
-                np.p.Message("%chasBeenSpawned is %cfalse%S, this shouldn't happen if you didn't just die.");
-                np.p.Message("%bPlease report to Unseen what you were doing before this happened");
+                np.p.Message("&chasBeenSpawned is &cfalse&S, this shouldn't happen if you didn't just die.");
+                np.p.Message("&bPlease report to randomstrangers on Discord what you were doing before this happened");
             }
         }
         public static void CancelPlacedBlock(Player p, ushort x, ushort y, ushort z, NasPlayer np, ref bool cancel)
@@ -168,14 +169,14 @@ namespace NotAwesomeSurvival
 
 
 
-        public static void PlaceBlock(Player p, ushort x, ushort y, ushort z, BlockID serverBlockID, bool placing, ref bool cancel)
+        public static void PlaceBlock(Player p, ushort x, ushort y, ushort z, ushort serverushort, bool placing, ref bool cancel)
         {
             if (p.level.Config.Deletable && p.level.Config.Buildable) { return; }
-            if (!placing) { p.Message("%cYou shouldn't be allowed to do this."); cancel = true; return; }
+            if (!placing) { p.Message("&cYou shouldn't be allowed to do this."); cancel = true; return; }
 
             NasPlayer np = (NasPlayer)p.Extras[Nas.PlayerKey];
-            BlockID clientBlockID = p.ConvertBlock(serverBlockID);
-            NasBlock nasBlock = NasBlock.Get(clientBlockID);
+            ushort clientushort = p.ConvertBlock(serverushort);
+            NasBlock nasBlock = NasBlock.Get(clientushort);
 
             if (nasBlock.parentID == 0)
             {
@@ -185,21 +186,21 @@ namespace NotAwesomeSurvival
             }
             if ((nasBlock.selfID == 10 || nasBlock.selfID == 476 || nasBlock.selfID == 178) && p.level.name.Contains("0,0") && !p.level.name.Contains("nether"))
             {
-                np.p.Message("%mCan't do that at 0,0.");
+                np.p.Message("&mCan't do that at 0,0.");
                 CancelPlacedBlock(p, x, y, z, np, ref cancel);
                 return;
             }
 
             if (np.nl.GetBlock(x, y, z + 1) == Block.FromRaw(703) || np.nl.GetBlock(x, y - 1, z) == Block.FromRaw(703))
             {
-                np.p.Message("%mCan't obstruct a bed!");
+                np.p.Message("&mCan't obstruct a bed!");
                 CancelPlacedBlock(p, x, y, z, np, ref cancel);
                 return;
             }
 
             if (nasBlock.selfID == 703 && (np.nl.GetBlock(x, y, z - 1) != Block.Air || np.nl.GetBlock(x, y + 1, z) != Block.Air))
             {
-                np.p.Message("%mCan't place a bed in an obstructed location!");
+                np.p.Message("&mCan't place a bed in an obstructed location!");
                 CancelPlacedBlock(p, x, y, z, np, ref cancel);
                 return;
             }
@@ -207,14 +208,14 @@ namespace NotAwesomeSurvival
             int amount = np.inventory.GetAmount(nasBlock.parentID);
             if (amount < 1)
             {
-                p.Message("%cYou don't have any {0}.", nasBlock.GetName(p));
+                p.Message("&cYou don't have any {0}.", nasBlock.GetName(p));
                 CancelPlacedBlock(p, x, y, z, np, ref cancel);
                 return;
             }
             if (amount < nasBlock.resourceCost)
             {
-                p.Message("%cYou need at least {0} {1} to place {2}.",
-                          nasBlock.resourceCost, nasBlock.GetName(p), nasBlock.GetName(p, clientBlockID));
+                p.Message("&cYou need at least {0} {1} to place {2}.",
+                          nasBlock.resourceCost, nasBlock.GetName(p), nasBlock.GetName(p, clientushort));
                 CancelPlacedBlock(p, x, y, z, np, ref cancel);
                 return;
             }
@@ -234,7 +235,7 @@ namespace NotAwesomeSurvival
             {
                 nl = NasLevel.all[np.p.level.name];
             }
-            NasBlock nasBlock = NasBlock.blocksIndexedByServerBlockID[p.level.GetBlock(x, y, z)];
+            NasBlock nasBlock = NasBlock.blocksIndexedByServerushort[p.level.GetBlock(x, y, z)];
             nasBlock.existAction?.Invoke(np, nasBlock, true, x, y, z);
             nl?.SimulateSetBlock(x, y, z);
         }
@@ -254,8 +255,8 @@ namespace NotAwesomeSurvival
                 np.inventory.HeldItem == breakInfo.toolUsed
                )
             {
-                if ((np.inventory.GetAmount(696) >= 5) && nasBlock.selfID == 696) { np.p.Message("%mYou have too many lava barrels!"); return; }
-                BreakBlock(np, breakInfo.x, breakInfo.y, breakInfo.z, breakInfo.serverBlockID, nasBlock);
+                if ((np.inventory.GetAmount(696) >= 5) && nasBlock.selfID == 696) { np.p.Message("&mYou have too many lava barrels!"); return; }
+                BreakBlock(np, breakInfo.x, breakInfo.y, breakInfo.z, breakInfo.serverushort, nasBlock);
 
                 double toolDamageChance = 1.0 / (breakInfo.toolUsed.enchant("Unbreaking") + 1);
                 Random r = new Random();
@@ -271,7 +272,7 @@ namespace NotAwesomeSurvival
                 return;
             }
         }
-        static void MeterTask(SchedulerTask task)
+        public static void MeterTask(SchedulerTask task)
         {
             MeterInfo info = (MeterInfo)task.State;
             Player p = info.p;
@@ -281,11 +282,11 @@ namespace NotAwesomeSurvival
             NassEffect.Spawn(p, BreakMeterID, NassEffect.breakMeter, info.x, info.y, info.z, info.x, info.y, info.z);
         }
 
-        private class BreakInfo
+        public class BreakInfo
         {
             public NasPlayer np;
             public ushort x, y, z;
-            public BlockID serverBlockID;
+            public ushort serverushort;
             public NasBlock nasBlock;
             public int breakAttempt;
             public Item toolUsed;
@@ -297,7 +298,7 @@ namespace NotAwesomeSurvival
             public NasBlock.Entity b, strength1;
             public int type;
             public int direction;
-            public BlockID oldBlock;
+            public ushort oldBlock;
 
         }
         public class FishingInfo
@@ -313,21 +314,18 @@ namespace NotAwesomeSurvival
 
         }
 
-        private class MeterInfo
+        public class MeterInfo
         {
             public Player p;
             public int milliseconds;
             public float x, y, z;
         }
 
-        public static void HandleLeftClick
-        (Player p,
-        MouseButton button, MouseAction action,
-        ushort yaw, ushort pitch,
-        byte entity, ushort x, ushort y, ushort z,
-        TargetBlockFace face)
+        public static void HandleLeftClick (Player p, MouseButton button, 
+            MouseAction action, ushort yaw, ushort pitch, byte entity, 
+            ushort x, ushort y, ushort z, TargetBlockFace face)
         {
-            if (!p.agreed) { p.Message("You need to read and agree to the %b/rules%S to play"); return; }
+            if (!p.agreed) { p.Message("You need to read and agree to the &b/rules&S to play"); return; }
 
             NasPlayer np = (NasPlayer)p.Extras[Nas.PlayerKey];
 
@@ -350,9 +348,9 @@ namespace NotAwesomeSurvival
                     return;
                 }
 
-                BlockID serverBlockID = p.level.GetBlock(x, y, z);
-                BlockID clientBlockID = p.ConvertBlock(serverBlockID);
-                NasBlock nasBlock = NasBlock.Get(clientBlockID);
+                ushort serverushort = p.level.GetBlock(x, y, z);
+                ushort clientushort = p.ConvertBlock(serverushort);
+                NasBlock nasBlock = NasBlock.Get(clientushort);
                 if (nasBlock.durability == int.MaxValue)
                 {
                     //p.Message("This block can't be broken");
@@ -383,7 +381,8 @@ namespace NotAwesomeSurvival
                         //         heldItem.name, mat, nasBlock.material);
                         if (nasBlock.material == mat)
                         {
-                            toolEffective = true; break;
+                            toolEffective = true; 
+                            break;
                         }
                     }
                 }
@@ -398,7 +397,7 @@ namespace NotAwesomeSurvival
                 }
 
 
-                if (serverBlockID == Block.Air)
+                if (serverushort == Block.Air)
                 {
                     if (np.lastAirClickDate == null)
                     {
@@ -486,7 +485,7 @@ namespace NotAwesomeSurvival
                 breakInfo.x = x;
                 breakInfo.y = y;
                 breakInfo.z = z;
-                breakInfo.serverBlockID = serverBlockID;
+                breakInfo.serverushort = serverushort;
                 breakInfo.nasBlock = nasBlock;
                 breakInfo.breakAttempt = np.breakAttempt;
                 breakInfo.toolUsed = heldItem;
@@ -503,8 +502,8 @@ namespace NotAwesomeSurvival
                 meterInfo.y = y;
                 meterInfo.z = z;
 
-                BlockDefinition def = BlockDefinition.GlobalDefs[Block.FromRaw(clientBlockID)];
-                if (def == null && clientBlockID < Block.CPE_COUNT) { def = DefaultSet.MakeCustomBlock(Block.FromRaw(clientBlockID)); }
+                BlockDefinition def = BlockDefinition.GlobalDefs[Block.FromRaw(clientushort)];
+                if (def == null && clientushort < Block.CPE_COUNT) { def = DefaultSet.MakeCustomBlock(Block.FromRaw(clientushort)); }
                 if (def != null)
                 {
                     if (face == TargetBlockFace.AwayX) { DoOffset(def.MaxX, true, ref meterInfo.x); }
@@ -522,7 +521,7 @@ namespace NotAwesomeSurvival
                 p.Extras["nas_taskDisplayMeter"] = taskDisplayMeter;
             }
         }
-        static void DoOffset(byte minOrMax, bool positive, ref float coord)
+        public static void DoOffset(byte minOrMax, bool positive, ref float coord)
         {
             const float offset = 0.125f;
 

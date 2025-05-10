@@ -17,11 +17,11 @@
  */
 using System;
 using System.ComponentModel;
-using System.Globalization;
 using System.Media;
 using System.Windows.Forms;
 
-namespace MCGalaxy.Gui {
+namespace MCGalaxy.Gui
+{
     [DefaultBindingProperty("Seconds"), DefaultEvent("ValueChanged"), DefaultProperty("Seconds")]
     public class TimespanUpDown : UpDownBase, ISupportInitialize {
         long totalSecs;

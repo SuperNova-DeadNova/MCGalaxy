@@ -2,63 +2,69 @@
 using System.Collections.Generic;
 using MCGalaxy;
 using MCGalaxy.Maths;
-using BlockID = System.UInt16;
 using NasBlockAction = System.Action<NotAwesomeSurvival.NasLevel, NotAwesomeSurvival.NasBlock, int, int, int>;
-
 using NasBlockInteraction =
     System.Action<NotAwesomeSurvival.NasPlayer, MCGalaxy.Events.PlayerEvents.MouseButton, MCGalaxy.Events.PlayerEvents.MouseAction,
     NotAwesomeSurvival.NasBlock, ushort, ushort, ushort>;
-    
 using NasBlockExistAction =
     System.Action<NotAwesomeSurvival.NasPlayer,
     NotAwesomeSurvival.NasBlock, bool, ushort, ushort, ushort>;
-    
 using NasBlockCollideAction =
     System.Action<NotAwesomeSurvival.NasEntity,
     NotAwesomeSurvival.NasBlock, bool, ushort, ushort, ushort>;
-
-namespace NotAwesomeSurvival {
-
-    public partial class NasBlock {
+namespace NotAwesomeSurvival
+{
+    public partial class NasBlock
+    {
         public static NasBlock[] blocks = new NasBlock[Block.MaxRaw + 1];
-        public static NasBlock[] blocksIndexedByServerBlockID;
-        
+        public static NasBlock[] blocksIndexedByServerushort;
         public static NasBlock Default;
         public static int[] DefaultDurabilities = new int[(int)Material.Count];
-
-        public static NasBlock Get(BlockID clientBlockID) {
-            return (blocks[clientBlockID] == null) ?
+        public static NasBlock Get(ushort clientushort)
+        {
+            return (blocks[clientushort] == null) ?
                 Default :
-                blocks[clientBlockID];
+                blocks[clientushort];
         }
         /// <summary>
         /// Leave id arg blank to use parent's name
         /// </summary>
-        public string GetName(Player p, BlockID id = BlockID.MaxValue) {
-            if (id == BlockID.MaxValue) { id = parentID; }
+        public string GetName(Player p, ushort id = ushort.MaxValue)
+        {
+            if (id == ushort.MaxValue) 
+            { 
+                id = parentID; 
+            }
             return GetBlockName(p, Block.FromRaw(id)).Split('-')[0];
         }
-        public static string GetBlockName(Player p, BlockID block) {
-            if (Block.IsPhysicsType(block)) return "Physics block";
-            
+        public static string GetBlockName(Player p, ushort block)
+        {
+            if (Block.IsPhysicsType(block))
+            {
+                return "Physics block";
+            }
             BlockDefinition def = null;
-            if (!p.IsSuper) {
+            if (!p.IsSuper)
+            {
                 def = p.level.GetBlockDef(block);
-            } else {
+            }
+            else
+            {
                 def = BlockDefinition.GlobalDefs[block];
             }
-            if (def != null) { return def.Name; }
-            
+            if (def != null) 
+            { 
+                return def.Name; 
+            }
             return "Unknown";
         }
-
-        static Drop DefaultDropHandler(NasPlayer np, BlockID id) {
+        public static Drop DefaultDropHandler(NasPlayer np, ushort id)
+        {
             return new Drop(id);
-            
         }
-
         //value is default durability, which is considered in terms of how many "hits" it takes to break
-        public enum Material {
+        public enum Material
+        {
             None,
             Gas,
             Stone,
@@ -73,25 +79,22 @@ namespace NotAwesomeSurvival {
             Lava,
             Count
         }
-
-        public BlockID selfID;
-        public BlockID parentID;
-        public BlockID alternateID;
-        public List<BlockID> childIDs = null;
+        public ushort selfID;
+        public ushort parentID;
+        public ushort alternateID;
+        public List<ushort> childIDs = null;
         public Material material;
         public int tierOfToolNeededToBreak;
         public Type type;
         public int durability;
         public float damageDoneToTool;
-        public Func<NasPlayer, BlockID, Drop> dropHandler;
+        public Func<NasPlayer, ushort, Drop> dropHandler;
         public int resourceCost;
         public Crafting.Station station;
         public Container container;
-        
         public bool collides = true;
         public AABB bounds;
         public float fallDamageMultiplier = -1;
-        
         public float disturbDelayMax = 0f;
         public float disturbDelayMin = 0f;
         public int expGivenMax = 0;
@@ -104,33 +107,37 @@ namespace NotAwesomeSurvival {
         public NasBlockInteraction interaction = null;
         public NasBlockExistAction existAction = null;
         public NasBlockCollideAction collideAction = null;//DefaultCollideAction();
-
-        public NasBlock(BlockID id, Material mat) {
-        	selfID = id;
+        public NasBlock(ushort id, Material mat)
+        {
+            selfID = id;
             parentID = id;
             alternateID = id;
             material = mat;
             tierOfToolNeededToBreak = 0;
             durability = DefaultDurabilities[(int)mat];
             damageDoneToTool = 1f;
-            if (material == Material.Leaves || durability == 0) { damageDoneToTool = 0; }
+            if (material == Material.Leaves || durability == 0) 
+            { 
+                damageDoneToTool = 0; 
+            }
             dropHandler = DefaultDropHandler;
             resourceCost = 1;
             station = null;
-            
         }
-        public NasBlock(BlockID id, Material mat, int dur, int tierOfToolNeededToBreak = 0) : this(id, mat) {
+        public NasBlock(ushort id, Material mat, int dur, int tierOfToolNeededToBreak = 0) : this(id, mat)
+        {
             durability = dur;
             this.tierOfToolNeededToBreak = tierOfToolNeededToBreak;
         }
-        public NasBlock(BlockID id, NasBlock parent) {
+        public NasBlock(ushort id, NasBlock parent)
+        {
             selfID = id;
             alternateID = id;
-            if (blocks[parent.parentID].childIDs == null) {
-                blocks[parent.parentID].childIDs = new List<BlockID>();
+            if (blocks[parent.parentID].childIDs == null)
+            {
+                blocks[parent.parentID].childIDs = new List<ushort>();
             }
             blocks[parent.parentID].childIDs.Add(id);
-
             parentID = parent.parentID;
             material = parent.material;
             tierOfToolNeededToBreak = parent.tierOfToolNeededToBreak;
@@ -138,22 +145,26 @@ namespace NotAwesomeSurvival {
             damageDoneToTool = parent.damageDoneToTool;
             dropHandler = parent.dropHandler;
             resourceCost = parent.resourceCost;
-            if (parent.station != null) {
+            if (parent.station != null)
+            {
                 station = new Crafting.Station(parent.station);
             }
-            if (parent.container != null) {
+            if (parent.container != null)
+            {
                 container = new Container(parent.container);
             }
-            if (parent.disturbedAction != null) {
-                this.disturbedAction = parent.disturbedAction;
+            if (parent.disturbedAction != null)
+            {
+                disturbedAction = parent.disturbedAction;
             }
-            if (parent.interaction != null) {
-                this.interaction = parent.interaction;
+            if (parent.interaction != null)
+            {
+                interaction = parent.interaction;
             }
-            if (parent.existAction != null) {
-                this.existAction = parent.existAction;
+            if (parent.existAction != null)
+            {
+                existAction = parent.existAction;
             }
         }
     }
-
 }

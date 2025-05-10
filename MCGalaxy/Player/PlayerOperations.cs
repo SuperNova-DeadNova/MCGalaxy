@@ -15,14 +15,10 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
-using System.Threading;
-using MCGalaxy.Events.PlayerEvents;
-using MCGalaxy.Games;
-using MCGalaxy.Commands.World;
 using MCGalaxy.DB;
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
     public static class PlayerOperations {
         
         /// <summary> Attempts to change the login message of the target player </summary>

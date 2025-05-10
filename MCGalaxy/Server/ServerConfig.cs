@@ -17,11 +17,11 @@
  */
 using System;
 using System.Collections.Generic;
-using System.IO;
 using MCGalaxy.Config;
 using MCGalaxy.Modules.Relay.IRC;
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
     public sealed class ServerConfig : EnvConfig {
 
         [ConfigString("server-name", "Server", "[MCGalaxy] Default", false, " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")]

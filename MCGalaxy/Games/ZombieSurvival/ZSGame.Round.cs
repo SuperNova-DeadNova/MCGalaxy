@@ -18,13 +18,11 @@
  */
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading;
-using MCGalaxy.Commands.World;
-using MCGalaxy.Network;
 
-namespace MCGalaxy.Games {
-    
+namespace MCGalaxy.Games
+{
+
     public sealed partial class ZSGame : RoundsGame {
         string lastKiller = "";
         int infectCombo = 0;
@@ -121,7 +119,7 @@ namespace MCGalaxy.Games {
                             infectCombo++;
                             if (infectCombo >= 2) {
                                 killer.Message("You gained " + (2 + infectCombo) + " " + Server.Config.Currency);
-                                killer.SetMoney(killer.money + (2 + infectCombo));
+                                killer.SetMoney(killer.money + 2 + infectCombo);
                                 Map.Message("&c" + killer.DisplayName + " &Sis on a rampage! " + (infectCombo + 1) + " infections in a row!");
                             }
                         } else {

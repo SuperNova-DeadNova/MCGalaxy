@@ -99,7 +99,7 @@ namespace MCGalaxy.Generator.fCraft {
             for( int i = 0; i < args.LoweredCorners; i++ ) {
                 corners[c++] = -args.Bias;
             }
-            float midpoint = (args.MidPoint * args.Bias);
+            float midpoint = args.MidPoint * args.Bias;
 
             // shuffle corners
             int[] keys = new int[corners.Length];
@@ -128,7 +128,7 @@ namespace MCGalaxy.Generator.fCraft {
             // Calculate above/below water multipliers
             float aboveWaterMultiplier = 0;
             if( desiredWaterLevel != 1 ) {
-                aboveWaterMultiplier = (args.MaxHeight / (1 - desiredWaterLevel));
+                aboveWaterMultiplier = args.MaxHeight / (1 - desiredWaterLevel);
             }
 
             // Calculate the slope
@@ -260,7 +260,7 @@ namespace MCGalaxy.Generator.fCraft {
                     int index = (level * length + z) * width + x;
                     if( level >= 0 && level < mapHeight ) {
                         if( slope < args.CliffThreshold ) {
-                            map.blocks[index] = (snow ? Block.White : bGroundSurface);
+                            map.blocks[index] = snow ? Block.White : bGroundSurface;
                         } else {
                             map.blocks[index] = bCliff;
                         }
@@ -382,7 +382,7 @@ namespace MCGalaxy.Generator.fCraft {
                 for( int z = 0; z < map.Length; z++ )
             {
                 int index = (map.Height * map.Length + z) * map.Width + x;
-                for( int y = (map.Height - 1); y >= 0; y-- ) {
+                for( int y = map.Height - 1; y >= 0; y-- ) {
                     index -= map.Length * map.Width;
                     switch( map.blocks[index] ) {
                         case Block.Air:

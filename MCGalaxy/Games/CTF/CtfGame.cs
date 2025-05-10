@@ -19,14 +19,12 @@
  */
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Threading;
-using MCGalaxy.Commands.World;
 using MCGalaxy.Maths;
 using MCGalaxy.SQL;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Games {
+namespace MCGalaxy.Games
+{
     internal sealed class CtfData {
         public int Captures, Tags, Points;
         public bool HasFlag, TagCooldown, TeamChatting;

@@ -18,11 +18,11 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using MCGalaxy.Commands.World;
 using MCGalaxy.Events.GameEvents;
 
-namespace MCGalaxy.Games {
-    
+namespace MCGalaxy.Games
+{
+
     public abstract partial class RoundsGame : IGame {
         public int RoundsLeft;
         public bool RoundInProgress;
@@ -138,10 +138,10 @@ namespace MCGalaxy.Games {
             const CpeMessageType type = CpeMessageType.Announcement;
             for (int i = delay; i > 0 && Running; i--) {
                 if (i == 1) {
-                    MessageMap(type, String.Format(format, i)
+                    MessageMap(type, string.Format(format, i)
                                .Replace("seconds", "second"));
                 } else if (i < minThreshold || (i % 10) == 0) {
-                    MessageMap(type, String.Format(format, i));
+                    MessageMap(type, string.Format(format, i));
                 }
                 Thread.Sleep(1000);
             }

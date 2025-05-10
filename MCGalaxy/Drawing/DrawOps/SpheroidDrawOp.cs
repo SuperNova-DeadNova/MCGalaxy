@@ -42,7 +42,7 @@ namespace MCGalaxy.Drawing.Ops
                     for (ushort xx = min.X; xx <= max.X; xx++)
             {
                 double dx = xx - cx, dy = yy - cy, dz = zz - cz;
-                if ((dx * dx) * rx2 + (dy * dy) * ry2 + (dz * dz) * rz2 <= 1)
+                if (dx * dx * rx2 + dy * dy * ry2 + dz * dz * rz2 <= 1)
                     output(Place(xx, yy, zz, brush));
             }
         }
@@ -87,7 +87,7 @@ namespace MCGalaxy.Drawing.Ops
         
         public override long BlocksAffected(Level lvl, Vec3S32[] marks) {
             double rx = (Max.X - Min.X) / 2.0 + 0.25, rz = (Max.Z - Min.Z) / 2.0 + 0.25;
-            int height = (Max.Y - Min.Y + 1);
+            int height = Max.Y - Min.Y + 1;
             return (int)(Math.PI * rx * rz * height);
         }
         

@@ -16,10 +16,9 @@
     permissions and limitations under the Licenses.
  */
 using System;
-using System.Collections.Generic;
 
 // kept in this namespace for backwards compatbility
-namespace MCGalaxy 
+namespace MCGalaxy
 {
     /// <summary> Importance of an event handler (See IEvent). </summary>
     /// <remarks> Higher priority handlers are called before lower priority handlers. </remarks>
@@ -33,7 +32,7 @@ namespace MCGalaxy
     }
 }
 
-namespace MCGalaxy.Events 
+namespace MCGalaxy.Events
 {
     /// <summary> Represents an abstract event. </summary>
     /// <remarks> *** You MUST use a DIFFERENT delegate type for each subclass *** <br/><br/>
@@ -66,11 +65,11 @@ namespace MCGalaxy.Events
         }
         
         public static IEvent<IMethod> Find(IMethod method) {
-            Delegate methodDel = (Delegate)((object)method);
+            Delegate methodDel = (Delegate)(object)method;
             IEvent<IMethod>[] items = handlers.Items;
             
             foreach (var p in items) {
-                Delegate pMethodDel = (Delegate)((object)p.method);
+                Delegate pMethodDel = (Delegate)(object)p.method;
                 if (pMethodDel == methodDel) return p;
             }
             return null;
@@ -108,7 +107,7 @@ namespace MCGalaxy.Events
         }
         
         static string MethodFormat(string format, IMethod method) {
-            Delegate del = (Delegate)((object)method);
+            Delegate del = (Delegate)(object)method;
             string fullName = del.Method.ReflectedType.FullName + "." + del.Method.Name;
             return string.Format(format, fullName, typeof(IMethod).Name);
         }

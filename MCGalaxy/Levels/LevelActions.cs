@@ -18,7 +18,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using MCGalaxy.Blocks;
 using MCGalaxy.Blocks.Extended;
 using MCGalaxy.Bots;
 using MCGalaxy.DB;
@@ -27,8 +26,9 @@ using MCGalaxy.Levels.IO;
 using MCGalaxy.SQL;
 using MCGalaxy.Util;
 
-namespace MCGalaxy {
-    
+namespace MCGalaxy
+{
+
     public static class LevelActions {
         
         static string BlockPropsLvlPath(string map) { return Paths.BlockPropsPath("_" + map); }

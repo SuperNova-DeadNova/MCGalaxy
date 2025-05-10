@@ -16,15 +16,10 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
-using System.Security.Cryptography;
-using System.Text;
-using System.IO;
-using System.Net.Security;
-using System.Threading;
-using System.Security.Cryptography.X509Certificates;
 
-namespace MCGalaxy.Network {
-    
+namespace MCGalaxy.Network
+{
+
     public enum SendFlags {
         None        = 0x00,
         Synchronous = 0x01,

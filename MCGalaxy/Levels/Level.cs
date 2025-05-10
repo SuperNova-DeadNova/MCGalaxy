@@ -21,18 +21,15 @@ using System.IO;
 using System.Runtime.InteropServices;
 using MCGalaxy.Blocks;
 using MCGalaxy.Bots;
-using MCGalaxy.Commands;
 using MCGalaxy.DB;
 using MCGalaxy.Events.LevelEvents;
-using MCGalaxy.Events.PlayerEvents;
-using MCGalaxy.Games;
-using MCGalaxy.Generator;
 using MCGalaxy.Levels.IO;
 using MCGalaxy.Util;
 using BlockID = System.UInt16;
 using BlockRaw = System.Byte;
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
     public enum LevelPermission {
         Banned = -20, Guest = 0, Builder = 30,
         AdvBuilder = 50, Operator = 80,
@@ -377,7 +374,7 @@ namespace MCGalaxy {
                 get { return (BlockID)(oldRaw | ((flags & 0x03)       << Block.ExtendedShift)); }
             }
             public BlockID NewBlock {
-                get { return (BlockID)(newRaw | (((flags & 0xC >> 2)) << Block.ExtendedShift)); }
+                get { return (BlockID)(newRaw | ((flags & 0xC >> 2) << Block.ExtendedShift)); }
             }
             public DateTime Time {
                 get { return Server.StartTime.AddTicks((flags >> 4) * TimeSpan.TicksPerSecond); }
@@ -387,7 +384,7 @@ namespace MCGalaxy {
                 TimeSpan delta = DateTime.UtcNow.Subtract(Server.StartTime);
                 flags = (int)delta.TotalSeconds << 4;
                 
-                oldRaw = (BlockRaw)oldBlock; flags |= (oldBlock >> Block.ExtendedShift);
+                oldRaw = (BlockRaw)oldBlock; flags |= oldBlock >> Block.ExtendedShift;
                 newRaw = (BlockRaw)newBlock; flags |= (newBlock >> Block.ExtendedShift) << 2;
             }
         }

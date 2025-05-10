@@ -17,12 +17,12 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 using System.Xml;
 using MCGalaxy.Network;
 //This upnp class comes from http://www.codeproject.com/Articles/27992/NAT-Traversal-with-UPnP-in-C, Modified for use with MCForge
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
     public static class UPnP {
 
         public static TimeSpan Timeout = TimeSpan.FromSeconds(3);
@@ -69,7 +69,7 @@ namespace MCGalaxy {
                             if (!visitedLocations.Contains(location)) {
                                 visitedLocations.Add(location);
                                 _serviceUrl = GetServiceUrl(location);
-                                if (!String.IsNullOrEmpty(_serviceUrl)) return true;
+                                if (!string.IsNullOrEmpty(_serviceUrl)) return true;
                             }
                         }
                     } while (length > 0);
@@ -81,7 +81,7 @@ namespace MCGalaxy {
         }
 
         public static void ForwardPort(int port, ProtocolType protocol, string description) {
-            if (String.IsNullOrEmpty(_serviceUrl) )
+            if (string.IsNullOrEmpty(_serviceUrl) )
                 throw new InvalidOperationException("No UPnP service available or Discover() has not been called");
             
             string xdoc = SOAPRequest(_serviceUrl, 
@@ -98,7 +98,7 @@ namespace MCGalaxy {
         }
 
         public static void DeleteForwardingRule(int port, ProtocolType protocol) {
-            if (String.IsNullOrEmpty(_serviceUrl) )
+            if (string.IsNullOrEmpty(_serviceUrl) )
                 throw new InvalidOperationException("No UPnP service available or Discover() has not been called");
             
             string xdoc = SOAPRequest(_serviceUrl,

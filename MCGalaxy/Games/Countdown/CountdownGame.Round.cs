@@ -18,15 +18,11 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using MCGalaxy.Commands.World;
-using MCGalaxy.Events;
-using MCGalaxy.Events.LevelEvents;
-using MCGalaxy.Events.PlayerEvents;
 using MCGalaxy.Network;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Games 
-{   
+namespace MCGalaxy.Games
+{
     public sealed partial class CountdownGame : RoundsGame 
     {          
         struct SquarePos 
@@ -161,8 +157,8 @@ namespace MCGalaxy.Games
         }
 
         void RemoveBoardBorders() {
-            int minX1 = 4, maxX2 = (Map.Width  - 1) - 4;
-            int minZ1 = 4, maxZ2 = (Map.Length - 1) - 4;
+            int minX1 = 4, maxX2 = Map.Width  - 1 - 4;
+            int minZ1 = 4, maxZ2 = Map.Length - 1 - 4;
             
             int maxX1, minX2, maxZ1, minZ2;
             CountdownMap.CalcBoardExtents(Map.Width,  out maxX1, out minX2);

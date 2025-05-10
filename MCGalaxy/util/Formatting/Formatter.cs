@@ -15,13 +15,12 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.Collections.Generic;
 using System.Text;
-using MCGalaxy.Blocks;
 using MCGalaxy.Commands;
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
     public static class Formatter {
         
         public static void PrintCommandInfo(Player p, Command cmd) {
@@ -41,7 +40,7 @@ namespace MCGalaxy {
         
         static void PrintAliases(Player p, Command cmd) {
             StringBuilder dst = new StringBuilder("Shortcuts: &T");
-            if (!String.IsNullOrEmpty(cmd.shortcut)) {
+            if (!string.IsNullOrEmpty(cmd.shortcut)) {
                 dst.Append('/').Append(cmd.shortcut).Append(", ");
             }
             FindAliases(Alias.coreAliases, cmd, dst);
@@ -58,7 +57,7 @@ namespace MCGalaxy {
                 dst.Append('/').Append(a.Trigger);
                 if (a.Format == null) { dst.Append(", "); continue; }
                 
-                string name = String.IsNullOrEmpty(cmd.shortcut) ? cmd.name : cmd.shortcut;
+                string name = string.IsNullOrEmpty(cmd.shortcut) ? cmd.name : cmd.shortcut;
                 if (name.Length > cmd.name.Length) name = cmd.name;
                 string args = a.Format.Replace("{args}", "[args]");
                 

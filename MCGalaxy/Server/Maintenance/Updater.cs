@@ -16,28 +16,22 @@
     permissions and limitations under the Licenses.
  */
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Net;
-using System.Reflection;
 using MCGalaxy.Network;
 using MCGalaxy.Tasks;
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
     /// <summary> Checks for and applies software updates. </summary>
     public static class Updater {
         
-        public static string SourceURL = "https://github.com/UnknownShadow200/MCGalaxy";
-        public const string BaseURL    = "https://raw.githubusercontent.com/UnknownShadow200/MCGalaxy/master/";
-        public const string UploadsURL = "https://github.com/UnknownShadow200/MCGalaxy/tree/master/Uploads";
+        public static string SourceURL = "https://github.com/SuperNova-DeadNova/MCGalaxy";
+        public const string BaseURL    = "https://raw.githubusercontent.com/SuperNova-DeadNova/MCGalaxy/debug/";
+        public const string UploadsURL = "https://github.com/SuperNova-DeadNova/MCGalaxy/tree/debug/Uploads";
         
         const string CurrentVersionURL = BaseURL + "Uploads/current_version.txt";
-        #if TEN_BIT_BLOCKS
         const string dllURL = BaseURL + "Uploads/MCGalaxy_infid.dll?raw=true";
-        #else
-        const string dllURL = BaseURL + "Uploads/MCGalaxy_.dll?raw=true";
-        #endif
-        const string changelogURL = BaseURL + "Changelog.txt";
         const string guiURL = BaseURL + "Uploads/MCGalaxy.exe?raw=true";
         const string cliURL = BaseURL + "Uploads/MCGalaxyCLI.exe?raw=true";
 
@@ -70,7 +64,7 @@ namespace MCGalaxy {
         public static void PerformUpdate() {
             try {
                 try {
-                    DeleteFiles("Changelog.txt", "MCGalaxy_.update", "MCGalaxy.update", "MCGalaxyCLI.update",
+                    DeleteFiles("MCGalaxy_.update", "MCGalaxy.update", "MCGalaxyCLI.update",
                                 "prev_MCGalaxy_.dll", "prev_MCGalaxy.exe", "prev_MCGalaxyCLI.exe");
                 } catch {
                 }
@@ -79,7 +73,6 @@ namespace MCGalaxy {
                 client.DownloadFile(dllURL, "MCGalaxy_.update");
                 client.DownloadFile(guiURL, "MCGalaxy.update");
                 client.DownloadFile(cliURL, "MCGalaxyCLI.update");
-                client.DownloadFile(changelogURL, "Changelog.txt");
 
                 Level[] levels = LevelInfo.Loaded.Items;
                 foreach (Level lvl in levels) {

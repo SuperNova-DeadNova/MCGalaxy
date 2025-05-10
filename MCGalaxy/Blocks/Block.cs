@@ -15,13 +15,13 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.IO;
 using MCGalaxy.Blocks;
 using MCGalaxy.Maths;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
     public static partial class Block {
 
         public static bool Walkthrough(BlockID block) {

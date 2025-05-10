@@ -15,11 +15,11 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using MCGalaxy.Bots;
 using MCGalaxy.Network;
 
-namespace MCGalaxy.Commands.CPE {
+namespace MCGalaxy.Commands.CPE
+{
     public class CmdSkin : EntityPropertyCmd {
         public override string name { get { return "Skin"; } }
         public override string type { get { return CommandTypes.Other; } }

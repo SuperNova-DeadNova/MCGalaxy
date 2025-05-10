@@ -15,12 +15,11 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
-using MCGalaxy.Games;
 using MCGalaxy.Events.EntityEvents;
 using MCGalaxy.Network;
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
 
     /// <summary> Contains methods related to the management of tab list of player names. </summary>
     public static class TabList {

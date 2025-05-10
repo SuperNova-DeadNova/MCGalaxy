@@ -15,11 +15,10 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using BlockID = System.UInt16;
 using BlockRaw = System.Byte;
 
-namespace MCGalaxy.Network 
+namespace MCGalaxy.Network
 {
     /// <summary> Helper class for efficiently sending many block changes. </summary>
     /// <remarks> Sends block changes as either a single CPE BulkBlockUpdate packet,
@@ -41,7 +40,7 @@ namespace MCGalaxy.Network
         /// <summary> Constructs a bulk sender that will only send block changes to that player </summary>
         public BufferedBlockSender(Player player) {
             this.player = player;
-            this.level  = player.level;
+            level  = player.level;
         }
         
         /// <summary> Adds a block change to list of buffered changes </summary>
@@ -91,7 +90,6 @@ namespace MCGalaxy.Network
         
         byte[] MakePacket(Player p, ref byte[] bulk, ref byte[] normal,
                           ref byte[] classic, ref byte[] ext, ref byte[] extBulk) {
-            #if TEN_BIT_BLOCKS
             if (p.hasExtBlocks) {
                 if (p.hasBulkBlockUpdate && count >= 150) {
                     if (extBulk == null) extBulk = MakeBulkExt();
@@ -101,7 +99,6 @@ namespace MCGalaxy.Network
                     return ext;
                 }
             }
-            #endif
             
             // Different clients support varying types of blocks
             if (p.hasBulkBlockUpdate && p.hasBlockDefs && count >= 160) {
@@ -122,7 +119,6 @@ namespace MCGalaxy.Network
             }
         }
 
-        #if TEN_BIT_BLOCKS
         byte[] MakeBulkExt() {
             byte[] data = new byte[2 + 256 * 5 + (256 / 4)];
             data[0] = Opcode.CpeBulkBlockUpdate;
@@ -156,9 +152,9 @@ namespace MCGalaxy.Network
             for (int i = 0, j = 0; i < count; i++) 
             {
                 int index = indices[i];
-                int x = (index % level.Width);
-                int y = (index / level.Width) / level.Length;
-                int z = (index / level.Width) % level.Length;
+                int x = index % level.Width;
+                int y = index / level.Width / level.Length;
+                int z = index / level.Width % level.Length;
                 
                 data[j++] = Opcode.SetBlock;
                 data[j++] = (byte)(x >> 8); data[j++] = (byte)x;
@@ -170,7 +166,6 @@ namespace MCGalaxy.Network
             }
             return data;
         }
-        #endif
 
         
         byte[] MakeBulk() {
@@ -185,12 +180,8 @@ namespace MCGalaxy.Network
             }
             for (int i = 0, j = 2 + 256 * sizeof(int); i < count; i++) 
             {
-                #if TEN_BIT_BLOCKS
                 BlockID block = blocks[i];
                 data[j++] = block <= 511 ? (BlockRaw)block : level.GetFallback(block);
-                #else
-                data[j++] = (BlockRaw)blocks[i];
-                #endif
             }
             return data;
         }
@@ -200,20 +191,16 @@ namespace MCGalaxy.Network
             for (int i = 0, j = 0; i < count; i++) 
             {
                 int index = indices[i];
-                int x = (index % level.Width);
-                int y = (index / level.Width) / level.Length;
-                int z = (index / level.Width) % level.Length;
+                int x = index % level.Width;
+                int y = index / level.Width / level.Length;
+                int z = index / level.Width % level.Length;
                 
                 data[j++] = Opcode.SetBlock;
                 data[j++] = (byte)(x >> 8); data[j++] = (byte)x;
                 data[j++] = (byte)(y >> 8); data[j++] = (byte)y;
                 data[j++] = (byte)(z >> 8); data[j++] = (byte)z;
-                #if TEN_BIT_BLOCKS
                 BlockID block = blocks[i];
                 data[j++] = block <= 511 ? (BlockRaw)block : level.GetFallback(block);
-                #else
-                data[j++] = (BlockRaw)blocks[i];
-                #endif
             }
             return data;
         }
@@ -223,9 +210,9 @@ namespace MCGalaxy.Network
             for (int i = 0, j = 0; i < count; i++) 
             {
                 int index = indices[i];
-                int x = (index % level.Width);
-                int y = (index / level.Width) / level.Length;
-                int z = (index / level.Width) % level.Length;
+                int x = index % level.Width;
+                int y = index / level.Width / level.Length;
+                int z = index / level.Width % level.Length;
                 
                 data[j++] = Opcode.SetBlock;
                 data[j++] = (byte)(x >> 8); data[j++] = (byte)x;

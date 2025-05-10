@@ -25,14 +25,14 @@ using System;
 using System.Collections.Generic;
 using MCGalaxy.Blocks.Physics;
 using MCGalaxy.Events.EntityEvents;
-using MCGalaxy.Events.LevelEvents;
 using MCGalaxy.Events.PlayerEvents;
 using MCGalaxy.Maths;
 using MCGalaxy.Tasks;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Games {
-    
+namespace MCGalaxy.Games
+{
+
     public sealed partial class TWGame : RoundsGame {
         
         protected override void HookEventHandlers() {
@@ -183,7 +183,7 @@ namespace MCGalaxy.Games {
             }
             
             if ((C.Data.Data >> 4) < threshold) {
-                C.Data.Data += (1 << 4);
+                C.Data.Data += 1 << 4;
                 TntPhysics.ToggleFuse(lvl, x, (ushort)(y + 1), z);
                 return;
             }

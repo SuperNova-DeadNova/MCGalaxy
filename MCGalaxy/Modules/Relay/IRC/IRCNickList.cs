@@ -15,18 +15,11 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
-using MCGalaxy.Events.PlayerEvents;
-using MCGalaxy.Events.ServerEvents;
-using MCGalaxy.Modules.Relay;
-using MCGalaxy.Network;
 using Sharkbite.Irc;
 
-namespace MCGalaxy.Modules.Relay.IRC 
-{    
+namespace MCGalaxy.Modules.Relay.IRC
+{
     /// <summary> Manages a list of IRC nicks and asssociated permissions </summary>
     sealed class IRCNickList 
     {

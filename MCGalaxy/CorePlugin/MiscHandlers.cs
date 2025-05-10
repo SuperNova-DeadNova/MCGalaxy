@@ -17,15 +17,12 @@
  */
 using System;
 using MCGalaxy.Blocks.Extended;
-using MCGalaxy.DB;
-using MCGalaxy.Events;
 using MCGalaxy.Events.PlayerEvents;
 using MCGalaxy.Maths;
-using MCGalaxy.Network;
-using MCGalaxy.Util;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Core {
+namespace MCGalaxy.Core
+{
     internal static class MiscHandlers {
         
         internal static void HandlePlayerMove(Player p, Position next, byte yaw, byte pitch) {

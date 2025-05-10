@@ -20,10 +20,9 @@ using System.Collections.Generic;
 using System.Threading;
 using MCGalaxy.Commands;
 using MCGalaxy.Generator.fCraft;
-using MCGalaxy.Generator.Realistic;
 using ClassicalSharp.Generator;
 
-namespace MCGalaxy.Generator 
+namespace MCGalaxy.Generator
 {
     public delegate bool MapGenFunc(Player p, Level lvl, string seed);
     public enum GenType { Simple, fCraft, Advanced };

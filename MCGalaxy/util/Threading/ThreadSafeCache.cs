@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using MCGalaxy.Tasks;
 
 namespace MCGalaxy.Util {
-    public sealed class ThreadSafeCache {
+    public class ThreadSafeCache {
         public static ThreadSafeCache DBCache = new ThreadSafeCache();
             
         readonly object locker = new object();

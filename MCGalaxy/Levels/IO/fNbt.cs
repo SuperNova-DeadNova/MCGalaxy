@@ -275,7 +275,7 @@ namespace fNbt {
         readonly byte[] strBuffer = new byte[64];
 
         public NbtBinaryReader(Stream input, bool bigEndian) : base(input) {
-            swapNeeded = (BitConverter.IsLittleEndian == bigEndian);
+            swapNeeded = BitConverter.IsLittleEndian == bigEndian;
         }
 
         public NbtTagType ReadTagType() {

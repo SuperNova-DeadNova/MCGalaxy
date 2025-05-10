@@ -15,15 +15,12 @@ permissions and limitations under the Licenses.
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net.Sockets;
-using System.Text;
-using MCGalaxy.Events;
 using MCGalaxy.Events.PlayerEvents;
 using MCGalaxy.Network;
 using BlockID = System.UInt16;
 using BlockRaw = System.Byte;
 
-namespace MCGalaxy 
+namespace MCGalaxy
 {
     public partial class Player : IDisposable, INetProtocol 
     {
@@ -67,7 +64,6 @@ namespace MCGalaxy
             }
         }
         
-        #if TEN_BIT_BLOCKS
         BlockID ReadBlock(byte[] buffer, int offset) {
             BlockID block;
             if (hasExtBlocks) {
@@ -79,9 +75,6 @@ namespace MCGalaxy
             if (block > Block.MaxRaw) block = Block.MaxRaw;
             return Block.FromRaw(block);
         }
-        #else
-        BlockID ReadBlock(byte[] buffer, int offset) { return Block.FromRaw(buffer[offset]); }
-        #endif
                 
         int HandleBlockchange(byte[] buffer, int offset, int left) {
             int size = 1 + 6 + 1 + (hasExtBlocks ? 2 : 1);
@@ -120,23 +113,13 @@ namespace MCGalaxy
             foreach (string line in lines) { Message(line); }
         }
         
-        [Obsolete("Use p.Message(message) instead", true)]
-        public static void Message(Player p, string message) {
-            if (p == null) p = Console;
-            p.Message(0, message);
-        }
-        [Obsolete("Use p.Message(message) instead", true)]
-        public static void SendMessage(Player p, string message) { Message(p, message); }
+
         
         public void Message(string message, object a0) { Message(string.Format(message, a0)); }  
         public void Message(string message, object a0, object a1) { Message(string.Format(message, a0, a1)); }       
         public void Message(string message, object a0, object a1, object a2) { Message(string.Format(message, a0, a1, a2)); }       
         public void Message(string message, params object[] args) { Message(string.Format(message, args)); }
         
-        [Obsolete("Use Message(message) instead", true)]
-        public void SendMessage(string message) { Message(0, message); } 
-        [Obsolete("Use Message(id, message) instead", true)]
-        public void SendMessage(byte id, string message) { Message(id, message); }
         public void Message(string message) { Message(0, message); }
         
         // Need to combine chat line packets into one Send call, so that

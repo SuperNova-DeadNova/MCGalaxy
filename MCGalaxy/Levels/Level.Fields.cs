@@ -21,13 +21,12 @@ using System.Threading;
 using MCGalaxy.Blocks;
 using MCGalaxy.Blocks.Physics;
 using MCGalaxy.DB;
-using MCGalaxy.Config;
-using MCGalaxy.Games;
 using MCGalaxy.Maths;
 using MCGalaxy.Network;
 using MCGalaxy.Util;
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
     public sealed partial class Level : IDisposable {
 
         /// <summary>
@@ -114,7 +113,7 @@ namespace MCGalaxy {
         public bool CanDelete { get { return Config.Deletable && Config.BuildType != BuildType.NoModify; } }
 
         public int WinChance {
-            get { return Config.RoundsPlayed == 0 ? 100 : (Config.RoundsHumanWon * 100) / Config.RoundsPlayed; }
+            get { return Config.RoundsPlayed == 0 ? 100 : Config.RoundsHumanWon * 100 / Config.RoundsPlayed; }
         }
         
         internal bool hasPortals, hasMessageBlocks;

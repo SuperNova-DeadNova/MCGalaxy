@@ -15,12 +15,10 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
-using MCGalaxy.Events.LevelEvents;
 using MCGalaxy.Events.PlayerEvents;
 
-namespace MCGalaxy.Games 
-{    
+namespace MCGalaxy.Games
+{
     public sealed partial class CountdownGame : RoundsGame 
     {       
          protected override void HookEventHandlers() {

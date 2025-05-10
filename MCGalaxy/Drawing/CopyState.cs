@@ -80,25 +80,15 @@ namespace MCGalaxy.Drawing
         
         public BlockID Get(int index) {
             byte raw = blocks[index];            
-            #if TEN_BIT_BLOCKS
             BlockID extended = Block.ExtendedBase[raw];
             if (extended == 0) return raw;
             byte[] chunk = extBlocks[index >> chunkShift];
             return chunk == null ? Block.Air : (BlockID)(extended | chunk[index & chunkMask]);
-            #else
-            if (raw != Block.custom_block) return raw;
-            byte[] chunk = extBlocks[index >> chunkShift];
-            return chunk == null ? Block.Air : (BlockID)(Block.Extended | chunk[index & chunkMask]);
-            #endif
         }
         
         public void Set(BlockID block, int index) {
             if (block >= Block.Extended) {
-                #if TEN_BIT_BLOCKS
                 blocks[index] = Block.ExtendedClass[block >> Block.ExtendedShift];
-                #else
-                blocks[index] = Block.custom_block;
-                #endif
                 
                 byte[] chunk = extBlocks[index >> chunkShift];
                 if (chunk == null) {
@@ -250,9 +240,9 @@ namespace MCGalaxy.Drawing
             }
             
             Init(minX, minY, minZ,
-                 (maxX - minX) + 1,
-                 (maxY - minY) + 1,
-                 (maxZ - minZ) + 1);
+                 maxX - minX + 1,
+                 maxY - minY + 1,
+                 maxZ - minZ + 1);
         }
     }
 }

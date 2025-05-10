@@ -15,13 +15,11 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
-using MCGalaxy.Events;
 using MCGalaxy.Events.PlayerEvents;
-using MCGalaxy.Events.LevelEvents;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Games {
+namespace MCGalaxy.Games
+{
     public sealed partial class LSGame : RoundsGame {
 
         protected override void HookEventHandlers() {

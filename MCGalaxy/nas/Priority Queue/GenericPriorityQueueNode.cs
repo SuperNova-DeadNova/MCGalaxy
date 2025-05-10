@@ -6,24 +6,24 @@
         /// The Priority to insert this node at.
         /// Cannot be manually edited - see queue.Enqueue() and queue.UpdatePriority() instead
         /// </summary>
-        public TPriority Priority { get; protected internal set; }
+        public TPriority Priority { get; set; }
 
         /// <summary>
         /// Represents the current position in the queue
         /// </summary>
-        public int QueueIndex { get; internal set; }
+        public int QueueIndex { get; set; }
 
         /// <summary>
         /// Represents the order the node was inserted in
         /// </summary>
-        public long InsertionIndex { get; internal set; }
+        public long InsertionIndex { get; set; }
 
 
 #if DEBUG
         /// <summary>
         /// The queue this node is tied to. Used only for debug builds.
         /// </summary>
-        public object Queue { get; internal set; }
+        public object Queue { get; set; }
 #endif
     }
 }

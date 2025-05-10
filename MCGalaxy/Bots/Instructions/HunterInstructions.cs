@@ -160,7 +160,7 @@ namespace MCGalaxy.Bots {
             int srcHeight = ModelInfo.CalcEyeHeight(p);
             int dstHeight = ModelInfo.CalcEyeHeight(bot);
             
-            int dx = p.Pos.X - bot.Pos.X, dy = (p.Pos.Y + srcHeight) - (bot.Pos.Y + dstHeight), dz = p.Pos.Z - bot.Pos.Z;
+            int dx = p.Pos.X - bot.Pos.X, dy = p.Pos.Y + srcHeight - (bot.Pos.Y + dstHeight), dz = p.Pos.Z - bot.Pos.Z;
             Vec3F32 dir = new Vec3F32(dx, dy, dz);
             dir = Vec3F32.Normalise(dir);
             

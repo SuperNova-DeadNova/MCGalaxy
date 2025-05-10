@@ -17,14 +17,13 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using MCGalaxy.Events.EntityEvents;
-using MCGalaxy.Events.LevelEvents;
 using MCGalaxy.Events.PlayerEvents;
 using MCGalaxy.Maths;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Games {
+namespace MCGalaxy.Games
+{
     public sealed partial class CTFGame : RoundsGame {
 
         protected override void HookEventHandlers() {

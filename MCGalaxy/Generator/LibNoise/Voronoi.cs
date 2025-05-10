@@ -20,8 +20,6 @@
 // DEALINGS IN THE SOFTWARE.
 // 
 
-using System;
-
 namespace LibNoise
 {
     public sealed class Voronoi : IModule
@@ -42,9 +40,9 @@ namespace LibNoise
             y *= Frequency;
             z *= Frequency;
 
-            int xInt = (x > 0.0 ? (int)x : (int)x - 1);
-            int yInt = (y > 0.0 ? (int)y : (int)y - 1);
-            int zInt = (z > 0.0 ? (int)z : (int)z - 1);
+            int xInt = x > 0.0 ? (int)x : (int)x - 1;
+            int yInt = y > 0.0 ? (int)y : (int)y - 1;
+            int zInt = z > 0.0 ? (int)z : (int)z - 1;
 
             double minDist = 2147483647.0;
             double xCandidate = 0;
@@ -84,9 +82,9 @@ namespace LibNoise
                 }
             }
 
-            int x0 = (xCandidate > 0.0 ? (int)xCandidate : (int)xCandidate - 1);
-            int y0 = (yCandidate > 0.0 ? (int)yCandidate : (int)yCandidate - 1);
-            int z0 = (zCandidate > 0.0 ? (int)zCandidate : (int)zCandidate - 1);
+            int x0 = xCandidate > 0.0 ? (int)xCandidate : (int)xCandidate - 1;
+            int y0 = yCandidate > 0.0 ? (int)yCandidate : (int)yCandidate - 1;
+            int z0 = zCandidate > 0.0 ? (int)zCandidate : (int)zCandidate - 1;
 
             // Return the calculated distance with the displacement value applied.
             return Displacement * (double)ValueNoise(x0, y0, z0);

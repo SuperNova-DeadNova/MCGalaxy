@@ -18,9 +18,8 @@
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using MCGalaxy.Drawing.Ops;
 
-namespace MCGalaxy.Drawing 
+namespace MCGalaxy.Drawing
 {
     public delegate Pixel PixelGet(int x, int y);
     public struct Pixel { public byte A, R, G, B; }
@@ -70,14 +69,14 @@ namespace MCGalaxy.Drawing
         
         Pixel Get24BppPixel(int x, int y) {
             Pixel pixel;
-            byte* ptr = (scan0 + y * stride) + (x * 3);
+            byte* ptr = scan0 + y * stride + (x * 3);
             pixel.B = ptr[0]; pixel.G = ptr[1]; pixel.R = ptr[2]; pixel.A = 255;
             return pixel;
         }
         
         Pixel Get32BppPixel(int x, int y) {
             Pixel pixel;
-            byte* ptr = (scan0 + y * stride) + (x * 4);            
+            byte* ptr = scan0 + y * stride + (x * 4);            
             pixel.B = ptr[0]; pixel.G = ptr[1]; pixel.R = ptr[2]; pixel.A = ptr[3];
             return pixel;
         }

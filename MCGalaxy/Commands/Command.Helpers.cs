@@ -15,13 +15,13 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using MCGalaxy.Commands;
 using MCGalaxy.Eco;
 using MCGalaxy.Games;
 
-namespace MCGalaxy {
-    
+namespace MCGalaxy
+{
+
     public abstract partial class Command {
 
         const CommandEnable bothFlags = CommandEnable.Lava | CommandEnable.Zombie;

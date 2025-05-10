@@ -18,11 +18,10 @@
     permissions and limitations under the Licenses.
  */
 using System;
-using System.Data;
-using MCGalaxy.DB;
 using MCGalaxy.SQL;
 
-namespace MCGalaxy.Commands.Info { 
+namespace MCGalaxy.Commands.Info
+{
     public sealed class CmdOpStats : Command2 {
         public override string name { get { return "OpStats"; } }
         public override string type { get { return CommandTypes.Information; } }

@@ -15,13 +15,13 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.Collections.Generic;
 using System.IO;
 using MCGalaxy.Commands;
 
-namespace MCGalaxy.Eco {
-    
+namespace MCGalaxy.Eco
+{
+
     /// <summary> An abstract object that can be bought in the economy. (e.g. a rank, title, levels, etc) </summary>
     public abstract class Item {
         

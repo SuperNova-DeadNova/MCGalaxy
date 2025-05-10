@@ -16,17 +16,17 @@
     permissions and limitations under the Licenses.
  */
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using MCGalaxy.DB;
 
-namespace MCGalaxy.Gui {
+namespace MCGalaxy.Gui
+{
     public sealed class PlayerProperties {
         readonly Player p;
         string inMsg, outMsg;
         
         public PlayerProperties(Player player) {
-            this.p = player;
+            p = player;
             inMsg  = PlayerDB.GetLoginMessage(player);
             outMsg = PlayerDB.GetLogoutMessage(player);
         }

@@ -21,21 +21,18 @@
  */
 
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Net.Sockets;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
 
 namespace Sharkbite.Irc
 {
-	/// <summary>
-	/// This class manages the connection to the IRC server and provides
-	/// access to all the objects needed to send and receive messages.
-	/// </summary>
-	public sealed class Connection
+    /// <summary>
+    /// This class manages the connection to the IRC server and provides
+    /// access to all the objects needed to send and receive messages.
+    /// </summary>
+    public sealed class Connection
 	{
 		TcpClient client;
 		StreamReader reader;

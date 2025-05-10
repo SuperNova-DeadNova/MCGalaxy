@@ -18,16 +18,15 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
-using MCGalaxy.Commands.World;
 using MCGalaxy.DB;
 using MCGalaxy.Games;
 using MCGalaxy.Generator;
 using MCGalaxy.Network;
 using MCGalaxy.Tasks;
-using MCGalaxy.Util;
 
-namespace MCGalaxy {
-    
+namespace MCGalaxy
+{
+
     public sealed partial class Server {
 
         static void LoadMainLevel(SchedulerTask task) {

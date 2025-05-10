@@ -17,11 +17,11 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Data;
 using MCGalaxy.Maths;
 using MCGalaxy.SQL;
 
-namespace MCGalaxy.Blocks.Extended {
+namespace MCGalaxy.Blocks.Extended
+{
     public static class MessageBlock {
         
         public static bool Handle(Player p, ushort x, ushort y, ushort z, bool alwaysRepeat) {
@@ -31,7 +31,7 @@ namespace MCGalaxy.Blocks.Extended {
             if (message == null) return false;
             message = message.Replace("@p", p.name);
             
-            if (message != p.prevMsg || (alwaysRepeat || Server.Config.RepeatMBs)) {
+            if (message != p.prevMsg || alwaysRepeat || Server.Config.RepeatMBs) {
                 Execute(p, message, new Vec3S32(x, y, z));
             }
             return true;

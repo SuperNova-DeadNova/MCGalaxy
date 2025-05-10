@@ -20,9 +20,9 @@
  */
 using System;
 using System.Collections.Generic;
-using MCGalaxy.Events.PlayerEvents;
 
-namespace MCGalaxy.Commands.Moderation {
+namespace MCGalaxy.Commands.Moderation
+{
     public sealed class CmdReview : Command2 {
         public override string name { get { return "Review"; } }
         public override string shortcut { get { return "rvw"; } }

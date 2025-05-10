@@ -6,15 +6,13 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
-
 namespace NotAwesomeSurvival
 {
-	/// <summary>
-	/// Description of NasLevel_Adventure.
-	/// </summary>
-	public partial class NasAdventure : NasLevel
-	{
-		
-	}
+    /// <summary>
+    /// Description of NasLevel_Adventure.
+    /// </summary>
+    public partial class NasAdventure : NasLevel
+    {
+
+    }
 }

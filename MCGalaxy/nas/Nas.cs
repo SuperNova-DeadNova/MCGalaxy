@@ -1,51 +1,58 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 using MCGalaxy;
-using BlockID = System.UInt16;
 using MCGalaxy.DB;
 using MCGalaxy.Events.PlayerEvents;
 using MCGalaxy.Network;
 using MCGalaxy.Commands;
-using MCGalaxy.Tasks;
 //unknownshadow200: well player ids go from 0 up to 255. normal bots go from 127 down to 64, then 254 down to 127, then finally 63 down to 0.
-
 //UnknownShadow200: FromRaw adds 256 if the block id is >= 66, and ToRaw subtracts 256 if the block id is >= 66
-//"raw" is MCGalaxy's name for clientBlockID
+//"raw" is MCGalaxy's name for clientushort
 ///model |0.93023255813953488372093023255814
-
 //gravestone drops upon death that contains your inventory
 //different types of crafting stations
 //furnace for smelting-style recipes
-
-
-
 namespace NotAwesomeSurvival
 {
-
-    public sealed class Nas : Plugin
+    public class Nas : Plugin
     {
-        public override string name { get { return "nas"; } }
-        public override string MCGalaxy_Version { get { return "1.9.2.5"; } }
-        public override string creator { get { return "goodly"; } }
-        const string textureURL = "https://dl.dropbox.com/s/xum0t6ld9g489ax/nas.zip";
-        const string KeyPrefix = "nas_";
+        public override string name 
+        { 
+            get 
+            { 
+                return "nas"; 
+            } 
+        }
+        public override string MCGalaxy_Version 
+        { 
+            get 
+            { 
+                return "1.9.2.5"; 
+            } 
+        }
+        public override string creator 
+        { 
+            get 
+            { 
+                return "goodly"; 
+            } 
+        }
+        public const string textureURL = "https://dl.dropboxusercontent.com/s/2x5oxffkgpcyj16/nas.zip?dl=0";
+        public const string KeyPrefix = "nas_";
         public const string PlayerKey = KeyPrefix + "NasPlayer";
-        public const string Path = "plugins/nas/";
+        public const string Path = "nas/";
         public const string SavePath = Path + "playerdata/";
         public const string CoreSavePath = Path + "coredata/";
         public static string GetSavePath(Player p)
         {
             return SavePath + p.name + ".json";
         }
-
         public static string GetTextPath(Player p)
         {
-            return SavePath + p.name + "text.txt";
+            return SavePath + p.name + ".txt";
         }
-
         public static bool firstEverPluginLoad = true;
         public override void Load(bool startup)
         {
@@ -55,22 +62,14 @@ namespace NotAwesomeSurvival
             }
             if (!File.Exists("text/BookAuthors.txt"))
             {
-                File.WriteAllText("text/BookAuthors.txt","");
-            }
-            string loadFile = "properties/loaded.txt";
-            string message = "Do not delete this file unless you are using the plugin for the first time!";
-            if (!File.Exists(loadFile))
-            {
-                firstEverPluginLoad = true;
-                File.WriteAllText(loadFile, message);
+                File.WriteAllText("text/BookAuthors.txt", "");
             }
             if (Block.Props.Length != 1024)
             { //check for TEN_BIT_BLOCKS. Value is 512 on a default instance of MCGalaxy.
                 Player.Console.Message("NAS: FAILED to load plugin. In order to run NAS, you must be using a version of MCGalaxy which allows 767 blocks.");
-                Player.Console.Message("NAS: You can find instructions for 767 blocks here: https://github.com/UnknownShadow200/MCGalaxy/tree/master/Uploads (infid)");
+                Player.Console.Message("NAS: You can find instructions for 767 blocks here: https://github.com/ClassiCube/MCGalaxy/tree/master/Uploads (infid)");
                 return;
             }
-
             if (File.Exists("plugins/Newtonsoft.Json"))
             {
                 if (!File.Exists("Newtonsoft.Json.dll"))
@@ -84,17 +83,33 @@ namespace NotAwesomeSurvival
             }
             if (!File.Exists("Newtonsoft.Json.dll"))
             {
-                Player.Console.Message("NAS: FAILED to load plugin. Could not find Newtonsoft.Json.dll"); return;
+                Player.Console.Message("NAS: FAILED to load plugin. Could not find Newtonsoft.Json.dll"); 
+                return;
             }
-
-
-            if (!Directory.Exists(Path)) { Directory.CreateDirectory(Path); }
-            if (!Directory.Exists(NasLevel.Path)) { Directory.CreateDirectory(NasLevel.Path); }
-            if (!Directory.Exists(SavePath)) { Directory.CreateDirectory(SavePath); }
-            if (!Directory.Exists(CoreSavePath)) { Directory.CreateDirectory(CoreSavePath); }
-            if (!Directory.Exists(NassEffect.Path)) { Directory.CreateDirectory(NassEffect.Path); }
-            if (!Directory.Exists("blockprops")) { Directory.CreateDirectory("blockprops"); }
-
+            if (!Directory.Exists(Path)) 
+            { 
+                Directory.CreateDirectory(Path); 
+            }
+            if (!Directory.Exists(NasLevel.Path)) 
+            { 
+                Directory.CreateDirectory(NasLevel.Path); 
+            }
+            if (!Directory.Exists(SavePath)) 
+            { 
+                Directory.CreateDirectory(SavePath); 
+            }
+            if (!Directory.Exists(CoreSavePath)) 
+            { 
+                Directory.CreateDirectory(CoreSavePath); 
+            }
+            if (!Directory.Exists(NassEffect.Path)) 
+            { 
+                Directory.CreateDirectory(NassEffect.Path); 
+            }
+            if (!Directory.Exists("blockprops")) 
+            { 
+                Directory.CreateDirectory("blockprops"); 
+            }
             //I HATE IT
             MoveFile("global.json", "blockdefs/global.json"); //blockdefs
             MoveFile("default.txt", "blockprops/default.txt"); //blockprops
@@ -105,8 +120,13 @@ namespace NotAwesomeSurvival
             MoveFile("faq.txt", "text/faq.txt"); //faq
             MoveFile("messages.txt", "text/messages.txt"); //messages
             MoveFile("welcome.txt", "text/welcome.txt"); //welcome
-
-
+            string loadFile = "properties/loaded.txt";
+            string message = "Do not delete this file unless you are using the plugin for the first time!";
+            if (!File.Exists(loadFile))
+            {
+                firstEverPluginLoad = true;
+                File.WriteAllText(loadFile, message);
+            }
             if (firstEverPluginLoad)
             {
                 Server.Config.DefaultTexture = textureURL;
@@ -128,11 +148,23 @@ namespace NotAwesomeSurvival
             Command.Register(new NasPlayer.CmdBarrelMode());
             NasPlayer.Setup();
             NasBlock.Setup();
-            if (!NassEffect.Setup()) { FailedLoad(); return; }
-            if (!NasBlockChange.Setup()) { FailedLoad(); return; }
+            if (!NassEffect.Setup()) 
+            { 
+                FailedLoad(); 
+                return; 
+            }
+            if (!NasBlockChange.Setup()) 
+            { 
+                FailedLoad(); 
+                return; 
+            }
             ItemProp.Setup();
             Crafting.Setup();
-            if (!DynamicColor.Setup()) { FailedLoad(); return; }
+            if (!DynamicColor.Setup()) 
+            { 
+                FailedLoad();
+                return; 
+            }
             Collision.Setup();
             OnPlayerConnectEvent.Register(OnPlayerConnect, Priority.High);
             OnPlayerClickEvent.Register(OnPlayerClick, Priority.High);
@@ -145,9 +177,6 @@ namespace NotAwesomeSurvival
             NasGen.Setup();
             NasLevel.Setup();
             NasTimeCycle.Setup();
-
-
-
             if (firstEverPluginLoad)
             {
                 //Player.Console.Message("GENERATING NEW MAP FIRST TIME EVER also main is {0}", lvl.name);
@@ -172,43 +201,43 @@ namespace NotAwesomeSurvival
                 }
             }
         }
-
-        void PvP(Player p, Player target)
+        public void PvP(Player p, Player target)
         {
             if (NasPlayer.GetNasPlayer(target).pvpEnabled)
             {
-                p.Message("&7  %fPLAYER HAS PVP %2ENABLED");
+                p.Message("&7  &fPLAYER HAS PVP &2ENABLED");
             }
             else
             {
-                p.Message("&7  %fPLAYER HAS PVP %cDISABLED");
+                p.Message("&7  &fPLAYER HAS PVP &cDISABLED");
             }
         }
-
-        void Kills(Player p, Player target)
+        public void Kills(Player p, Player target)
         {
             NasPlayer np = NasPlayer.GetNasPlayer(target);
             p.Message("&7  &7Player has " + np.kills + " kills.");
         }
-
-        static void MoveFile(string pluginFile, string destFile)
+        public static void MoveFile(string pluginFile, string destFile)
         {
             pluginFile = "plugins/" + pluginFile;
             if (File.Exists(pluginFile))
             {
-                if (File.Exists(destFile)) { File.Delete(destFile); }
+                if (File.Exists(destFile)) 
+                { 
+                    File.Delete(destFile); 
+                }
                 File.Move(pluginFile, destFile);
             }
             else
             {
-                //firstEverPluginLoad = false;
             }
         }
-        static void FailedLoad()
+        public static void FailedLoad()
         {
-            Player.Console.Message("NAS: FAILED to load plugin. Please follow the instructions found on github.");
+            string msg = "NAS: FAILED to load plugin. Please report this to randomstrangers on Discord!";
+            //string msg = "NAS: FAILED to load plugin. Please follow the instructions found on github.";
+            Player.Console.Message(msg);
         }
-
         public override void Unload(bool shutdown)
         {
             NasPlayer.TakeDown();
@@ -228,25 +257,23 @@ namespace NotAwesomeSurvival
             OnPlayerCommandEvent.Unregister(OnPlayerCommand);
             NasLevel.TakeDown();
             NasTimeCycle.TakeDown();
-
         }
-
-        static void OnLevelJoined(Player p, Level prevLevel, Level level, ref bool announce)
+        public static void OnLevelJoined(Player p, Level prevLevel, Level level, ref bool announce)
         {
             level.Config.SkyColor = NasTimeCycle.globalSkyColor;
             level.Config.CloudColor = NasTimeCycle.globalCloudColor;
             level.Config.LightColor = NasTimeCycle.globalSunColor;
         }
-
-        static void OnPlayerConnect(Player p)
+        public static void OnPlayerConnect(Player p)
         {
             //Player.Console.Message("OnPlayerConnect");
             string path = GetSavePath(p);
             string pathText = GetTextPath(p);
-
             NasPlayer np;
-
-            if (!File.Exists(pathText)) File.Create(pathText).Dispose();
+            if (!File.Exists(pathText))
+            {
+                File.Create(pathText).Dispose();
+            }
             if (File.Exists(path))
             {
                 string jsonString = File.ReadAllText(path);
@@ -278,69 +305,85 @@ namespace NotAwesomeSurvival
             p.Send(Packet.TextHotKey("NasHotkey", "/nas hotbar down◙", 208, 0, true));
             p.Send(Packet.TextHotKey("NasHotkey", "/nas hotbar left◙", 203, 0, true));
             p.Send(Packet.TextHotKey("NasHotkey", "/nas hotbar right◙", 205, 0, true));
-
             //WASD (lol)
             p.Send(Packet.TextHotKey("NasHotkey", "/nas hotbar bagopen up◙", 17, 0, true));
             p.Send(Packet.TextHotKey("NasHotkey", "/nas hotbar bagopen down◙", 31, 0, true));
             p.Send(Packet.TextHotKey("NasHotkey", "/nas hotbar bagopen left◙", 30, 0, true));
             p.Send(Packet.TextHotKey("NasHotkey", "/nas hotbar bagopen right◙", 32, 0, true));
-
             //M and R
             p.Send(Packet.TextHotKey("NasHotkey", "/nas hotbar move◙", 50, 0, true)); //was 50 (M) was 42 (shift)
             p.Send(Packet.TextHotKey("NasHotkey", "/nas hotbar inv◙", 19, 0, true)); //was 23 (i)
-
             p.Send(Packet.TextHotKey("NasHotkey", "/nas hotbar delete◙", 45, 0, true));
             p.Send(Packet.TextHotKey("NasHotkey", "/nas hotbar confirmdelete◙", 25, 0, true));
-
             p.Send(Packet.TextHotKey("NasHotkey", "/nas hotbar toolinfo◙", 23, 0, true));
-
         }
-        static void OnPlayerCommand(Player p, string cmd, string message, CommandData data)
+        public static void OnPlayerCommand(Player p, string cmd, string message, CommandData data)
         {
             if (cmd.CaselessEq("setall"))
             {
-                if (p.Rank < LevelPermission.Operator) { return; }
-
+                if (p.Rank < LevelPermission.Operator) 
+                { 
+                    return; 
+                }
                 foreach (Command _cmd in Command.allCmds)
                 {
                     //p.Message("name {0}", _cmd.name);
                     Command.Find("cmdset").Use(p, _cmd.name + " Operator");
-
                 }
                 p.cancelcommand = true;
                 return;
             }
             if (cmd.CaselessEq("gentree"))
             {
-                if (p.Rank < LevelPermission.Operator) { return; }
+                if (p.Rank < LevelPermission.Operator) 
+                { 
+                    return; 
+                }
                 string[] messageString = message.SplitSpaces();
                 NasTree.GenSwampTree(NasLevel.Get(p.level.name), new Random(), int.Parse(messageString[0]), int.Parse(messageString[1]), int.Parse(messageString[2]));
                 p.cancelcommand = true;
                 return;
             }
-
             if (cmd.CaselessEq("time") && message.SplitSpaces()[0] == "set")
             {
                 if (message.SplitSpaces().Length > 1)
                 {
                     int time = 0;
                     string setTime = message.SplitSpaces()[1];
-                    if (setTime == "sunrise") { time = 8 * NasTimeCycle.hourMinutes; }
+                    if (setTime == "sunrise") 
+                    { 
+                        time = 8 * NasTimeCycle.hourMinutes; 
+                    }
                     else
                     {
-                        if (setTime == "day") { time = 7 * NasTimeCycle.hourMinutes; }
+                        if (setTime == "day") 
+                        { 
+                            time = 7 * NasTimeCycle.hourMinutes;
+                        }
                         else
                         {
-                            if (setTime == "sunset") { time = 19 * NasTimeCycle.hourMinutes; }
+                            if (setTime == "sunset") 
+                            { 
+                                time = 19 * NasTimeCycle.hourMinutes; 
+                            }
                             else
                             {
-                                if (setTime == "night") { time = 20 * NasTimeCycle.hourMinutes; }
+                                if (setTime == "night") 
+                                { 
+                                    time = 20 * NasTimeCycle.hourMinutes; 
+                                }
                                 else
                                 {
-                                    if (setTime == "midnight") { time = 0; }
+                                    if (setTime == "midnight") 
+                                    { 
+                                        time = 0; 
+                                    }
                                     else
                                     {
-                                        if (!CommandParser.GetInt(p, setTime, "Amount", ref time, 0)) { return; }
+                                        if (!CommandParser.GetInt(p, setTime, "Amount", ref time, 0)) 
+                                        { 
+                                            return; 
+                                        }
                                     }
                                 }
                             }
@@ -356,10 +399,12 @@ namespace NotAwesomeSurvival
                 p.cancelcommand = true;
                 return;
             }
-
             if (cmd.CaselessEq("deleteall") && p.Rank >= LevelPermission.Operator)
             {
-                if (message.Length == 0) { return; }
+                if (message.Length == 0) 
+                { 
+                    return; 
+                }
                 string[] allMaps = LevelInfo.AllMapNames();
                 Command deleteLvl = Command.Find("deletelvl");
                 foreach (string mapName in allMaps)
@@ -372,20 +417,22 @@ namespace NotAwesomeSurvival
                 p.cancelcommand = true;
                 return;
             }
-
             if (cmd.CaselessEq("color"))
             {
-                if (message.Length == 0) { return; }
+                if (message.Length == 0) 
+                { 
+                    return; 
+                }
                 string[] args = message.Split(' ');
                 string color = args[args.Length - 1];
                 if (Matcher.FindColor(p, color) == "&h")
                 {
                     p.Message("That color isn't allowed in names.");
-                    p.cancelcommand = true; return;
+                    p.cancelcommand = true; 
+                    return;
                 }
                 return;
             }
-
             if (cmd.CaselessEq("staff"))
             {
                 if (message != "alt")
@@ -395,21 +442,24 @@ namespace NotAwesomeSurvival
                     return;
                 }
             }
-
             if (cmd.CaselessEq("smite"))
             {
-                if (p.Rank < LevelPermission.Operator) { return; }
+                if (p.Rank < LevelPermission.Operator) 
+                { 
+                    return; 
+                }
                 NasPlayer nw = NasPlayer.GetNasPlayer(PlayerInfo.FindMatches(p, message));
                 nw.lastAttackedPlayer = p;
-                nw.TakeDamage(50, NasEntity.DamageSource.Entity, "@p %fwas smote by " + p.ColoredName);
+                nw.TakeDamage(50, NasEntity.DamageSource.Entity, "@p &fwas smote by " + p.ColoredName);
                 return;
             }
-
-            if (!cmd.CaselessEq("nas")) { return; }
+            if (!cmd.CaselessEq("nas")) 
+            { 
+                return; 
+            }
             p.cancelcommand = true;
             NasPlayer np = (NasPlayer)p.Extras[PlayerKey];
             string[] words = message.Split(' ');
-
             if (words.Length > 1 && words[0] == "hotbar")
             {
                 string hotbarFunc = words[1];
@@ -418,51 +468,113 @@ namespace NotAwesomeSurvival
                     string func2 = words[2];
                     if (hotbarFunc == "bagopen")
                     {
-                        if (!np.inventory.bagOpen) { return; }
-                        if (func2 == "left") { np.inventory.MoveItemBarSelection(-1); return; }
-                        if (func2 == "right") { np.inventory.MoveItemBarSelection(1); return; }
-                        if (func2 == "up") { np.inventory.MoveItemBarSelection(-Inventory.itemBarLength); return; }
-                        if (func2 == "down") { np.inventory.MoveItemBarSelection(Inventory.itemBarLength); return; }
+                        if (!np.inventory.bagOpen) 
+                        {
+                            return; 
+                        }
+                        if (func2 == "left") 
+                        { 
+                            np.inventory.MoveItemBarSelection(-1); 
+                            return; 
+                        }
+                        if (func2 == "right") 
+                        { 
+                            np.inventory.MoveItemBarSelection(1); 
+                            return; 
+                        }
+                        if (func2 == "up") 
+                        { 
+                            np.inventory.MoveItemBarSelection(-Inventory.itemBarLength); 
+                            return; 
+                        }
+                        if (func2 == "down") 
+                        { 
+                            np.inventory.MoveItemBarSelection(Inventory.itemBarLength); 
+                            return; 
+                        }
                     }
                     return;
                 }
-
-                if (hotbarFunc == "left") { np.inventory.MoveItemBarSelection(-1); return; }
-                if (hotbarFunc == "right") { np.inventory.MoveItemBarSelection(1); return; }
-
-                if (hotbarFunc == "up") { np.inventory.MoveItemBarSelection(-Inventory.itemBarLength); return; }
-                if (hotbarFunc == "down") { np.inventory.MoveItemBarSelection(Inventory.itemBarLength); return; }
-
-                if (hotbarFunc == "move") { np.inventory.DoItemMove(); return; }
-                if (hotbarFunc == "inv") { np.inventory.ToggleBagOpen(); return; }
-
-                if (hotbarFunc == "delete") { np.inventory.DeleteItem(); return; }
-                if (hotbarFunc == "confirmdelete") { np.inventory.DeleteItem(true); return; }
-
-                if (hotbarFunc == "toolinfo") { np.inventory.ToolInfo(); return; }
-
+                if (hotbarFunc == "left") 
+                {
+                    np.inventory.MoveItemBarSelection(-1); 
+                    return; 
+                }
+                if (hotbarFunc == "right") 
+                { 
+                    np.inventory.MoveItemBarSelection(1); 
+                    return; 
+                }
+                if (hotbarFunc == "up") 
+                { 
+                    np.inventory.MoveItemBarSelection(-Inventory.itemBarLength); 
+                    return; 
+                }
+                if (hotbarFunc == "down") 
+                { 
+                    np.inventory.MoveItemBarSelection(Inventory.itemBarLength); 
+                    return; 
+                }
+                if (hotbarFunc == "move") 
+                { 
+                    np.inventory.DoItemMove(); 
+                    return;
+                }
+                if (hotbarFunc == "inv") 
+                { 
+                    np.inventory.ToggleBagOpen(); 
+                    return; 
+                }
+                if (hotbarFunc == "delete") 
+                { 
+                    np.inventory.DeleteItem(); 
+                    return; 
+                }
+                if (hotbarFunc == "confirmdelete") 
+                { 
+                    np.inventory.DeleteItem(true); 
+                    return; 
+                }
+                if (hotbarFunc == "toolinfo") 
+                {
+                    np.inventory.ToolInfo(); 
+                    return; 
+                }
                 return;
             }
         }
-
-        static void OnPlayerMessage(Player p, string message)
+        public static void OnPlayerMessage(Player p, string message)
         {
             NasPlayer np = NasPlayer.GetNasPlayer(p);
             if (np.isInserting)
             {
                 int items = 0;
-                if (!CommandParser.GetInt(p, message, "Amount", ref items, 0)) { return; }
-                if (items == 0) { p.cancelchat = true; p.SendMapMotd(); np.isInserting = false; return; }
-                BlockID clientBlockID = p.ConvertBlock(p.ClientHeldBlock);
-                NasBlock nasBlock = NasBlock.Get(clientBlockID);
+                if (!CommandParser.GetInt(p, message, "Amount", ref items, 0)) 
+                { 
+                    return; 
+                }
+                if (items == 0) 
+                { 
+                    p.cancelchat = true; 
+                    p.SendMapMotd(); 
+                    np.isInserting = false;
+                    return; 
+                }
+                ushort clientushort = p.ConvertBlock(p.ClientHeldBlock);
+                NasBlock nasBlock = NasBlock.Get(clientushort);
                 int amount = np.inventory.GetAmount(nasBlock.parentID);
-                if (items > amount) items = amount;
+                if (items > amount)
+                {
+                    items = amount;
+                }
                 if (amount < 1)
                 {
                     p.Message("You don't have any {0} to store.", nasBlock.GetName(p));
                     return;
                 }
-                int x = np.interactCoords[0]; int y = np.interactCoords[1]; int z = np.interactCoords[2];
+                int x = np.interactCoords[0]; 
+                int y = np.interactCoords[1]; 
+                int z = np.interactCoords[2];
                 NasBlock.Entity bEntity = np.nl.blockEntities[x + " " + y + " " + z];
                 if (bEntity.drop == null)
                 {
@@ -486,7 +598,6 @@ namespace NotAwesomeSurvival
                         return;
                     }
                 }
-
                 if (bEntity.drop.blockStacks.Count >= NasBlock.Container.BlockStackLimit)
                 {
                     p.Message("It can't contain more than {0} stacks of blocks.", NasBlock.Container.BlockStackLimit);
@@ -503,81 +614,62 @@ namespace NotAwesomeSurvival
                 np.isInserting = false;
             }
         }
-
-        static void OnPlayerDisconnect(Player p, string reason)
+        public static void OnPlayerDisconnect(Player p, string reason)
         {
             NasPlayer np = (NasPlayer)p.Extras[PlayerKey];
-
             //np.hasBeenSpawned = false;
             string jsonString;
             jsonString = JsonConvert.SerializeObject(np, Formatting.Indented);
             File.WriteAllText(GetSavePath(p), jsonString);
+            File.Copy(GetSavePath(p), GetTextPath(p), true);
         }
-
-        static void OnPlayerClick
-        (Player p,
-        MouseButton button, MouseAction action,
-        ushort yaw, ushort pitch,
-        byte entity, ushort x, ushort y, ushort z,
-        TargetBlockFace face)
+        public static void OnPlayerClick(Player p, MouseButton button, 
+            MouseAction action, ushort yaw, ushort pitch, byte entity, 
+            ushort x, ushort y, ushort z, TargetBlockFace face)
         {
-            if (p.level.Config.Deletable && p.level.Config.Buildable) { return; }
-
-
+            if (p.level.Config.Deletable && p.level.Config.Buildable) 
+            { 
+                return; 
+            }
             NasPlayer.ClickOnPlayer(p, entity, button, action);
-            if (button == MouseButton.Left) { NasBlockChange.HandleLeftClick(p, button, action, yaw, pitch, entity, x, y, z, face); }
-
-
+            if (button == MouseButton.Left) 
+            { 
+                NasBlockChange.HandleLeftClick(p, button, action, yaw, pitch, entity, x, y, z, face); 
+            }
             NasPlayer np = NasPlayer.GetNasPlayer(p);
-
-
             if (button == MouseButton.Middle && action == MouseAction.Pressed)
             {
                 //np.ChangeHealth(0.5f);
-                //BlockID here = p.level.GetBlock(x, y, z);
-                //p.Message("nasBlock {0}", NasBlock.blocksIndexedByServerBlockID[here].GetName(p));
-                //NasBlock.blocksIndexedByServerBlockID[here].collideAction(np, NasBlock.blocks[1], true, x, y, z);
+                //ushort here = p.level.GetBlock(x, y, z);
+                //p.Message("nasBlock {0}", NasBlock.blocksIndexedByServerushort[here].GetName(p));
+                //NasBlock.blocksIndexedByServerushort[here].collideAction(np, NasBlock.blocks[1], true, x, y, z);
             }
             if (button == MouseButton.Right && action == MouseAction.Pressed)
             {
                 //np.TakeDamage(0.5f);
             }
-
-
-
-
             if (!np.justBrokeOrPlaced)
             {
                 np.HandleInteraction(button, action, x, y, z, entity, face);
             }
-
             if (action == MouseAction.Released)
             {
                 np.justBrokeOrPlaced = false;
             }
-
         }
-
-        static void OnBlockChanging(Player p, ushort x, ushort y, ushort z, BlockID block, bool placing, ref bool cancel)
+        public static void OnBlockChanging(Player p, ushort x, ushort y, ushort z, ushort block, bool placing, ref bool cancel)
         {
             NasBlockChange.PlaceBlock(p, x, y, z, block, placing, ref cancel);
         }
-        static void OnBlockChanged(Player p, ushort x, ushort y, ushort z, ChangeResult result)
+        public static void OnBlockChanged(Player p, ushort x, ushort y, ushort z, ChangeResult result)
         {
             NasBlockChange.OnBlockChanged(p, x, y, z, result);
         }
-        static void OnPlayerMove(Player p, Position next, byte yaw, byte pitch)
+        public static void OnPlayerMove(Player p, Position next, byte yaw, byte pitch)
         {
             NasPlayer np = (NasPlayer)p.Extras[PlayerKey];
             np.DisplayHealth();
             np.DoMovement(next, yaw, pitch);
         }
-
-
-
-
     }
-
-
-
 }

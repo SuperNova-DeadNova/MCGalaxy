@@ -88,8 +88,8 @@ namespace MCGalaxy {
         
         static int SignExtend(long parts) {
             int value = (int)(parts & mask);
-            value <<= (32 - 21);
-            value >>= (32 - 21);
+            value <<= 32 - 21;
+            value >>= 32 - 21;
             return value;
         }
     }
@@ -115,7 +115,7 @@ namespace MCGalaxy {
         
         /// <summary> Converts angle in range [0, 256) into range [0, 360). </summary>
         public static int PackedToDegrees(byte packed) {
-            return (packed * 360 / 256);
+            return packed * 360 / 256;
         }
         
         /// <summary> Converts angle in degrees into range [0, 256) </summary>

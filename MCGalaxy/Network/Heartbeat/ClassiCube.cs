@@ -16,14 +16,13 @@
     permissions and limitations under the Licenses.
  */
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using MCGalaxy.Config;
 using MCGalaxy.Events.ServerEvents;
 
-namespace MCGalaxy.Network 
+namespace MCGalaxy.Network
 {
     /// <summary> Heartbeat to ClassiCube.net's web server. </summary>
     public sealed class ClassiCubeBeat : Heartbeat 
@@ -89,7 +88,7 @@ namespace MCGalaxy.Network
         
         protected override void OnResponse(WebResponse response) {
             string text = HttpUtil.GetResponseText(response);
-            if (String.IsNullOrEmpty(text)) return;
+            if (string.IsNullOrEmpty(text)) return;
             string hash = ExtractHash(text);
 
             // only need to do this when contents have changed

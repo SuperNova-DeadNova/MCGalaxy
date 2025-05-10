@@ -15,11 +15,11 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.Collections.Generic;
 
-namespace MCGalaxy.Config {
-    
+namespace MCGalaxy.Config
+{
+
     public sealed class ConfigColorAttribute : ConfigAttribute {
         string defCol;
         
@@ -60,7 +60,7 @@ namespace MCGalaxy.Config {
             : base(null, null) { allowEmpty = true; }
         
         public override object Parse(string value) {
-            if (String.IsNullOrEmpty(value) && !allowEmpty) {
+            if (string.IsNullOrEmpty(value) && !allowEmpty) {
                 Logger.Log(LogType.Warning, "Config key \"{0}\" has no value, using default of {1}", Name, defValue);
                 return defValue;
             }

@@ -15,12 +15,12 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.Collections.Generic;
 using System.IO;
 using MCGalaxy.Bots;
 
-namespace MCGalaxy.Commands.Bots{
+namespace MCGalaxy.Commands.Bots
+{
     public sealed class CmdBotAI : Command2 {
         public override string name { get { return "BotAI"; } }
         public override string shortcut { get { return "bai"; } }

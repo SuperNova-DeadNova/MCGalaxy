@@ -16,9 +16,9 @@
     permissions and limitations under the Licenses.
  */
 
-using System;
-namespace MCGalaxy.Commands.Moderation {
-    
+namespace MCGalaxy.Commands.Moderation
+{
+
     public sealed class CmdPossess : Command2 {
         public override string name { get { return "Possess"; } }
         public override string type { get { return CommandTypes.Moderation; } }

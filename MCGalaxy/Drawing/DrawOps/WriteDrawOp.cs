@@ -31,7 +31,7 @@ namespace MCGalaxy.Drawing.Ops
             int blocks = 0;
             foreach (char c in Text) {
                 if ((int)c >= 256 || letters[c] == 0) {
-                    blocks += (4 * Scale) * (4 * Scale);
+                    blocks += 4 * Scale * 4 * Scale;
                 } else {
                     // first 'vertical line flags' is at highest position
                     ulong flags = letters[c]; int shift = 56;

@@ -15,12 +15,11 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.Threading;
-using MCGalaxy.Events.EntityEvents;
 using MCGalaxy.Maths;
 
-namespace MCGalaxy {
+namespace MCGalaxy
+{
     public abstract class Entity {
         
         // Raw orientation/position - access must be threadsafe

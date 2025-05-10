@@ -17,10 +17,10 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Data;
 using MCGalaxy.SQL;
 
-namespace MCGalaxy.Commands.Chatting {
+namespace MCGalaxy.Commands.Chatting
+{
     public sealed class CmdInbox : Command2 {
         public override string name { get { return "Inbox"; } }
         public override string type { get { return CommandTypes.Chat; } }

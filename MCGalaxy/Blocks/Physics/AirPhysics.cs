@@ -15,11 +15,11 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Blocks.Physics {
-    
+namespace MCGalaxy.Blocks.Physics
+{
+
     public enum AirFlood { Full, Layer, Down, Up, }
     public static class AirPhysics {
         
@@ -33,7 +33,7 @@ namespace MCGalaxy.Blocks.Physics {
             ActivateablePhysics.CheckAt(lvl, x, (ushort)(y - 1), z); 
 
             //Edge of map water
-            if (lvl.Config.EdgeWater && (y < lvl.Config.EdgeLevel && y >= (lvl.Config.EdgeLevel + lvl.Config.SidesOffset))) {
+            if (lvl.Config.EdgeWater && y < lvl.Config.EdgeLevel && y >= (lvl.Config.EdgeLevel + lvl.Config.SidesOffset)) {
                 if (x == 0 || x == lvl.Width - 1 || z == 0 || z == lvl.Length - 1) {
                     BlockID horizon = lvl.Config.HorizonBlock;
                     lvl.AddUpdate(C.Index, horizon == Block.Invalid ? Block.Water : horizon);

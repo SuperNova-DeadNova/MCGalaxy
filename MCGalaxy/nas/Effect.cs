@@ -4,16 +4,19 @@ using MCGalaxy;
 using MCGalaxy.Config;
 using MCGalaxy.Network;
 
-namespace NotAwesomeSurvival {
+namespace NotAwesomeSurvival
+{
 
-    public class NassEffect { //lol
+    public class NassEffect
+    { //lol
         public const string Path = Nas.Path + "effects/";
         public static Effect breakMeter;
         public static Effect breakEarth;
         public static Effect breakLeaves;
         public static Effect[] breakEffects = new Effect[(int)NasBlock.Material.Count];
 
-        public static bool Setup() {
+        public static bool Setup()
+        {
             breakMeter = new Effect();
             if (!breakMeter.Load("breakmeter")) { return false; }
 
@@ -24,14 +27,16 @@ namespace NotAwesomeSurvival {
             if (!breakLeaves.Load("breakleaf")) { return false; }
 
             //set default effect for all types
-            for (int i = 0; i < (int)NasBlock.Material.Count; i++) {
+            for (int i = 0; i < (int)NasBlock.Material.Count; i++)
+            {
                 breakEffects[i] = breakEarth;
             }
             breakEffects[(int)NasBlock.Material.Leaves] = breakLeaves;
             return true;
         }
-        const float notAllowedBelowZero = 0;
-        public class Effect {
+        public const float notAllowedBelowZero = 0;
+        public class Effect
+        {
             //NOT defined in the config file. Filled in at runtime when loaded
             public byte ID;
             [ConfigByte("pixelU1", "Effect")]
@@ -85,40 +90,50 @@ namespace NotAwesomeSurvival {
             public bool fullBright = true;
             //Filled in when loaded. Based on pixelSize
             public float offset;
-            static ConfigElement[] cfg;
-            public bool Load(string effectName) {
+            public static ConfigElement[] cfg;
+            public bool Load(string effectName)
+            {
                 string fileName = Path + effectName + ".properties";
                 string fileNameInPluginsDir = "plugins/" + effectName + ".properties";
-                if (File.Exists(fileNameInPluginsDir)) {
+                if (File.Exists(fileNameInPluginsDir))
+                {
                     File.Move(fileNameInPluginsDir, fileName);
                 }
-                
+
                 if (cfg == null) cfg = ConfigElement.GetAll(typeof(Effect));
-                if (!ConfigElement.ParseFile(cfg, fileName, this)) {
+                if (!ConfigElement.ParseFile(cfg, fileName, this))
+                {
                     Player.Console.Message("NAS: Could not find required effect file {0}", effectName);
                     return false;
                 }
-                offset = this.pixelSize / 32;
+                offset = pixelSize / 32;
                 return true;
             }
         }
 
-        public static void Define(Player p, byte ID, Effect effect, Color? color = null, float? lifetime = null) {
+        public static void Define(Player p, byte ID, Effect effect, Color? color = null, float? lifetime = null)
+        {
             byte red, green, blue;
             float baseLifetime;
-            if (color != null) {
+            if (color != null)
+            {
                 Color realColor = (Color)color;
                 red = realColor.R;
                 green = realColor.G;
                 blue = realColor.B;
-            } else {
+            }
+            else
+            {
                 red = effect.tintRed;
                 green = effect.tintGreen;
                 blue = effect.tintBlue;
             }
-            if (lifetime != null) {
+            if (lifetime != null)
+            {
                 baseLifetime = (float)lifetime;
-            } else {
+            }
+            else
+            {
                 baseLifetime = effect.baseLifetime;
             }
             p.Send(Packet.DefineEffect(
@@ -145,12 +160,14 @@ namespace NotAwesomeSurvival {
                                         effect.collidesLeaves,
                                         effect.fullBright));
         }
-        public static void UndefineEffect(Player p, byte ID) {
+        public static void UndefineEffect(Player p, byte ID)
+        {
             p.Send(Packet.DefineEffect(ID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0,
                                        false, false, false, false, false
                                       ));
         }
-        public static void Spawn(Player p, byte ID, Effect effect, float x, float y, float z, float originX, float originY, float originZ) {
+        public static void Spawn(Player p, byte ID, Effect effect, float x, float y, float z, float originX, float originY, float originZ)
+        {
             if (!p.Supports(CpeExt.CustomParticles)) { return; }
             x += 0.5f;
             y += 0.5f;

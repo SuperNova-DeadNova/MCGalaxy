@@ -15,11 +15,11 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System.IO;
 using MCGalaxy.DB;
 using MCGalaxy.Events.PlayerEvents;
 
-namespace MCGalaxy.Commands.Moderation {
+namespace MCGalaxy.Commands.Moderation
+{
     public sealed class CmdHide : Command2 {
         public override string name { get { return "Hide"; } }
         public override string type { get { return CommandTypes.Moderation; } }

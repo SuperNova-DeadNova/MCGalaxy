@@ -15,11 +15,10 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
 */
-using System;
-using System.IO;
 using MCGalaxy.Games;
 
-namespace MCGalaxy.Commands.Fun {    
+namespace MCGalaxy.Commands.Fun
+{
     public sealed class CmdShowQueue : Command2 {      
         public override string name { get { return "ShowQueue"; } }
         public override string shortcut { get { return "sq"; } }
@@ -32,7 +31,7 @@ namespace MCGalaxy.Commands.Fun {
         }
         
         void ShowQueued(Player p, string queued, string type) {
-            if (String.IsNullOrEmpty(queued))
+            if (string.IsNullOrEmpty(queued))
                 p.Message("There is no " + type + " queued.");
             else
                 p.Message("\"" + queued + "\" is queued as the next " + type + ".");

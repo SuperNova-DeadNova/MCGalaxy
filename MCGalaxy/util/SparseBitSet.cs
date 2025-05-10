@@ -15,13 +15,12 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
-
-namespace MCGalaxy.Util {
+namespace MCGalaxy.Util
+{
     /// <summary> Sparsely represents 1 bit of data per voxel for a 3D volume. </summary>
     /// <remarks> Typically this means 1 bit per block for a level. </remarks>
     /// <remarks> Does NOT perform any bounds checking. </remarks>
-    public sealed class SparseBitSet {
+    public class SparseBitSet {
         
         int chunksX, chunksY, chunksZ;
         byte[][] bits;
@@ -50,12 +49,12 @@ namespace MCGalaxy.Util {
             int index = (x >> 4) + chunksX * ((z >> 4) + (y >> 4) * chunksZ);
             byte[] chunk = bits[index];
             if (chunk == null) {
-                chunk = new byte[(16 * 16 * 16) / 8];
+                chunk = new byte[16 * 16 * 16 / 8];
                 bits[index] = chunk;
             }
             
             index = (x & 0xF) | (z & 0xF) << 4 | (y & 0xF) << 8;
-            chunk[index >> 3] &= (byte)(~(1 << (index & 0x7))); // reset bit
+            chunk[index >> 3] &= (byte)~(1 << (index & 0x7)); // reset bit
             chunk[index >> 3] |= (byte)((bit ? 1 : 0) << (index & 0x7)); // set new bit
         }
         
@@ -65,7 +64,7 @@ namespace MCGalaxy.Util {
             int index = (x >> 4) + chunksX * ((z >> 4) + (y >> 4) * chunksZ);
             byte[] chunk = bits[index];
             if (chunk == null) {
-                chunk = new byte[(16 * 16 * 16) / 8];
+                chunk = new byte[16 * 16 * 16 / 8];
                 bits[index] = chunk;
             }
             

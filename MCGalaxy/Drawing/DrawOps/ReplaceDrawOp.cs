@@ -15,13 +15,12 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using MCGalaxy.DB;
 using MCGalaxy.Drawing.Brushes;
 using MCGalaxy.Maths;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Drawing.Ops 
+namespace MCGalaxy.Drawing.Ops
 {
     public class ReplaceDrawOp : DrawOp 
     {       

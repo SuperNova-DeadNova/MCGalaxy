@@ -15,13 +15,13 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Text;
 
-namespace MCGalaxy.SQL {
+namespace MCGalaxy.SQL
+{
 
     public sealed class SQLiteBackend : IDatabaseBackend {
         public static IDatabaseBackend Instance = new SQLiteBackend();

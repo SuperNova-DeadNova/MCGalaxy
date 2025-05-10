@@ -17,10 +17,9 @@
  */
 using System;
 using System.ComponentModel;
-using MCGalaxy.Commands.World;
-using MCGalaxy.UI;
 
-namespace MCGalaxy.Gui {
+namespace MCGalaxy.Gui
+{
     public sealed class LevelProperties {     
         readonly Level lvl;
         readonly LevelConfig cfg;
@@ -135,7 +134,7 @@ namespace MCGalaxy.Gui {
         void SetAutoload(bool value) {
             if (value) {
                 // Use AddOrReplace for backwards compatibility
-                Server.AutoloadMaps.AddOrReplace(lvl.name, lvl.physics.ToString());
+                Server.AutoloadMaps.Update(lvl.name, lvl.physics.ToString());
             } else {
                 Server.AutoloadMaps.Remove(lvl.name);
             }

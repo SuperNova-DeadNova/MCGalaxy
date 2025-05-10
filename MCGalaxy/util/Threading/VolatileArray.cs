@@ -15,11 +15,11 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.Collections.Generic;
 
-namespace MCGalaxy {
-    public sealed class VolatileArray<T> where T : class {
+namespace MCGalaxy
+{
+    public class VolatileArray<T> where T : class {
 
         /// <remarks> Note this field is highly volatile, you should cache references to it. </remarks>
         public volatile T[] Items = new T[0];

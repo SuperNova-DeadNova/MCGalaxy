@@ -16,11 +16,11 @@
     permissions and limitations under the Licenses.
  */
 using System;
-using MCGalaxy.Eco;
 using MCGalaxy.Util;
 
-namespace MCGalaxy.Eco {
-    
+namespace MCGalaxy.Eco
+{
+
     public sealed class SnackItem : SimpleItem {
         
         public SnackItem() {

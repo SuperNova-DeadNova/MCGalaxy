@@ -15,13 +15,13 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System;
 using System.Collections.Generic;
 using System.IO;
 using MCGalaxy.Commands;
 
-namespace MCGalaxy.Eco {
-    
+namespace MCGalaxy.Eco
+{
+
     public sealed class RankItem : Item {
         
         public RankItem() {
@@ -57,7 +57,7 @@ namespace MCGalaxy.Eco {
             RankEntry rank = Find(perm);
             if (rank != null) return rank;
             
-            rank = new RankItem.RankEntry(); rank.Perm = perm;
+            rank = new RankEntry(); rank.Perm = perm;
             Ranks.Add(rank);
             Ranks.Sort((a, b) => a.Perm.CompareTo(b.Perm));
             return rank;

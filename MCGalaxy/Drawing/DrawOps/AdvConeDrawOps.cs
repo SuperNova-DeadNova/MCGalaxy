@@ -95,7 +95,7 @@ namespace MCGalaxy.Drawing.Ops
                     if (dist > curRadius * curRadius) continue;
                     
                     if (dist <= (curRadius - 1) * (curRadius - 1) &&
-                        dist <= (curRadius2)    * (curRadius2)  ) continue;
+                        dist <= curRadius2    * curRadius2  ) continue;
                     output(Place(x, y, z, brush));
                 }
             }
@@ -134,7 +134,7 @@ namespace MCGalaxy.Drawing.Ops
                     
                     bool layer = curRadius == 0 ||
                         !(dist <= (curRadius - 1) * (curRadius - 1) &&
-                          dist <= (curRadius2   ) * (curRadius2   ) );
+                          dist <= curRadius2    * curRadius2    );
 
                     BlockID block = layer ? Block.Grass : Block.StillLava;
                     output(Place(x, y, z, block));

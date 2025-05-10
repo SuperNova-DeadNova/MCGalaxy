@@ -23,8 +23,7 @@ using MCGalaxy.Modules.Relay.Discord;
 using MCGalaxy.Modules.Relay.IRC;
 using MCGalaxy.Modules.Security;
 using MCGalaxy.Scripting;
-using NotAwesomeSurvival;
-namespace MCGalaxy 
+namespace MCGalaxy
 {
     /// <summary> This class provides for more advanced modification to MCGalaxy </summary>
     public abstract class Plugin 
@@ -63,7 +62,7 @@ namespace MCGalaxy
         public static bool Load(Plugin p, bool auto) {
             try {
                 string ver = p.MCGalaxy_Version;
-                if (!String.IsNullOrEmpty(ver) && new Version(ver) > new Version(Server.Version)) {
+                if (!string.IsNullOrEmpty(ver) && new Version(ver) > new Version(Server.Version)) {
                     Logger.Log(LogType.Warning, "Plugin ({0}) requires a more recent version of {1}!", p.name, Server.SoftwareName);
                     return false;
                 }
@@ -76,11 +75,11 @@ namespace MCGalaxy
                     Logger.Log(LogType.SystemActivity, "Plugin {0} was not loaded, you can load it with /pload", p.name);
                 }
                 
-                if (!String.IsNullOrEmpty(p.welcome)) Logger.Log(LogType.SystemActivity, p.welcome);
+                if (!string.IsNullOrEmpty(p.welcome)) Logger.Log(LogType.SystemActivity, p.welcome);
                 return true;
             } catch (Exception ex) {
                 Logger.LogError("Error loading plugin " + p.name, ex);               
-                if (!String.IsNullOrEmpty(p.creator)) Logger.Log(LogType.Warning, "You can go bug {0} about it.", p.creator);
+                if (!string.IsNullOrEmpty(p.creator)) Logger.Log(LogType.Warning, "You can go bug {0} about it.", p.creator);
                 return false;
             }
         }
@@ -111,9 +110,7 @@ namespace MCGalaxy
             LoadCorePlugin(new DiscordPlugin());
             LoadCorePlugin(new IRCPlugin());
             LoadCorePlugin(new IPThrottler());
-#if TEN_BIT_BLOCKS
-            LoadCorePlugin(new Nas());
-#endif
+            Load(new NotAwesomeSurvival.Nas(), true);
             IScripting.AutoloadPlugins();
         }
         

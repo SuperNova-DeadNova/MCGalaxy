@@ -16,13 +16,12 @@
     permissions and limitations under the Licenses.
  */
 using System;
-using System.Data;
 using MCGalaxy.Blocks.Extended;
-using MCGalaxy.SQL;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.DB {
-    
+namespace MCGalaxy.DB
+{
+
     /// <summary> Outputs information about a block and its changes to the user. </summary>
     public static class BlockDBChange {
         

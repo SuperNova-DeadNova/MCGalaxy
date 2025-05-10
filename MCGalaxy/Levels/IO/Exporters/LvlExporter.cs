@@ -16,13 +16,12 @@
     permissions and limitations under the Licenses.
  */
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
-using MCGalaxy.Util;
 
-namespace MCGalaxy.Levels.IO {
+namespace MCGalaxy.Levels.IO
+{
 
     //WARNING! DO NOT CHANGE THE WAY THE LEVEL IS SAVED/LOADED!
     //You MUST make it able to save and load as a new version other wise you will make old levels incompatible!

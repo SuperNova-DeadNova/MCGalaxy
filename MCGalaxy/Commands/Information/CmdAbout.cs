@@ -17,13 +17,13 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Data;
 using MCGalaxy.DB;
 using MCGalaxy.Maths;
 using MCGalaxy.SQL;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Commands.Info {
+namespace MCGalaxy.Commands.Info
+{
     public sealed class CmdAbout : Command2 {
         public override string name { get { return "About"; } }
         public override string shortcut { get { return "b"; } }

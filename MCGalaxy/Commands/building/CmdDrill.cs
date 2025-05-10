@@ -15,12 +15,12 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using System.Collections.Generic;
 using MCGalaxy.DB;
 using MCGalaxy.Maths;
 using BlockID = System.UInt16;
 
-namespace MCGalaxy.Commands.Building {
+namespace MCGalaxy.Commands.Building
+{
     public sealed class CmdDrill : Command2 {
         public override string name { get { return "Drill"; } }
         public override string type { get { return CommandTypes.Building; } }
@@ -39,7 +39,7 @@ namespace MCGalaxy.Commands.Building {
         bool DoDrill(Player p, Vec3S32[] marks, object state, BlockID block) {
             ushort x = (ushort)marks[0].X, y = (ushort)marks[0].Y, z = (ushort)marks[0].Z;
             block = p.level.GetBlock(x, y, z);
-            int dist = (ushort)state, numBlocks = (3 * 3) * dist;
+            int dist = (ushort)state, numBlocks = 3 * 3 * dist;
             
             if (numBlocks > p.group.DrawLimit) {
                 p.Message("You tried to drill " + numBlocks + " blocks.");
